@@ -125,6 +125,7 @@ spec:
         # Serve /metrics endpoint at different port;
         # make sure to set prometheus' annotation to scrape the port value.
         - --listen-metrics=:3031
+        - --sync-garbage-collection
 ---
 apiVersion: v1
 kind: Secret
