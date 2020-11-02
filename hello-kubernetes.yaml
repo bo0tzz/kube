@@ -30,7 +30,7 @@ spec:
         ports:
         - containerPort: 8080
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ingress-hello-kubernetes
@@ -39,9 +39,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-    - hosts: 
-      - hello.kube.bo0tzz.me
-      secret_name: hello-kube-tls
+  - hosts: 
+    - hello.kube.bo0tzz.me
+    secret_name: hello-kube-tls
   rules:
   - host: hello.kube.bo0tzz.me
     http:
