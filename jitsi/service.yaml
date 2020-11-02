@@ -39,6 +39,10 @@ metadata:
   name: jitsi
   namespace: jitsi
 spec:
+  tls:
+  - hosts: 
+    - jitsi.bo0tzz.me
+    secretName: jitsi-web-tls
   rules:
   - host: jitsi.bo0tzz.me
     http:
