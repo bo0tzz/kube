@@ -1,0 +1,10 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  chart:
+    repository: https://kubernetes.github.io/ingress-nginx
+    name: ingress-nginx
+    version: 3.7.1
