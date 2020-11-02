@@ -7,5 +7,29 @@ metadata:
   namespace: jitsi
 spec:
   type: LoadBalancer
+  ports:
+  - port: 10000
+    protocol: UDP
+    targetPort: 10000
+    nodePort: 10000
   selector:
     k8s-app: jitsi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: web
+  name: web
+  namespace: jitsi
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "http"
+    port: 80
+    targetPort: 80
+  - name: "https"
+    port: 443
+    targetPort: 443
+  selector:
+    k8s-app: jitsi    
