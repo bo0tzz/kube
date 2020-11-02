@@ -15,3 +15,5 @@ spec:
     cloudflare:
       proxied: false
       secretName: cloudflare-api-token-secret
+    excludeDomains:
+      - jitsi.bo0tzz.me
