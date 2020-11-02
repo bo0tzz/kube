@@ -23,7 +23,6 @@ metadata:
   name: web
   namespace: jitsi
 spec:
-  type: LoadBalancer
   ports:
   - name: "http"
     port: 80
@@ -32,4 +31,19 @@ spec:
     port: 443
     targetPort: 443
   selector:
-    k8s-app: jitsi    
+    k8s-app: jitsi
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: jitsi
+  namespace: jitsi
+spec:
+  rules:
+  - host: jitsi.bo0tzz.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: https

@@ -103,12 +103,6 @@ spec:
               value: Europe/Amsterdam
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
-            - name: ENABLE_LETSENCRYPT
-              value: "true"
-            - name: LETSENCRYPT_DOMAIN
-              value: jitsi.bo0tzz.me
-            - name: LETSENCRYPT_EMAIL
-              value: boet@dewilligen.net
         - name: jvb
           image: jitsi/jvb
           imagePullPolicy: Always
