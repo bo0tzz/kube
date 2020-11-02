@@ -1,0 +1,17 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: dns
+spec:
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: external-dns
+    version: 3.5.1
+  values:
+    sources: 
+      - ingress
+    provider: cloudflare
+    cloudflare:
+      proxied: false
+      secretName: cloudflare-api-token-secret

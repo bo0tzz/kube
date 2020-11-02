@@ -1,0 +1,14 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: dns
+spec:
+  chart:
+    repository: https://charts.jetstack.io
+    name: cert-manager
+    version: 1.0.4
+  values:
+    webhook:
+      enabled: true
+    installCRDs: true
