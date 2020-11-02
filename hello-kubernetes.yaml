@@ -4,7 +4,6 @@ kind: Service
 metadata:
   name: hello-kubernetes
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8080
@@ -30,3 +29,24 @@ spec:
         image: paulbouwer/hello-kubernetes:1.8
         ports:
         - containerPort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-hello-kubernetes
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+    - hosts: 
+      - hello.kube.bo0tzz.me
+      secret_name: hello-kube-tls
+  rules:
+  - host: hello.kube.bo0tzz.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello-kubernetes
+          servicePort: 80        
