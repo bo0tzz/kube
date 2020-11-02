@@ -8,10 +8,10 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 10000
+  - port: 30300
     protocol: UDP
-    targetPort: 10000
-    nodePort: 10000
+    targetPort: 30300
+    nodePort: 30300
   selector:
     k8s-app: jitsi
 ---
