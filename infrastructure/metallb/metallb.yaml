@@ -8,3 +8,5 @@ spec:
     repository: https://charts.bitnami.com/bitnami
     name: metallb
     version: 0.1.28
+  values:
+    existingConfigMap: config
