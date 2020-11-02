@@ -1,0 +1,10 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: metallb-system
+spec:
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: metallb
+    version: 0.1.28
