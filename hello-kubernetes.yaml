@@ -41,7 +41,7 @@ spec:
   tls:
   - hosts: 
     - hello.kube.bo0tzz.me
-    secret_name: hello-kube-tls
+    secretName: hello-kube-tls
   rules:
   - host: hello.kube.bo0tzz.me
     http:
