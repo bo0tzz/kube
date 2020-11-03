@@ -106,6 +106,9 @@ spec:
         - name: jvb
           image: jitsi/jvb
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "2"
           env:
             - name: XMPP_SERVER
               value: localhost
