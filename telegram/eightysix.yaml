@@ -17,15 +17,15 @@ metadata:
   name: eightysix
   namespace: telegram
 spec:
-  volumes:
-  - name: settings.toml
-    secret:
-      secretName: eightysix-settings
   selector:
     matchLabels:
       app: eightysix
   template:
     spec:
+      volumes:
+      - name: settings.toml
+        secret:
+          secretName: eightysix-settings
       containers:
       - name: eightysix
         image: ghcr.io/bo0tzz/eightysix:latest
@@ -35,5 +35,5 @@ spec:
             cpu: "250m"
         volumeMounts:
           - mountPath: "/usr/src/eightysix/settings.toml"
-            name: settings
+            name: settings.toml
             readOnly: true
