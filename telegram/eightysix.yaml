@@ -37,6 +37,6 @@ spec:
             memory: "64Mi"
             cpu: "250m"
         volumeMounts:
-          - mountPath: "/usr/src/eightysix/settings.toml"
+          - mountPath: "/settings.toml"
             name: settings
             readOnly: true
