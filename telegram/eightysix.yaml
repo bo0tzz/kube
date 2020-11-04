@@ -21,9 +21,12 @@ spec:
     matchLabels:
       app: eightysix
   template:
+    metadata:
+      labels:
+        app: eightysix
     spec:
       volumes:
-      - name: settings.toml
+      - name: settings
         secret:
           secretName: eightysix-settings
       containers:
@@ -35,5 +38,5 @@ spec:
             cpu: "250m"
         volumeMounts:
           - mountPath: "/usr/src/eightysix/settings.toml"
-            name: settings.toml
+            name: settings
             readOnly: true
