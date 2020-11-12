@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: calibre
+  namespace: calibre
+  labels:
+    app: calibre
+spec:
+  selector:
+    app: calibre
+  ports:
+    - name: "http"
+      protocol: TCP
+      targetPort: 8083
+      port: 80
