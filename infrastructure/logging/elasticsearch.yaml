@@ -1,0 +1,15 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: logging
+spec:
+  chart:
+    repository: https://helm.elastic.co
+    name: elasticsearch
+    version: 7.10.1
+  values:
+    volumeClaimTemplate:
+      resources:
+        requests:
+          storage: 10Gi

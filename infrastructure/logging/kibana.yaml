@@ -1,0 +1,24 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kibana
+  namespace: logging
+spec:
+  chart:
+    repository: https://helm.elastic.co
+    name: kibana
+    version: 7.10.1
+  values:
+    ingress:
+      enabled: true
+      annotations: 
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      hosts:
+        - host: kibana.bo0tzz.me
+          paths:
+            - path: /
+      tls: 
+       - secretName: kibana-tls
+         hosts:
+           - kibana.bo0tzz.me
