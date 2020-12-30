@@ -23,6 +23,83 @@ rules:
   - watch
 
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-config
+  namespace: logging
+data:
+  fluent.conf: |
+    <match fluent.**>
+      @type null
+    </match>
+
+    <match kubernetes.var.log.containers.**fluentd**.log>
+      @type null
+    </match>
+
+    <match kubernetes.var.log.containers.**kube-system**.log>
+      @type null
+    </match>
+
+    <match kubernetes.var.log.containers.**kibana**.log>
+      @type null
+    </match>
+
+    <source>
+      @type tail
+      path /var/log/containers/*.log
+      pos_file /var/log/fluentd-containers.log.pos
+      tag kubernetes.*
+      read_from_head false
+      <parse>
+        @type json
+        json_parser oj
+        time_format %Y-%m-%dT%H:%M:%S
+      </parse>
+    </source>
+
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+      @id filter_kube_metadata
+    </filter>
+
+    <filter kubernetes.var.log.containers.**>
+      @type parser
+      <parse>
+        @type json
+        json_parser oj
+        time_format %Y-%m-%dT%H:%M:%S
+      </parse>
+      key_name log
+      replace_invalid_sequence true
+      emit_invalid_record_to_error true
+      reserve_data true
+    </filter>
+
+    <match kubernetes.**>
+      @type elasticsearch
+      @log_level debug
+      host "#{ENV['FLUENT_ELASTICSEARCH_HOST']}"
+      port "#{ENV['FLUENT_ELASTICSEARCH_PORT']}"
+      scheme "#{ENV['FLUENT_ELASTICSEARCH_SCHEME'] || 'http'}"
+      ssl_verify "false"
+      logstash_format true
+      logstash_prefix fluentd
+      logstash_dateformat %Y%m%d
+      include_tag_key true
+      reload_connections true
+      log_es_400_reason true
+      <buffer>
+        flush_thread_count 8
+        flush_interval 5s
+        chunk_limit_size 2M
+        queue_limit_length 32
+        retry_max_interval 30
+        retry_forever true
+      </buffer>
+    </match>
+---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -86,6 +163,8 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
+        - name: fluentd-config
+          mountPath: /fluentd/etc
       terminationGracePeriodSeconds: 30
       volumes:
       - name: varlog
@@ -94,3 +173,6 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: fluentd-config
+        configMap:
+          name: fluentd-config
