@@ -14,10 +14,9 @@ spec:
       annotations: 
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: letsencrypt-prod
+      path: /
       hosts:
-        - host: kibana.bo0tzz.me
-          paths:
-            - path: /
+        - kibana.bo0tzz.me
       tls: 
        - secretName: kibana-tls
          hosts:
