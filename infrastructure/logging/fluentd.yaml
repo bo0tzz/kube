@@ -51,11 +51,11 @@ data:
       path /var/log/containers/*.log
       pos_file /var/log/fluentd-containers.log.pos
       tag kubernetes.*
+      exclude_path ["/var/log/containers/fluent*"]
       read_from_head false
       <parse>
-        @type json
-        json_parser oj
-        time_format %Y-%m-%dT%H:%M:%S
+        @type regexp
+        expression /^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/
       </parse>
     </source>
 
@@ -68,12 +68,11 @@ data:
       @type parser
       <parse>
         @type json
-        json_parser oj
-        time_format %Y-%m-%dT%H:%M:%S
+        json_parser json
       </parse>
       key_name log
       replace_invalid_sequence true
-      emit_invalid_record_to_error true
+      emit_invalid_record_to_error false
       reserve_data true
     </filter>
 
