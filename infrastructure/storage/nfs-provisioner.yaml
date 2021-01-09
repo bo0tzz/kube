@@ -29,7 +29,7 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
-          image: quay.io/external_storage/nfs-client-provisioner:latest
+          image: registry.kube.bo0tzz.me/nfs-subdir-external-provisioner:latest
           volumeMounts:
             - name: nfs-client-root
               mountPath: /persistentvolumes
