@@ -17,3 +17,4 @@ spec:
       secretName: cloudflare-api-token-secret
     excludeDomains:
       - jitsi.bo0tzz.me
+      - nc.bo0tzz.me
