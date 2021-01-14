@@ -4,5 +4,5 @@ metadata:
   name: db-config
   namespace: nextcloud
 data:
-  MYSQL_DATABASE: nextcloud
-  MYSQL_USER: nextcloud
+  POSTGRES_DB: nextcloud
+  POSTGRES_USER: nextcloud
