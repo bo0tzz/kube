@@ -8,3 +8,7 @@ spec:
     repository: https://kubernetes.github.io/ingress-nginx
     name: ingress-nginx
     version: 3.20.1
+  values:
+    controller:
+      image:
+        digest: null
