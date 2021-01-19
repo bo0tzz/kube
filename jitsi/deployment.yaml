@@ -88,9 +88,9 @@ spec:
               value: :0
           securityContext:
             capabilities:
-            add:
-              - SYS_ADMIN
-              - NET_BIND_SERVICE
+              add:
+                - SYS_ADMIN
+                - NET_BIND_SERVICE
           volumeMounts:
             - name: snd
               mountPath: /dev/snd
