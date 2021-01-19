@@ -7,6 +7,7 @@ data:
   XMPP_SERVER: localhost
   XMPP_DOMAIN: meet.jitsi
   XMPP_AUTH_DOMAIN: auth.meet.jitsi
+  XMPP_RECORDER_DOMAIN: recorder.meet.jitsi
   XMPP_INTERNAL_MUC_DOMAIN: internal-muc.meet.jitsi
   XMPP_MUC_DOMAIN: muc.meet.jitsi
   TZ: Europe/Amsterdam
@@ -23,4 +24,5 @@ data:
   JIBRI_XMPP_USER: jibri
   JIBRI_XMPP_PASSWORD: jibri
   JIBRI_BREWERY_MUC: jibribrewery
+  JIBRI_PENDING_TIMEOUT: "90"
   ENABLE_PREJOIN_PAGE: "true"
