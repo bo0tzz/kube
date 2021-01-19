@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shared-config
+  namespace: jitsi
+data:
+  XMPP_SERVER: localhost
+  XMPP_DOMAIN: meet.jitsi
+  XMPP_AUTH_DOMAIN: auth.meet.jitsi
+  XMPP_INTERNAL_MUC_DOMAIN: internal-muc.meet.jitsi
+  XMPP_MUC_DOMAIN: muc.meet.jitsi
+  TZ: Europe/Amsterdam
+  JVB_STUN_SERVERS: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
+  JICOFO_AUTH_USER: focus
+  JVB_TCP_HARVESTER_DISABLED: "true"
+  JVB_AUTH_USER: jvb
+  JVB_PORT: "30300"
+  JVB_BREWERY_MUC: jvbbrewery
+  XMPP_BOSH_URL_BASE: http://127.0.0.1:5280
