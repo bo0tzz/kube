@@ -103,3 +103,7 @@ spec:
         - name: shm
           hostPath:
             path: /dev/shm
+      tolerations:
+        - key: "SoundAvailable"
+          operator: "Exists"
+          effect: "NoSchedule"
