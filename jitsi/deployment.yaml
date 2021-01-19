@@ -86,6 +86,10 @@ spec:
           env:
             - name: DISPLAY
               value: :0
+            - name: XMPP_SERVER
+              value: prosody
+            - name: XMPP_BOSH_URL_BASE
+              value: http://prosody:5280
           securityContext:
             capabilities:
               add:

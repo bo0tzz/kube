@@ -39,6 +39,21 @@ spec:
   selector:
     k8s-app: jitsi
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: prosody
+  name: prosody
+  namespace: jitsi
+spec:
+  ports:
+  - name: "bosh"
+    port: 5280
+    targetPort: 5280
+  selector:
+    k8s-app: jitsi
+---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
