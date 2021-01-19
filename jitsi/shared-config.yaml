@@ -18,7 +18,7 @@ data:
   JVB_PORT: "30300"
   JVB_BREWERY_MUC: jvbbrewery
   XMPP_BOSH_URL_BASE: http://127.0.0.1:5280
-  ENABLE_RECORDING: "true"
+  ENABLE_RECORDING: "false"
   JIBRI_RECORDER_USER: jibrirecord
   JIBRI_RECORDER_PASSWORD: jibrirecordpass
   JIBRI_XMPP_USER: jibri
