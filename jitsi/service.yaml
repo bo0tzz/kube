@@ -51,6 +51,9 @@ spec:
   - name: "bosh"
     port: 5280
     targetPort: 5280
+  - name: "5222"
+    port: 5222
+    targetPort: 5222
   selector:
     k8s-app: jitsi
 ---
