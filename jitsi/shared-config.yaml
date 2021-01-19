@@ -5,11 +5,11 @@ metadata:
   namespace: jitsi
 data:
   XMPP_SERVER: localhost
-  XMPP_DOMAIN: meet.jitsi
-  XMPP_AUTH_DOMAIN: auth.meet.jitsi
-  XMPP_RECORDER_DOMAIN: recorder.meet.jitsi
-  XMPP_INTERNAL_MUC_DOMAIN: internal-muc.meet.jitsi
-  XMPP_MUC_DOMAIN: muc.meet.jitsi
+  XMPP_DOMAIN: jitsi.bo0tzz.me
+  XMPP_AUTH_DOMAIN: auth.jitsi.bo0tzz.me
+  XMPP_RECORDER_DOMAIN: recorder.jitsi.bo0tzz.me
+  XMPP_INTERNAL_MUC_DOMAIN: internal-muc.jitsi.bo0tzz.me
+  XMPP_MUC_DOMAIN: muc.jitsi.bo0tzz.me
   TZ: Europe/Amsterdam
   JVB_STUN_SERVERS: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
   JICOFO_AUTH_USER: focus
@@ -26,3 +26,6 @@ data:
   JIBRI_BREWERY_MUC: jibribrewery
   JIBRI_PENDING_TIMEOUT: "90"
   ENABLE_PREJOIN_PAGE: "true"
+  JIBRI_STRIP_DOMAIN_JID: conference
+  JIBRI_RECORDING_DIR: /config/recordings
+  JIBRI_FINALIZE_RECORDING_SCRIPT_PATH: /config/recordings/finalize.sh

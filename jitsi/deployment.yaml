@@ -100,6 +100,8 @@ spec:
               mountPath: /dev/snd
             - name: shm
               mountPath: /dev/shm
+            - name: recordings
+              mountPath: /config/recordings
       volumes:
         - name: snd
           hostPath:
@@ -107,6 +109,9 @@ spec:
         - name: shm
           hostPath:
             path: /dev/shm
+        - name: recordings
+          persistentVolumeClaim:
+            claimName: jibri-recordings
       tolerations:
         - key: "SoundAvailable"
           operator: "Exists"
