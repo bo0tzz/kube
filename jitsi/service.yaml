@@ -8,11 +8,13 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 30300
+  - name: "udp"
+    port: 30300
     protocol: UDP
     targetPort: 30300
     nodePort: 30300
-  - port: 4443
+  - name: "tcp"
+    port: 4443
     protocol: TCP
     targetPort: 4443
     nodePort: 4443
