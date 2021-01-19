@@ -76,7 +76,7 @@ spec:
     spec:
       containers:
         - name: jibri
-          image: jitsi/jibri:stable-5076
+          image: jitsi/jibri:latest
           imagePullPolicy: Always
           envFrom:
             - secretRef:
