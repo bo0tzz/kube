@@ -13,6 +13,19 @@ spec:
     protocol: UDP
     targetPort: 30300
     nodePort: 30300
+  selector:
+    k8s-app: jitsi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: jvb
+  name: jvb-tcp
+  namespace: jitsi
+spec:
+  type: LoadBalancer
+  ports:
   - name: "tcp"
     port: 4443
     protocol: TCP
