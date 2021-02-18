@@ -17,4 +17,6 @@ spec:
       secretName: cloudflare-api-token-secret
     excludeDomains:
       - jitsi.bo0tzz.me
-      - nc.bo0tzz.me
+      - calibre.bo0tzz.me
+      - pass.bo0tzz.me
+      - wiki.bo0tzz.me
