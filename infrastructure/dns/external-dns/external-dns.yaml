@@ -12,6 +12,7 @@ spec:
     sources: 
       - ingress
     provider: cloudflare
+    policy: sync
     cloudflare:
       proxied: false
       secretName: cloudflare-api-token-secret
