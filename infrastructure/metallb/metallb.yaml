@@ -1,12 +1,27 @@
-apiVersion: helm.fluxcd.io/v1
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: metallb     
+  namespace: metallb-system
+spec:
+  interval: 1h
+  url: https://charts.bitnami.com/bitnami
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb
   namespace: metallb-system
 spec:
+  interval: 1h
   chart:
-    repository: https://charts.bitnami.com/bitnami
-    name: metallb
-    version: 0.1.28
+    spec:
+      chart: metallb
+      version: '0.1.28'
+      sourceRef:
+        kind: HelmRepository
+        name: metallb
+        namespace: metallb-system
+      interval: 1h
   values:
     existingConfigMap: config
