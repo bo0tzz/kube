@@ -24,4 +24,10 @@ spec:
         namespace: metallb-system
       interval: 1h
   values:
-    existingConfigMap: config
+    configInline: |
+      address-pools:
+      - name: default
+        protocol: layer2
+        addresses:
+        - 192.168.10.0/24
+        avoid-buggy-ips: true
