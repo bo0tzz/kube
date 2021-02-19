@@ -11,3 +11,8 @@ data:
       addresses:
       - 192.168.10.0/24
       avoid-buggy-ips: true
+    - name: lan
+      protocol: layer2
+      addresses:
+      - 192.168.0.0/16
+      auto-assign: false
