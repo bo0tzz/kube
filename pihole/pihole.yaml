@@ -35,3 +35,4 @@ spec:
       type: LoadBalancer
 
     maxUnavailable: 0
+    replicaCount: 2
