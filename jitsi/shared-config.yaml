@@ -21,4 +21,4 @@ data:
   ENABLE_RECORDING: "false"
   ENABLE_PREJOIN_PAGE: "true"
   PUBLIC_URL: https://jitsi.bo0tzz.me/
-  ENABLE_XMPP_WEBSOCKET=0
+  ENABLE_XMPP_WEBSOCKET: 0
