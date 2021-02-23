@@ -17,7 +17,7 @@ data:
   JVB_AUTH_USER: jvb
   JVB_PORT: "30300"
   JVB_BREWERY_MUC: jvbbrewery
-  XMPP_BOSH_URL_BASE: http://prosody:5280
+  XMPP_BOSH_URL_BASE: http://127.0.0.1:5280
   ENABLE_RECORDING: "false"
   ENABLE_PREJOIN_PAGE: "true"
   PUBLIC_URL: https://jitsi.bo0tzz.me/
