@@ -40,5 +40,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: da
+          serviceName: docassemble
           servicePort: 80
