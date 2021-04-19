@@ -1,0 +1,159 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+  namespace: proxy
+data:
+  nginx.conf: |
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  localhost;
+
+        location /plakplaatsen.html {
+            alias /var/www/public_files/plakplaatsen.html;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-plakplaatsen
+  namespace: proxy
+data:
+  plakplaatsen.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Plakplaatsen Leiden</title>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
+    </head>
+      
+    <body>
+
+      <h1>Vrije plakplaatsen in Leiden</h1>
+      <!-- <div id="mapid" style="width: 100%; height: 400px;"></div> -->
+      <div id="mapid" style="height: 90vh; width: 100%"></div>
+    <script>
+
+      var mymap = L.map('mapid').setView([52.16, 4.5], 14);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+      }).addTo(mymap);
+      
+      var marker = L.marker([52.15982, 4.49599]).addTo(mymap);
+      marker.bindPopup("Kaasmarkt (in het midden tegenover nummer 5)");
+      var marker = L.marker([52.16114, 4.49036]).addTo(mymap);
+      marker.bindPopup("Vrouwenkerkchoorsteeg hoek Lange Mare");
+      var marker = L.marker([52.16329, 4.47466]).addTo(mymap);
+      marker.bindPopup("Plesmanlaan (hoek Vondellaan – westkant – gazon bij ingang fietstunnel) (schuin tegenover Naturalis)");
+      var marker = L.marker([52.17063, 4.47899]).addTo(mymap);
+      marker.bindPopup("Wassenaarseweg tegenover Posthof (bij rotonde)");
+      var marker = L.marker([52.15147, 4.45384]).addTo(mymap);
+      marker.bindPopup("Stevenshofbloem (kant Stevenhofdreef trottoir) (stevenshof)");
+      var marker = L.marker([52.14692, 4.45652]).addTo(mymap);
+      marker.bindPopup("De Vink (op trottoir bij ingang fietstunnel – zuidkant) (stevenshof)");
+      var marker = L.marker([52.14736, 4.47609]).addTo(mymap);
+      marker.bindPopup("Bevrijdingsplein – zijmuur flat voor kruising Churchilllaan / Luifelbaan (hoek Vijmeilaan / Van Randwijkstraat – rand gazon tegenover hoge flat) (Zuidwest)");
+      var marker = L.marker([52.14797, 4.4854]).addTo(mymap);
+      marker.bindPopup("Vrijheidslaan – hoek Zoeterwoudseweg (Zuidwest)");
+      var marker = L.marker([52.15197, 4.51471]).addTo(mymap);
+      marker.bindPopup(" Meerburgerkade – Hoek Maasstraat bij klein winkelcentrum (roomburgh)");
+      var marker = L.marker([52.16785, 4.49884]).addTo(mymap);
+      marker.bindPopup(" Marnixstraat – hoek W. de Zwijgerlaan (noorderkwartier)");
+      var marker = L.marker([52.17467, 4.4989]).addTo(mymap);
+      marker.bindPopup(" Gooimeerlaan iets voor de splisting met de Ketelmeerlaan maar dan aan de andere kant van de weg (kant Flevoweg) Vlak bij Gamma. (merenwijk)");
+      var marker = L.marker([52.17695, 4.50499]).addTo(mymap);
+      marker.bindPopup("Kopermolen – ingang winkelcentrum N (aan linkerkant van winkelcentrum bij parkje) (merenwijk)");
+      var marker = L.marker([52.16341, 4.49319]).addTo(mymap);
+      marker.bindPopup("Plakpaal aan de Langegracht (noordkant)");
+      
+    </script>
+
+    </body>
+    </html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-static
+  namespace: proxy
+spec:
+  selector:
+    matchLabels:
+      app: db-static
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db-static
+    spec:
+      containers:
+      - name: db-static
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /etc/nginx/conf.d
+            name: nginx-conf
+            readOnly: true
+          - mountPath: /var/www/public_files
+            name: nginx-plakplaatsen
+            readOnly: true
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+        - name: nginx-plakplaatsen
+          configMap:
+            name: nginx-plakplaatsen
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: nginx-web
+  name: nginx-web
+  namespace: proxy
+spec:
+  ports:
+  - name: "http"
+    port: 80
+    targetPort: 80
+  selector:
+    app: db-static
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-web
+  namespace: proxy
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts: 
+    - db.bo0tzz.me
+    secretName: db-web-tls
+  rules:
+  - host: db.bo0tzz.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-web
+          servicePort: http
