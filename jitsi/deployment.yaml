@@ -53,4 +53,4 @@ spec:
                 name: shared-config
           env:
             - name: DOCKER_HOST_ADDRESS
-              value: 85.148.132.202
+              value: 83.86.109.63
