@@ -62,6 +62,7 @@ spec:
     sources: 
       - ingress
     annotationFilter: kubernetes.io/ingress.class in (nginx-internal)
+    txtOwnerId: internal
     provider: cloudflare
     policy: sync
     cloudflare:
