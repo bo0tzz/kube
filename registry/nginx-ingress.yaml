@@ -1,0 +1,40 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: registry     
+  namespace: registry
+spec:
+  interval: 1h
+  url: https://helm.twun.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: registry
+  namespace: registry
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: docker-registry
+      version: '1.11.0'
+      sourceRef:
+        kind: HelmRepository
+        name: registry
+        namespace: registry
+      interval: 1h
+  values:
+    persistence:
+      enabled: true
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx-internal
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      hosts:
+      - registry.bo0tzz.me
+      tls:
+      - hosts: 
+        - registry.bo0tzz.me
+        secretName: registry-web-tls
