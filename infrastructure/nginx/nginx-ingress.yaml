@@ -27,3 +27,25 @@ spec:
     controller:
       image:
         digest: null
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx-internal
+  namespace: ingress-nginx
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: '3.20.1'
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: ingress-nginx
+      interval: 1h
+  values:
+    ingressClass: nginx-internal
+    controller:
+      image:
+        digest: null
