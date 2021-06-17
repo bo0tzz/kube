@@ -45,7 +45,7 @@ spec:
         namespace: ingress-nginx
       interval: 1h
   values:
-    ingressClass: nginx-internal
     controller:
+      ingressClass: nginx-internal
       image:
         digest: null
