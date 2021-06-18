@@ -17,5 +17,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: webhook-receiver
-          servicePort: 80
+          service:
+            name: webhook-receiver
+            port:
+              number: 80

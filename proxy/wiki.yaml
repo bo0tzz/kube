@@ -39,5 +39,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: wiki
-          servicePort: 80
+          service:
+            name: wiki
+            port:
+              number: 80

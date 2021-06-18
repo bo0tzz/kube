@@ -40,5 +40,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: calibre
-          servicePort: 80
+          service:
+            name: calibre
+            port:
+              number: 80

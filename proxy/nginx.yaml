@@ -155,5 +155,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: nginx-web
-          servicePort: http
+          service:
+            name: nginx-web
+            port:
+              name: http
