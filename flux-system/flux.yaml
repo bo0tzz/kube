@@ -2451,14 +2451,16 @@ spec:
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
-            path: /
-            port: http
+            path: /healthz
+            port: healthz
         name: manager
         ports:
         - containerPort: 9090
           name: http
         - containerPort: 8080
           name: http-prom
+        - containerPort: 9440
+          name: healthz
         readinessProbe:
           httpGet:
             path: /
