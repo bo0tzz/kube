@@ -21,3 +21,5 @@ metadata:
 spec:
   storageClassName: manual
   volumeName: library
+  accessModes:
+    - ReadWriteMany
