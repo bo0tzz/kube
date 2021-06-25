@@ -23,6 +23,8 @@ spec:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
           - host: jellyfin.bo0tzz.me
+            paths:
+              - path: /
         tls:
           - secretName: jellyfin-web-tls
             hosts:
