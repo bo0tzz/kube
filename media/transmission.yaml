@@ -1,0 +1,46 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: transmission
+  namespace: media
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: transmission
+      version: '12.2.0'
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: media
+      interval: 1h
+  values:
+    env:
+      TRANSMISSION_WEB_HOME: /
+      TRANSMISSION_RPC_PASSWORD: ""
+      TRANSMISSION_DOWNLOAD_DIR: /download
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: transmission.bo0tzz.me
+            paths:
+              - path: /
+        tls:
+          - secretName: transmission-web-tls
+            hosts:
+              - transmission.bo0tzz.me
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        accessMode: ReadWriteOnce
+        size: 1G
+      downloads:
+        enabled: true
+        mountPath: /download
+        type: pvc
+        existingClaim: video-downloads
