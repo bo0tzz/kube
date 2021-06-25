@@ -11,7 +11,7 @@ data:
       theme: material-dark
       statusCheck: true
       allowConfigEdit: false
-      forceRootFavicon: true
+      faviconApi: local
     sections:
       - name: Media
         icon: fas fa-camera-movie
