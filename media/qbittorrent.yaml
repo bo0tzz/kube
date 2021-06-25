@@ -1,23 +1,20 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: transmission
+  name: qbittorrent
   namespace: media
 spec:
   interval: 1h
   chart:
     spec:
-      chart: transmission
-      version: '7.0.0'
+      chart: qbittorrent
+      version: '11.2.0'
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
         namespace: media
       interval: 1h
   values:
-    env:
-      TRANSMISSION_RPC_PASSWORD: ""
-      TRANSMISSION_DOWNLOAD_DIR: /download
     ingress:
       main:
         enabled: true
@@ -25,13 +22,13 @@ spec:
           kubernetes.io/ingress.class: nginx-internal
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: transmission.bo0tzz.me
+          - host: qbittorrent.bo0tzz.me
             paths:
               - path: /
         tls:
-          - secretName: transmission-web-tls
+          - secretName: qbittorrent-web-tls
             hosts:
-              - transmission.bo0tzz.me
+              - qbittorrent.bo0tzz.me
     persistence:
       config:
         enabled: true
