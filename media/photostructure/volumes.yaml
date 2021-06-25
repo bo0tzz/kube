@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photostructure-config
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1G
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: photo-library
+  namespace: media
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100G
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.10
+    path: "/mnt/user/photos/library"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photo-library
+  namespace: media
+spec:
+  storageClassName: manual
+  volumeName: photo-library
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100G
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: photo-import
+  namespace: media
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100G
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.10
+    path: "/mnt/user/photos/import"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photo-import
+  namespace: media
+spec:
+  storageClassName: manual
+  volumeName: photo-import
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100G

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photostructure
+  namespace: media
+  labels:
+    app: photostructure
+spec:
+  selector:
+    matchLabels:
+      app: photostructure
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: photostructure
+    spec:
+      volumes:
+        - name: scratch
+          emptyDir: {}
+        - name: config
+          persistentVolumeClaim:
+            claimName: photostructure-config
+        - name: library
+          persistentVolumeClaim:
+            claimName: photo-library
+        - name: import
+          persistentVolumeClaim:
+            claimName: photo-import
+      containers:
+        - name: photostructure
+          image: photostructure/server
+          ports:
+            - containerPort: 1787
+          env:
+            - name: PS_FORCE_LOCAL_DB_REPLICA
+              value: 1
+            - name: PS_START_PAUSED
+              value: true
+          volumeMounts:
+            - name: scratch
+              mountPath: /ps/tmp
+            - name: config
+              mountPath: /ps/config
+            - name: library
+              mountPath: /ps/library
+            - name: import
+              mountPath: /import
