@@ -30,7 +30,16 @@ spec:
     persistence:
       config:
         enabled: true
+        type: pvc
+        accessMode: ReadWriteOnce
+        size: 1G
       cache:
         enabled: true
+        type: pvc
+        accessMode: ReadWriteOnce
+        size: 10G
       media:
         enabled: true
+        type: pvc
+        accessMode: ReadWriteOnce
+        size: 400G
