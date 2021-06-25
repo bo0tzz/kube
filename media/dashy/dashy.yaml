@@ -23,7 +23,7 @@ spec:
         - name: dashy
           image: lissy93/dashy
           ports:
-            - containerPort: 4000
+            - containerPort: 80
           volumeMounts:
             - name: config
               mountPath: /app/public
