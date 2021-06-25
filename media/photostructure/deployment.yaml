@@ -36,8 +36,6 @@ spec:
           env:
             - name: PS_FORCE_LOCAL_DB_REPLICA
               value: "1"
-            - name: PS_START_PAUSED
-              value: "true"
             - name: PS_EXPOSE_NETWORK_WITHOUT_AUTH
               value: "true"
           volumeMounts:
