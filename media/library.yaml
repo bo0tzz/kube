@@ -23,3 +23,6 @@ spec:
   volumeName: library
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 400G
