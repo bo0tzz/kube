@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashy
+  namespace: media
+  labels:
+    app: dashy
+spec:
+  selector:
+    matchLabels:
+      app: dashy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dashy
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: dashy-config
+      containers:
+        - name: dashy
+          image: lissy93/dashy
+          ports:
+            - containerPort: 4000
+          volumeMounts:
+            - name: config
+              mountPath: /app/public

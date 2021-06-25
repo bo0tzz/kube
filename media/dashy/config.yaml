@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashy-config
+  namespace: media
+data:
+  conf.yml: |-
+    pageInfo:
+      title: Dashboard
+    appConfig:
+      theme: material-dark
+      statusCheck: true
+      allowConfigEdit: false
+    sections:
+      - name: Media
+        icon: fas fa-camera-movie
+        items:
+          - title: Jellyfin
+            description: Watch stuff
+            icon: favicon
+            url: https://jellyfin.bo0tzz.me/
+          - title: Ombi
+            description: Request media
+            icon: favicon
+            url: https://ombi.bo0tzz.me/
+          - title: Sonarr
+            description: TV show download management
+            icon: favicon
+            url: https://sonarr.bo0tzz.me/
+          - title: Radarr
+            description: Movie download management
+            icon: favicon
+            url: https://radarr.bo0tzz.me/
+          - title: Transmission
+            description: Downloads
+            icon: favicon
+            url: https://transmission.bo0tzz.me/
