@@ -34,9 +34,9 @@ spec:
             - containerPort: 1787
           env:
             - name: PS_FORCE_LOCAL_DB_REPLICA
-              value: 1
+              value: "1"
             - name: PS_START_PAUSED
-              value: true
+              value: "true"
           volumeMounts:
             - name: scratch
               mountPath: /ps/tmp
