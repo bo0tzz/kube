@@ -29,3 +29,4 @@ spec:
       path: /mnt/user/kube-storage
     storageClass:
       defaultClass: true
+      provisionerName: k8s-sigs.io/nfs-subdir-external-provisioner
