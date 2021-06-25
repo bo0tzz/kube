@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: video-library
+  name: video-downloads
   namespace: media
 spec:
   storageClassName: manual
@@ -11,16 +11,16 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.2.10
-    path: "/mnt/user/media"
+    path: "/mnt/user/media/download"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: video-library
+  name: video-downloads
   namespace: media
 spec:
   storageClassName: manual
-  volumeName: video-library
+  volumeName: video-downloads
   accessModes:
     - ReadWriteMany
   resources:
