@@ -32,6 +32,10 @@ data:
             description: Movie download management
             icon: favicon
             url: https://radarr.bo0tzz.me/
+          - title: Jackett
+            description: Tracker management
+            icon: favicon
+            url: https://jackett.bo0tzz.me/
           - title: Qbittorrent
             description: Downloads
             icon: favicon
