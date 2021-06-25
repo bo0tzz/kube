@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: photostructure-config
+  namespace: media
 spec:
   accessModes:
     - ReadWriteOnce
