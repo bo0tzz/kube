@@ -38,6 +38,8 @@ spec:
               value: "1"
             - name: PS_EXPOSE_NETWORK_WITHOUT_AUTH
               value: "true"
+            - name: PS_LOG_LEVEL
+              value: "info"
           volumeMounts:
             - name: scratch
               mountPath: /ps/tmp
