@@ -38,6 +38,8 @@ spec:
               value: "1"
             - name: PS_START_PAUSED
               value: "true"
+            - name: PS_EXPOSE_NETWORK_WITHOUT_AUTH
+              value: "true"
           volumeMounts:
             - name: scratch
               mountPath: /ps/tmp
