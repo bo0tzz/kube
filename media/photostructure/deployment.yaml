@@ -17,7 +17,8 @@ spec:
     spec:
       volumes:
         - name: scratch
-          emptyDir: {}
+          emptyDir:
+            sizeLimit: 16G
         - name: config
           persistentVolumeClaim:
             claimName: photostructure-config
