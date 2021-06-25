@@ -43,5 +43,4 @@ spec:
       media:
         enabled: true
         type: pvc
-        accessMode: ReadWriteOnce
-        size: 400G
+        existingClaim: library
