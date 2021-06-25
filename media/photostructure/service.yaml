@@ -35,4 +35,4 @@ spec:
               service:
                 name: web
                 port:
-                  name: http
+                  number: 80
