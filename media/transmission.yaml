@@ -16,7 +16,6 @@ spec:
       interval: 1h
   values:
     env:
-      TRANSMISSION_WEB_HOME: /
       TRANSMISSION_RPC_PASSWORD: ""
       TRANSMISSION_DOWNLOAD_DIR: /download
     ingress:
