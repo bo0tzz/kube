@@ -70,6 +70,3 @@ spec:
     persistence:
       enabled: true
       size: 64Gi
-    startupProbe:
-      enabled: true
-      initialDelaySeconds: 1200
