@@ -1,0 +1,69 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  interval: 1h
+  url: https://nextcloud.github.io/helm/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: nextcloud
+      version: '2.7.2'
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+        namespace: nextcloud
+      interval: 1h
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      tls:
+        - hosts:
+            - cloud.dakengeenknaken.nl
+          secretName: nc-web-tls
+    nextcloud:
+      host: cloud.dakengeenknaken.nl
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-admin
+        usernameKey: username
+        passwordKey: password
+      datadir: /nextcloud-data
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: mysql
+      host: mariadb
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-mariadb
+        usernameKey: username
+        passwordKey: mariadb-password
+    mariadb:
+      enabled: true
+      existingSecret: nextcloud-mariadb
+      master:
+        persistence:
+          enabled: true
+    redis:
+      enabled: true
+      existingSecret: nextcloud-redis
+      existingSecretPasswordKey: redis-password
+    cronjob:
+      enabled: true
+    persistence:
+      enabled: true
+      size: 64Gi
