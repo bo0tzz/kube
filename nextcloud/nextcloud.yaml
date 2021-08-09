@@ -63,7 +63,7 @@ spec:
       existingSecret: nextcloud-redis
       existingSecretPasswordKey: redis-password
     cronjob:
-      enabled: true
+      enabled: false
     persistence:
       enabled: true
       size: 64Gi
