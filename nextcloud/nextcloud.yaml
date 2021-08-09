@@ -41,6 +41,9 @@ spec:
         usernameKey: username
         passwordKey: password
       datadir: /nextcloud-data
+      extraSecurityContext:
+        runAsUser: "99"
+        runAsGroup: "99"
     internalDatabase:
       enabled: false
     externalDatabase:
