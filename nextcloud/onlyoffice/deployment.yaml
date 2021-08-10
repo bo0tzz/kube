@@ -20,7 +20,7 @@ spec:
       containers:
         - env:
             - name: JWT_ENABLED
-              value: true
+              value: "true"
           envFrom:
             - secretRef:
                 name: onlyoffice-jwt
