@@ -54,6 +54,8 @@ spec:
         passwordKey: mariadb-password
     mariadb:
       enabled: true
+      image:
+        tag: 10.3
       existingSecret: nextcloud-mariadb
       master:
         persistence:
