@@ -42,6 +42,7 @@ spec:
       - db.bo0tzz.me
       - grocy.bo0tzz.me
       - cloud.dakengeenknaken.nl
+      - docs.dakengeenknaken.nl
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease

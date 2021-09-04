@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: onlyoffice
+  name: onlyoffice
+  namespace: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: onlyoffice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        k8s-app: onlyoffice
+    spec:
+      containers:
+        - env:
+            - name: JWT_ENABLED
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: onlyoffice-jwt
+          image: onlyoffice/documentserver
+          name: onlyoffice
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
