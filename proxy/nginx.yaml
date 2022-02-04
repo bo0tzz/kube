@@ -10,10 +10,8 @@ data:
         listen  [::]:80;
         server_name  localhost;
 
-        location /plakplaatsen.html {
-            alias /var/www/public_files/plakplaatsen.html;
-        }
-
+        root /var/www/public_files;
+        
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
             root   /usr/share/nginx/html;
@@ -23,9 +21,23 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-plakplaatsen
+  name: nginx-files
   namespace: proxy
 data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>DB</title>
+    </head>
+      
+    <body>
+
+      <a href="https://db.bo0tzz.me/plakplaatsen.html"><h2>Plakplaatsen Leiden</h2></a>
+      <a href="https://db.bo0tzz.me/kolokaart.html"><h2>Kolokaart NL</h2></a>
+
+    </body>
+    </html>
   plakplaatsen.html: |
     <!DOCTYPE html>
     <html>
@@ -85,6 +97,92 @@ data:
 
     </body>
     </html>
+  kolokaart.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Kolokaart NL</title>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+       crossorigin=""></script>
+    </head>
+      
+    <body>
+
+      <h2>Kolokaart NL</h2>
+      <div id="mapid" style="height: 90vh; width: 100%"></div>
+    <script>
+
+      var mymap = L.map('mapid').setView([52.16, 5], 8);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 20,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+      }).addTo(mymap);
+
+    var marker = L.marker([52.1366672,4.653278]).addTo(mymap);
+    marker.bindPopup("Alphen aan den Rijn JP Coenlaan)");
+    var marker = L.marker([51.97848,5.9291212]).addTo(mymap);
+    marker.bindPopup("Arnhem JP Coenstraat)");
+    var marker = L.marker([51.5066444,5.3836977]).addTo(mymap);
+    marker.bindPopup("Best JP Coenstraat)");
+    var marker = L.marker([52.2345811,5.3723341]).addTo(mymap);
+    marker.bindPopup("Bunschoten JP Coenstraat)");
+    var marker = L.marker([51.6918041,5.2754741]).addTo(mymap);
+    marker.bindPopup("Den Bosch JP Coenstraat)");
+    var marker = L.marker([52.0793845,4.3335158]).addTo(mymap);
+    marker.bindPopup("Den Haag JP Coenstraat)");
+    var marker = L.marker([52.210299,6.9091138]).addTo(mymap);
+    marker.bindPopup("Enschede JP Coenstraat)");
+    var marker = L.marker([51.5016297,3.8784276]).addTo(mymap);
+    marker.bindPopup("Goes JP Coenstraat)");
+    var marker = L.marker([52.4020107,4.6270406]).addTo(mymap);
+    marker.bindPopup("Haarlem JP Coenlaan)");
+    var marker = L.marker([52.404089,4.6278439]).addTo(mymap);
+    marker.bindPopup("Haarlem JP Coenpad)");
+    var marker = L.marker([52.2098447,5.1575839]).addTo(mymap);
+    marker.bindPopup("Hilversum JP Coenstraat)");
+    var marker = L.marker([52.6429149,5.0656136]).addTo(mymap);
+    marker.bindPopup("Hoorn JP Coenstraat)");
+    var marker = L.marker([51.2744944,4.067035]).addTo(mymap);
+    marker.bindPopup("Hulst JP Coenlaan)");
+    var marker = L.marker([52.46031,4.61237]).addTo(mymap);
+    marker.bindPopup("IJmuiden JP Coenstraat)");
+    var marker = L.marker([52.1686109,4.5062826]).addTo(mymap);
+    marker.bindPopup("Leiden JP Coenhof)");
+    var marker = L.marker([52.0072031,6.0250128]).addTo(mymap);
+    marker.bindPopup("Rheden JP Coenstraat)");
+    var marker = L.marker([51.1779014,6.0038329]).addTo(mymap);
+    marker.bindPopup("Roermond JP Coenstraat)");
+    var marker = L.marker([51.5575728,5.1048015]).addTo(mymap);
+    marker.bindPopup("Tilburg JP Coenstraat)");
+    var marker = L.marker([52.0886898,5.098457]).addTo(mymap);
+    marker.bindPopup("Utrecht JP Coenbrug)");
+    var marker = L.marker([52.09144,5.09699]).addTo(mymap);
+    marker.bindPopup("Utrecht JP Coenhof)");
+    var marker = L.marker([52.0931779,5.0965382]).addTo(mymap);
+    marker.bindPopup("Utrecht JP Coenstraat)");
+    var marker = L.marker([51.6083942,5.5492012]).addTo(mymap);
+    marker.bindPopup("Veghel JP Coenstraat)");
+    var marker = L.marker([52.46031,4.61237]).addTo(mymap);
+    marker.bindPopup("Velzen JP Coenstraat)");
+    var marker = L.marker([51.9149525,4.3340828]).addTo(mymap);
+    marker.bindPopup("Vlaardingen JP Coenlaan)");
+    var marker = L.marker([52.1309472,4.4565586]).addTo(mymap);
+    marker.bindPopup("Voorschoten JP Coenstraat)");
+    var marker = L.marker([51.9307962,6.0653083]).addTo(mymap);
+    marker.bindPopup("Zevenaar JP Coenstraat)");
+
+      
+    </script>
+
+    </body>
+    </html> 
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -111,15 +209,15 @@ spec:
             name: nginx-conf
             readOnly: true
           - mountPath: /var/www/public_files
-            name: nginx-plakplaatsen
+            name: nginx-files
             readOnly: true
       volumes:
         - name: nginx-conf
           configMap:
             name: nginx-conf
-        - name: nginx-plakplaatsen
+        - name: nginx-files
           configMap:
-            name: nginx-plakplaatsen
+            name: nginx-files
 ---
 apiVersion: v1
 kind: Service
