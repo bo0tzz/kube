@@ -16,27 +16,11 @@ data:
       - name: Media
         icon: fas fa-camera-movie
         items:
-          - title: Jellyfin
+          - title: Emby
             description: Watch stuff
             icon: favicon
-            url: https://jellyfin.bo0tzz.me/
+            url: http://192.168.2.10:8096/
           - title: Ombi
             description: Request media
             icon: favicon
-            url: https://ombi.bo0tzz.me/
-          - title: Sonarr
-            description: TV show download management
-            icon: favicon
-            url: https://sonarr.bo0tzz.me/
-          - title: Radarr
-            description: Movie download management
-            icon: favicon
-            url: https://radarr.bo0tzz.me/
-          - title: Jackett
-            description: Tracker management
-            icon: favicon
-            url: https://jackett.bo0tzz.me/
-          - title: Qbittorrent
-            description: Downloads
-            icon: favicon
-            url: https://qbittorrent.bo0tzz.me/
+            url: http://192.168.2.10:3579/
