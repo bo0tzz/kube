@@ -27,3 +27,4 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /app/public
+              subPath: conf.yml
