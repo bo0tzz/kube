@@ -39,11 +39,8 @@ spec:
       - pass.bo0tzz.me
       - wiki.bo0tzz.me
       - flux-webhook.bo0tzz.me
-      - da.bo0tzz.me
       - db.bo0tzz.me
       - grocy.bo0tzz.me
-      - cloud.dakengeenknaken.nl
-      - docs.dakengeenknaken.nl
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
