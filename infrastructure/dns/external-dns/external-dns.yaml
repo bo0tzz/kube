@@ -29,6 +29,7 @@ spec:
     annotationFilter: kubernetes.io/ingress.class in (nginx)
     provider: cloudflare
     policy: sync
+    txtPrefix: external-dns-
     cloudflare:
       proxied: false
       secretName: cloudflare-api-token-secret
