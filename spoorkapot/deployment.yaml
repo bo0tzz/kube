@@ -6,6 +6,8 @@ metadata:
   labels:
     app: spoorkapot
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: spoorkapot
@@ -15,8 +17,6 @@ spec:
       labels:
         app: spoorkapot
     spec:
-      strategy:
-        type: Recreate
       volumes:
         - name: data
           persistentVolumeClaim:
