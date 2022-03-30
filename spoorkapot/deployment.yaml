@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spoorkapot
+  namespace: spoorkapot
+  labels:
+    app: spoorkapot
+spec:
+  selector:
+    matchLabels:
+      app: spoorkapot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spoorkapot
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: spoorkapot-claim
+      containers:
+        - name: spoorkapot
+          image: ghcr.io/bo0tzz/spoorkapot:main
+          ports:
+            - containerPort: 80
+          envFrom:
+          - secretRef:
+              name: spoorkapot-config
+          volumeMounts:
+            - name: data
+              mountPath: /data
