@@ -15,6 +15,8 @@ spec:
       labels:
         app: spoorkapot
     spec:
+      strategy:
+        type: Recreate
       volumes:
         - name: data
           persistentVolumeClaim:
