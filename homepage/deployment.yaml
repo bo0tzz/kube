@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage
+  namespace: homepage
+  labels:
+    app: homepage
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: homepage
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+      containers:
+        - name: homepage
+          image: ghcr.io/bo0tzz/homepage:main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          envFrom:
+          - secretRef:
+              name: homepage-secret
