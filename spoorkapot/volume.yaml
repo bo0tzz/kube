@@ -10,3 +10,5 @@ spec:
   resources:
     requests:
       storage: 512Mi
+  mountOptions:
+    - noserverino
