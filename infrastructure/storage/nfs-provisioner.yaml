@@ -27,8 +27,6 @@ spec:
     nfs:
       server: 192.168.2.10
       path: /mnt/user/kube-storage
-      mountOptions:
-        - noserverino
     storageClass:
       defaultClass: true
       provisionerName: k8s-sigs.io/nfs-subdir-external-provisioner
