@@ -1,0 +1,34 @@
+{
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "commitMessageSuffix": "",
+  "helm-values": {
+    "fileMatch": [
+      "\\.yaml$"
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "\\.yaml$"
+    ]
+  },
+  "flux": {
+    "fileMatch": [
+      "\\.yaml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "ignoreDeprecated": true
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "commitMessageExtra": "to {{newVersion}}"
+    }
+  ]
+}
