@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: jicofo
-          image: jitsi/jicofo:stable-6173
+          image: jitsi/jicofo:stable-7001
           imagePullPolicy: Always
           envFrom:
             - secretRef:
@@ -27,7 +27,7 @@ spec:
             - configMapRef:
                 name: shared-config
         - name: prosody
-          image: jitsi/prosody:stable-6173
+          image: jitsi/prosody:stable-7001
           imagePullPolicy: Always
           envFrom:
             - secretRef:
@@ -35,13 +35,13 @@ spec:
             - configMapRef:
                 name: shared-config
         - name: web
-          image: jitsi/web:stable-6173
+          image: jitsi/web:stable-7001
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: shared-config
         - name: jvb
-          image: jitsi/jvb:stable-6173
+          image: jitsi/jvb:stable-7001
           imagePullPolicy: Always
           resources:
             requests:
