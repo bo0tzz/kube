@@ -10,6 +10,9 @@ data:
         server_name  files.bo0tzz.me;
 
         root /files;
+
+        sendfile on;
+        sendfile_max_chunk 1m;
         
         location = / {
             autoindex off;
