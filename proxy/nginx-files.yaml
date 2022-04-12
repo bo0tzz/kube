@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-files
+  name: nginx-files-conf
   namespace: proxy
 data:
   nginx.conf: |
