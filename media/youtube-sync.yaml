@@ -27,6 +27,8 @@ spec:
                   value: https://www.youtube.com/playlist?list=PL3g5xwbQbHOQnjbZHQfeJW08PotvJ3JEh
                 - name: DOWNLOAD_FOLDER
                   value: /library
+                - name: DESTRUCTIVE
+                  value: true
 ---
 apiVersion: v1
 kind: PersistentVolume
