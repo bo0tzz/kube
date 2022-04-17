@@ -28,7 +28,7 @@ spec:
                 - name: DOWNLOAD_FOLDER
                   value: /library
                 - name: DESTRUCTIVE
-                  value: true
+                  value: "true"
 ---
 apiVersion: v1
 kind: PersistentVolume
