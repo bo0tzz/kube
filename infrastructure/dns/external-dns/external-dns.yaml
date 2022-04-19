@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: '6.2.4'
+      version: '6.2.5'
       sourceRef:
         kind: HelmRepository
         name: external-dns
@@ -52,7 +52,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: '6.2.4'
+      version: '6.2.5'
       sourceRef:
         kind: HelmRepository
         name: external-dns
