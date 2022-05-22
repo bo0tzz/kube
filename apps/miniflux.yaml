@@ -56,6 +56,9 @@ spec:
         ingressClassName: nginx-internal
         hosts:
           - host: feed.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
               - feed.bo0tzz.me
