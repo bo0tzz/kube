@@ -1,0 +1,76 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: miniflux-db
+  namespace: applications
+spec:
+  database: miniflux
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: miniflux-user
+  namespace: applications
+spec:
+  role: miniflux
+  database: miniflux-db
+  secretName: database
+  privileges: OWNER
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: miniflux
+  namespace: applications
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: miniflux
+      version: '4.7.2'
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: applications
+      interval: 1h
+  values:
+    env:
+      RUN_MIGRATIONS: 1
+      CREATE_ADMIN: 1
+      ADMIN_USERNAME: boet
+      ADMIN_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: miniflux-secret
+            key: admin-password
+      DATABASE_URL:
+        valueFrom:
+          secretKeyRef:
+            name: database-miniflux-user
+            key: POSTGRES_URL
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        ingressClassName: nginx-internal
+        hosts:
+          - host: feed.bo0tzz.me
+        tls:
+          - hosts:
+              - feed.bo0tzz.me
+            secretName: miniflux-web-tls
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: miniflux-secret
+  namespace: applications
+spec:
+  encryptedData:
+    admin-password: AgBw3kbh/973XJ5+9xsIH5QnpLVms0GmM5AmzlC6bwjxCnL79yikNM/uE9Wl5FaW2bOa5KDaFsiX8G7ecGs+MGYQZCoGH3ocuJYbg9rnsnOtxE9g1kzaxw3Uq9t8poY1zOeaxKgjFiHFFb1Do1hO2kk4tozZfp60HHGXIJbd8wA1wQTH5/Yf0wUS5b/ynho9udqbbd0lfXNx4FJOYe9hMiqF9K2VCefIo6YBQ7SfqUwi4CC1q4gYXbKEZ9AHrvkQGAJfoxHQAaThUQ5Lcrln5otg/Xu7CEnjjoamttNUGQJmc/jLFFWm41RCfNoP+UEMK/soyaWF13xv1/sPt1iohCUJyNQi01YtQCtWXfGQ5NlyOVDBML++MlmH2UtHDh4a8IKUA1cBVZamrGdkqHnXNdKLSxcnCLcA+ZL94tbBYY11TWQHIb0FdvLB18QhCYqRrKTDX3NWRG5OiqIpB0KmDQRNZkvj+IaEsbwl37Ah3VfwTq+EV04uj2XEuFiIaVAJdU0HDRS7ei2JFJbSnYXigT5hKsil52yfzFHq0Pf1wo8Yg5CH0MmxajXqswjOBDPwExpdJpSjUmbHXqhqurM0/yjju6YriFDc0gPPAKaBfAjRKj3AL07s6723AMhWIFuYOKtKiO5Kw99Get/uFBpH9yLthG3SYlYeb9/utJVVVdpdtoQYw9tjwcJX/n04hFiyIv6971+hkswpBzdjSQwFT+qbEII1si+8hRyyvkHLIC5Z1Q==
+  template:
+    data: null
+    metadata:
+      name: miniflux-secret
+      namespace: applications
