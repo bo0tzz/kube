@@ -21,3 +21,13 @@ spec:
           secretAccessKey:
             name: minio-creds
             key: MINIO_ROOT_PASSWORD
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup
+spec:
+  schedule: "@daily"
+  immediate: true
+  cluster:
+    name: app-db
