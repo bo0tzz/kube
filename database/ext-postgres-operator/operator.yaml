@@ -31,7 +31,7 @@ spec:
             - name: OPERATOR_NAME
               value: "ext-postgres-operator"
             - name: POSTGRES_HOST
-              value: app-db-rw.database.svc.cluster.local
+              value: app-db-rw.database.svc
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
