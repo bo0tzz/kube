@@ -1,3 +1,4 @@
+# TODO: Move to helm chart (https://github.com/movetokube/postgres-operator/pull/90)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
