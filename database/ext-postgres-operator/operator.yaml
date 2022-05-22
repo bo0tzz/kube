@@ -41,3 +41,5 @@ spec:
                 secretKeyRef:
                   name: app-db-superuser
                   key: password
+            - name: POSTGRES_URI_ARGS
+              value: ""
