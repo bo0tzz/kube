@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: app-db
+  namespace: database
+spec:
+  instances: 3
+  minSyncReplicas: 1
+
+  storage:
+    storageClass: local-path
+    size: 10Gi
+
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://app-db-backup/
+      endpointURL: http://minio-gateway-service:9000
+      s3Credentials:
+          accessKeyId:
+            name: minio-creds
+            key: MINIO_ROOT_USER
+          secretAccessKey:
+            name: minio-creds
+            key: MINIO_ROOT_PASSWORD
