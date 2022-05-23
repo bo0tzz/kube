@@ -15,6 +15,8 @@ spec:
     barmanObjectStore:
       destinationPath: s3://app-db-backup/
       endpointURL: http://minio-gateway-service:9000
+      wal:
+        compression: bzip2
       s3Credentials:
           accessKeyId:
             name: minio-creds
