@@ -1,34 +1,38 @@
-apiVersion: batch/v1beta1
-kind: CronJob
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: youtube-sync
   namespace: media
+  labels:
+    app: youtube-sync
 spec:
-  schedule: "*/5 * * * *"
-  concurrencyPolicy: Forbid
-  jobTemplate:
+  selector:
+      matchLabels:
+        app: youtube-sync
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: youtube-sync
     spec:
-      template:
-        spec:
-          restartPolicy: Never
-          volumes:
+      volumes:
+        - name: library
+          persistentVolumeClaim:
+            claimName: youtube-library
+      containers:
+        - name: youtube-sync
+          image: ghcr.io/bo0tzz/yt_emby_sync:main
+          imagePullPolicy: Always
+          volumeMounts:
             - name: library
-              persistentVolumeClaim:
-                claimName: youtube-library
-          containers:
-            - name: youtube-sync
-              image: ghcr.io/bo0tzz/yt_emby_sync:main
-              imagePullPolicy: Always
-              volumeMounts:
-                - name: library
-                  mountPath: /library
-              env:
-                - name: YT_PLAYLIST_URL
-                  value: https://www.youtube.com/playlist?list=PL3g5xwbQbHOQnjbZHQfeJW08PotvJ3JEh
-                - name: DOWNLOAD_FOLDER
-                  value: /library
-                - name: DESTRUCTIVE
-                  value: "true"
+              mountPath: /library
+          env:
+            - name: YT_PLAYLIST_URL
+              value: https://www.youtube.com/playlist?list=PL3g5xwbQbHOQnjbZHQfeJW08PotvJ3JEh
+            - name: DOWNLOAD_FOLDER
+              value: /library
+            - name: DESTRUCTIVE
+              value: "true"
 ---
 apiVersion: v1
 kind: PersistentVolume
