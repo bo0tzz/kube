@@ -17,7 +17,7 @@ spec:
                 claimName: youtube-library
           containers:
             - name: youtube-sync
-              image: ghcr.io/bo0tzz/yt_emby_sync:main
+              image: ghcr.io/bo0tzz/yt_emby_sync@sha256:4e7bf0e1173b3026d8c908b667af47fa9f0a4bcc94b672978f4d6e36da0f108c
               imagePullPolicy: Always
               volumeMounts:
                 - name: library
