@@ -1,0 +1,42 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: timescale
+  namespace: monitoring
+spec:
+  interval: 1h
+  url: https://charts.timescale.com/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tobs
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: tobs
+      version: '0.10.0'
+      sourceRef:
+        kind: HelmRepository
+        name: timescale
+        namespace: monitoring
+      interval: 1h
+  values:
+    timescaledb-single:
+      persistentVolumes:
+        data:
+          size: 15Gi
+          storageClass: openebs-jiva-csi-default
+        wal:
+          enabled: false
+    promscale:
+      enabled: false
+    kube-prometheus-stack:
+      prometheus:
+        prometheusSpec:
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: openebs-jiva-csi-default
