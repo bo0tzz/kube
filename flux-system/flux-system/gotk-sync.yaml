@@ -11,7 +11,7 @@ spec:
     branch: new-cluster
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/bo0tzz/kube
+  url: https://github.com/bo0tzz/kube.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./flux-system
+  path: ./
   prune: true
   sourceRef:
     kind: GitRepository
