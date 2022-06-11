@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+    cloudflare_api_token: ENC[AES256_GCM,data:j0JxkESybEgrzfOek6DrpEbCVmZmnFkhhNvwGIsxRSTi7av0X3X0kN4VZh0lQ9a/lc3/0x1CBeI=,iv:XMsMjba7tL9Y+S+68vnYBLekhgQ4H87FGMcMegnUuro=,tag:xgIdLvF8CqgQaUxm/DxtKA==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: cloudflare_api_token
+    namespace: dns
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-06-11T09:59:28Z"
+    mac: ENC[AES256_GCM,data:C0BrP6huE8U9l+ifmZIkn5CWJ5RJEe82lH1KPWcOLtnvy11iPBHxo5hRRNwgPVqbqc1RJVT3iJaEZssi5V4TuDfWoI8ez9oXYJjlK2aF4W+IXBB9wOvIW/p4jPp+dVWCHdcnvyVjrotKqwg5sCEWU1OkiTuCo1lj8XtnXmb2DdI=,iv:ZXJITJw6Y31fcnJQo/ztzfbUTg9F7rU/pN1B2SHiT34=,tag:qhG2k3I4QuhTBLCf8RKnPg==,type:str]
+    pgp:
+        - created_at: "2022-06-11T09:59:27Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6ARAAjiV8jXpjYMZgzixLfzD/cjHdUDfh6ERBU1nPhAk7CuAv
+            tYVjwRlDukE+PLovENT2+6hB+nALzOy305HBcYR6WoXg+xeWOzBgdD5Ytkcm9Xgd
+            DhZNu3UTdaEMhTFac20idlHp6su9RtYYJMaupJEt6FS3sUjaFmjeJ615H7HebMJw
+            jxxxkSZoLQseW9/NrrmLcAKg9XB1kZtiQM16ftWScPM3znUIJqyE2uQR72akxwMH
+            NP8oAwV26E36JVrLBj2tM9qmiENEZmjDczppw1GWH76pIGwLajxX/Ioh63vFU/0d
+            jBXBA28LiCcxMCoUbeP+mg4IpmRp1zSr2Q+JbdMyv+4Rj2OsdPkdLQFxmkmgxqfL
+            DnF6Lqf7NTSV6jq5c9xCv8wnHpN0ayRMBv9VxELtmtVQ8fym6tBpY7PNnebpLPC+
+            RcdU08KHEHfX7NsEasPPlS5ZQIP4xtO/8AO84rUeSjlgjHuYkd/TF+/B3XkVbDw6
+            iOGt83HhIMw88UbfDCdbcSOwDeIb+nVmSmw/hFgLzHBZZbRaVHt34MvLs3lXxyeX
+            qboziRgX1NEpzy2Asj4BKqZDPlxCITfuqURxy799643GzEd6shaISJXPcTmm1BDX
+            sa6Rto7pvaO+v+Scm18uWYWyDyHFgvGVpwnXZfd25Ug7b/L0oYFddi4x7cphh1/U
+            aAEJAhAe/38nPiFul9NsE4poITSiq/y28SYY6WowpRXerU3NnRCK2sqnhFrKU52v
+            lBGj4CND3BP8wcVWIHGmuHd8u1raTCAp2rKJX8hTx3XNePCZ4jLWSRaeE6TwWUuf
+            jx8pyk/zrslp
+            =pf+o
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
