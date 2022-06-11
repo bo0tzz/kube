@@ -1,4 +1,4 @@
 resources:
-- github.com/k8up-io/k8up/config/default?ref=docs/v2.3
+- github.com/k8up-io/k8up/config/default?ref=v2.3.1
 
 namespace: storage
