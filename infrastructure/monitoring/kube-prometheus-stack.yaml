@@ -42,7 +42,7 @@ spec:
         additionalScrapeConfigs:
           - job_name: 'snmp'
             static_configs:
-              targets:
+              - targets:
                 - 192.168.1.102
             metrics_path: /snmp
             params:
