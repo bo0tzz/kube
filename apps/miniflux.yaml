@@ -1,0 +1,111 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: miniflux-db
+  namespace: applications
+spec:
+  database: miniflux
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: miniflux-user
+  namespace: applications
+spec:
+  role: miniflux
+  database: miniflux-db
+  secretName: database
+  privileges: OWNER
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: miniflux
+  namespace: applications
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: miniflux
+      version: '4.7.2'
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: applications
+      interval: 1h
+  values:
+    postgresql:
+      enabled: false
+    env:
+      POLLING_FREQUENCY: 10
+      BASE_URL: https://feed.bo0tzz.me
+      RUN_MIGRATIONS: 1
+      CREATE_ADMIN: 1
+      ADMIN_USERNAME: boet
+      ADMIN_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: miniflux-secret
+            key: admin-password
+      DATABASE_URL:
+        valueFrom:
+          secretKeyRef:
+            name: database-miniflux-user
+            key: POSTGRES_URL
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        ingressClassName: nginx-internal
+        hosts:
+          - host: feed.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - feed.bo0tzz.me
+            secretName: miniflux-web-tls
+---
+apiVersion: v1
+data:
+    admin-password: ENC[AES256_GCM,data:Ea10nUtSybz1zkc8QUuQZyahgifsy6BVUie9DosIs5axWAFWAUm0LyybaoE=,iv:oX9KsZSMmzxEQHPPs6s1SKA84Knjx/Ps3xdZaDCg79g=,tag:VP3qiqVM4f7q079hfJTJpQ==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: miniflux-secret
+    namespace: applications
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-06-12T13:12:52Z"
+    mac: ENC[AES256_GCM,data:MPLKXgfsqtzxxmoRUORNr8Ypq0y4THU0CydWd2zVxn7veVCV+bq/uXY3wRkUGjAuZERL2A4UI0T//Bcgzr0/UGe3CjwTqejubqw5ZIcwIXnE3ze98C/2XVChYdzgXMMxOL7OPK+8lqpM7ZtK/AcG9mieKwVEpViwZkqUs8kcjqY=,iv:5EbTr4rclragFNEhlqZk3DzUnbnioD9mkuQrY8dU2Ko=,tag:SiS2YwZF5xBFPAHPjAMKDA==,type:str]
+    pgp:
+        - created_at: "2022-06-12T13:12:52Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6AQ//fSmjf/apK7yWa71RLSOJT9+HIPvinA09jxVX/aWKM+My
+            CoWgVq/3CvkSdxzUq3UnxtwOQson0yIgE/6jmIkslVJv6T87AmNGO8GZ5yvCtxCD
+            h1Dd6vth/G+jeYgFNXWUqrL2dEsPV8L0xF5ArMIsu99HDMVXvTia0lHEvwKSzt9d
+            G14gryqr1aukFz7ieKMI4oHEs4huXXNPH4br6IMLhD5Y61G5FdGSHZ6ziL0roikr
+            jgrB5ry0Vw075mRPCM2kkREhlxl+6WEs3GU7BzFunZ2311zKbLFIgSt4Zuqciqti
+            u0iXMnmWfirSucuK2PRIGojvlgKYa7pYOPI6FcPc/G1VkBQ3mwNFTn6pC89HzUF3
+            NGVHE30+EP7tyFLBA+nSYYtLgmgNTp0imDid1TUIFjjzDHW9dRqWaXVg2Ro2wdBr
+            oazwhFaqJtK54H3QfRyHJ0vc2JFevwrcthNuEJZ1DEQkB0S3QGYoqPUAf4Mw3q6b
+            hwgoXhsYpRt6R8oVpKGCsqbTF2gejIlrwMMHDoDgnLRoJatenQi94FNZ+mUsrD7I
+            u1hRmiOjUqS+rU9cht6/P+cbU0Dr4Lp5UZCfr5pFsNUwOzAECxmNJwSKpOxeVfTc
+            lHYcSM43FFhxE+cQH6xlgkieeuk+wIJYNQNFfIEnP2gscmOf7dyYj7yZSqhVY83U
+            aAEJAhCK36B8s+/v2m8dbtXqspn8V7UcnT5OJJIiEC0reIeM1fHFr3vICFFQxaX+
+            1ZSGAsalEyzPFP0ZpfgNCGBGTfCyvzYgJh4foENIV2wuv1hFx+tPS2K58H8I4Yhh
+            uw2Ru9QRASiI
+            =v6J6
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
