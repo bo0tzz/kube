@@ -15,6 +15,10 @@ spec:
         namespace: media
       interval: 1h
   values:
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
     persistence:
       config:
         enabled: true
