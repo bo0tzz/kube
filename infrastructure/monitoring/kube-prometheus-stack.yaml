@@ -39,3 +39,18 @@ spec:
             resources:
               requests:
                 storage: 50Gi
+        additionalScrapeConfigs:
+          - job_name: 'snmp'
+            static_configs:
+              targets:
+                - 192.168.1.102
+            metrics_path: /snmp
+            params:
+              module: [if_mib]
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_target
+              - source_labels: [__param_target]
+                target_label: instance
+              - target_label: __address__
+                replacement: snmp-exporter-prometheus-snmp-exporter:9116
