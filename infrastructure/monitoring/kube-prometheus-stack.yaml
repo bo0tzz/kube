@@ -40,7 +40,7 @@ spec:
               requests:
                 storage: 50Gi
         additionalScrapeConfigs:
-          - job_name: 'snmp'
+          - job_name: 'apcups'
             static_configs:
               - targets:
                 - 192.168.1.102
