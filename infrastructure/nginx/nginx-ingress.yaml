@@ -27,6 +27,8 @@ spec:
     controller:
       image:
         digest: null
+      extraArgs:
+        default-backend-service: "ingress-nginx/new-cluster"
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -49,3 +51,25 @@ spec:
       ingressClass: nginx-internal
       image:
         digest: null
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: new-cluster
+  namespace: ingress-nginx
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: new-cluster
+  namespace: ingress-nginx
+subsets:
+  - addresses:
+      - ip: 192.168.4.100
+    ports:
+      - port: 80
