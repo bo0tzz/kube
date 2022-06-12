@@ -58,7 +58,6 @@ spec:
         annotations:
           kubernetes.io/ingress.class: nginx-internal
           cert-manager.io/cluster-issuer: letsencrypt-prod
-        ingressClassName: nginx-internal
         hosts:
           - host: feed.bo0tzz.me
             paths:
