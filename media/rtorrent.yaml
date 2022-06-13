@@ -17,6 +17,8 @@ spec:
   values:
     env:
       FLOOD_OPTION_ALLOWEDPATH: /media/download
+      FLOOD_OPTION_RUNDIR: /config
+      FLOOD_OPTION_AUTH: "none"
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -44,3 +46,37 @@ spec:
           - hosts:
               - rtorrent.bo0tzz.me
             secretName: rtorrent-web-tls
+        config: |
+          session.use_lock.set = no
+          method.insert = cfg.basedir,  private|const|string, (cat,"/config/rtorrent/")
+          method.insert = cfg.download, private|const|string, (cat,"/media/downloads/")
+          method.insert = cfg.logs,     private|const|string, (cat,(cfg.basedir),"log/")
+          method.insert = cfg.logfile,  private|const|string, (cat,(cfg.logs),"rtorrent-",(system.time),".log")
+          method.insert = cfg.session,  private|const|string, (cat,(cfg.basedir),".session/")
+          fs.mkdir.recursive = (cat,(cfg.basedir))
+          fs.mkdir = (cat,(cfg.logs))
+          fs.mkdir = (cat,(cfg.session))
+          throttle.max_uploads.set = 100
+          throttle.max_uploads.global.set = 250
+          throttle.min_peers.normal.set = 20
+          throttle.max_peers.normal.set = 60
+          throttle.min_peers.seed.set = 30
+          throttle.max_peers.seed.set = 80
+          trackers.numwant.set = 80
+          network.port_range.set = 50413-50413
+          network.max_open_files.set = 600
+          network.max_open_sockets.set = 300
+          pieces.memory.max.set = 1800M
+          session.path.set = (cat, (cfg.session))
+          directory.default.set = (cat, (cfg.download))
+          log.execute = (cat, (cfg.logs), "execute.log")
+          encoding.add = utf8
+          system.daemon.set = true
+          system.umask.set = 0002
+          system.cwd.set = (directory.default)
+          network.http.max_open.set = 50
+          network.http.dns_cache_timeout.set = 25
+          network.scgi.open_local = (cat,"/tmp/",rtorrent.sock)
+          print = (cat, "Logging to ", (cfg.logfile))
+          log.open_file = "log", (cfg.logfile)
+          log.add_output = "info", "log"
