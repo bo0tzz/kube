@@ -18,6 +18,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: media-library
   namespace: media
+  annotations:
+    k8up.io/backup: false
 spec:
   storageClassName: manual
   volumeName: media-library
