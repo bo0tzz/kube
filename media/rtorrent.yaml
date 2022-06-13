@@ -7,7 +7,7 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: rtorrent
+      chart: rtorrent-flood
       version: '9.3.2'
       sourceRef:
         kind: HelmRepository
