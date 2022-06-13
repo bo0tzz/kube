@@ -15,6 +15,10 @@ spec:
         namespace: media
       interval: 1h
   values:
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
     service:
       bittorrent:
         enabled: true
