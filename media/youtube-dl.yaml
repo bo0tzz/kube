@@ -15,6 +15,11 @@ spec:
       labels:
         app: youtube-dl
     spec:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
       volumes:
         - name: media
           persistentVolumeClaim:
