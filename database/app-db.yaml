@@ -32,6 +32,5 @@ metadata:
   namespace: database
 spec:
   schedule: "@daily"
-  immediate: true
   cluster:
     name: app-db
