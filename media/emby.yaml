@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/bo0tzz/emby
-      tag: 4.7.4.0
+      tag: v4.7.4.0
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
