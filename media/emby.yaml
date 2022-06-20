@@ -15,6 +15,9 @@ spec:
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: emby/embyserver
+      tag: 4.7.4.0
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
