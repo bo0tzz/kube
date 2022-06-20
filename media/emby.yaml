@@ -16,7 +16,6 @@ spec:
       interval: 1h
   values:
     image:
-      repository: ghcr.io/bo0tzz/emby
       tag: v4.7.4.0
     podSecurityContext:
       runAsUser: 568
