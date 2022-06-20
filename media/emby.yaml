@@ -15,6 +15,9 @@ spec:
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: lscr.io/linuxserver/emby
+      tag: 4.7.4
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
