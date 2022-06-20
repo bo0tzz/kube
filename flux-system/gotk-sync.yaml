@@ -18,7 +18,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./
+  path: ./flux-system
   prune: true
   decryption:
     provider: sops
