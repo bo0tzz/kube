@@ -18,7 +18,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: openebs-jiva-csi-default
+        storageClass: zfs-iscsi
     ingress:
       main:
         enabled: true

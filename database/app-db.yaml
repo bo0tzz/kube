@@ -7,7 +7,7 @@ spec:
   instances: 3
 
   storage:
-    storageClass: openebs-hostpath
+    storageClass: local-path
     size: 10Gi
 
   backup:

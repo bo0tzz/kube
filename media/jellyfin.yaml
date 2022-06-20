@@ -23,7 +23,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: openebs-jiva-csi-default
+        storageClass: zfs-iscsi
       media:
         enabled: true
         existingClaim: media-library
