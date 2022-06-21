@@ -29,6 +29,7 @@ spec:
           hosts:
             - jitsi.test.bo0tzz.me
     jvb:
+      UDPPort: 30300
       service:
         type: LoadBalancer
         loadBalancerIP: 192.168.4.102
