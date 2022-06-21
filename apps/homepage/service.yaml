@@ -4,7 +4,7 @@ metadata:
   labels:
     service: homepage
   name: homepage
-  namespace: homepage
+  namespace: applications
 spec:
   ports:
     - name: "http"
@@ -17,7 +17,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: homepage
-  namespace: homepage
+  namespace: applications
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
