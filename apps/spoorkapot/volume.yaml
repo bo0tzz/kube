@@ -1,10 +1,12 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: spoorkapot-claim
+  name: spoorkapot-data
   namespace: applications
 spec:
   storageClassName: zfs-iscsi
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 512Mi

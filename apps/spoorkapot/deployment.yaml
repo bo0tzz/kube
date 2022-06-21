@@ -20,7 +20,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: spoorkapot-claim
+            claimName: spoorkapot-data
       containers:
         - name: spoorkapot
           image: ghcr.io/bo0tzz/spoorkapot:main
