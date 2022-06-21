@@ -15,6 +15,7 @@ spec:
         namespace: applications
       interval: 1h
   values:
+    publicURL: "https://jitsi.test.bo0tzz.me"
     web:
       ingress:
         enabled: true
