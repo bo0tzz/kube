@@ -18,7 +18,7 @@ spec:
     publicURL: "https://jitsi.bo0tzz.me"
     web:
       extraEnvs:
-        - ENABLE_XMPP_WEBSOCKET: "false"
+        ENABLE_XMPP_WEBSOCKET: "false"
       ingress:
         enabled: true
         annotations:
@@ -34,7 +34,7 @@ spec:
             - jitsi.bo0tzz.me
     jicofo:
       extraEnvs:
-        - ENABLE_XMPP_WEBSOCKET: "false"
+        ENABLE_XMPP_WEBSOCKET: "false"
     jvb:
       UDPPort: 30300
       publicIP: 83.86.109.63
@@ -43,6 +43,8 @@ spec:
         loadBalancerIP: 192.168.4.102
       metrics:
         enabled: true
+      extraEnvs:
+        ENABLE_XMPP_WEBSOCKET: "false"
     prosody:
       persistence:
         storageClassName: zfs-iscsi
