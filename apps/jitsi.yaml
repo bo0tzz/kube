@@ -36,6 +36,7 @@ spec:
       extraEnvs:
         ENABLE_XMPP_WEBSOCKET: "false"
     jvb:
+      stunServers: 'stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302'
       UDPPort: 30300
       publicIP: 83.86.109.63
       service:
