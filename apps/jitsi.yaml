@@ -20,8 +20,9 @@ spec:
       ingress:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: nginx-internal
+          kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
         hosts:
         - host: jitsi.bo0tzz.me
           paths: ['/']
