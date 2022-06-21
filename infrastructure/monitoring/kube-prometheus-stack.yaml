@@ -32,6 +32,8 @@ spec:
         storageClassName: zfs-iscsi
     prometheus:
       prometheusSpec:
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
         volumeClaimTemplate:
           spec:
             storageClassName: zfs-iscsi
