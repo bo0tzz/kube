@@ -4,6 +4,7 @@ metadata:
   name: youtube-sync
   namespace: media
 spec:
+  suspend: true
   schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 0
