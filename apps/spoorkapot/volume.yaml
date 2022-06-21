@@ -1,0 +1,10 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: spoorkapot-claim
+  namespace: applications
+spec:
+  storageClassName: zfs-iscsi
+  resources:
+    requests:
+      storage: 512Mi

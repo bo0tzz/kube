@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: spoorkapot-config
+    namespace: applications
+type: Opaque
+stringData:
+    DATABASE_FOLDER: ENC[AES256_GCM,data:FbKHZkA=,iv:uXxzpeZm1tc6Ui5L3RBXlit8BTahYxdEG+OmjduumvE=,tag:91wKIqFuzunHtFl6rFh2XQ==,type:str]
+    NS_API_KEY: ENC[AES256_GCM,data:d67a8EU/df/03viQ3vCjcSfqhvLdIgE3ltvto+TuW7o=,iv:ewE68h5xarZ/tdL6LpFqXPlUkqX0mJkkKvg6pQiCQN4=,tag:UolLzklsUCjVi6ciuAN2tA==,type:str]
+    PORT: ENC[AES256_GCM,data:7q/TJQ==,iv:/rl5dBzCx8QxQQmESaacGOE7puZDmnaw4kJjw1lGsko=,tag:i77W6eRZotaxK31V8V9KoA==,type:str]
+    PUSH_PRIVATE_KEY: ENC[AES256_GCM,data:KWA7Y4TqRK3FamHKZ4Bf4X8pj9yTcysJTH3J0GZ+SBjOz/5nJ8ickFcOPw==,iv:YV1tOJkhMxaEscID0byPCKzVc3NjiEwybQvMOM1ddhE=,tag:Mx3m/U3ZIT8d64hrdLc5rw==,type:str]
+    PUSH_PUBLIC_KEY: ENC[AES256_GCM,data:UTMjU+969BfDn/fHebm4CQgu69Nod0xhrvMHcdj6FVSNg3ICere25i40d7Vy03PX0c2kJFXpltpykxO+/KUoNX/40hHt8aCHwqCJCFsRvGPbfF+1Th9T,iv:7QGzCdPHDz/Fr0PpKzL2L93iqz5OMHo3jYPD+bBjiho=,tag:zw516uyM7PHs3zCM/txUlQ==,type:str]
+    SECRET_KEY_BASE: ENC[AES256_GCM,data:9xXCwooHqVP4iAH+QkOKifd6slZGEGbZMM/m4yOz4xZQJohDKRQq9JkJSN368gIpSAqnJXqo/dwRP1mng/cv6w==,iv:IJKU4kSm09UdNkqJhdmERYkPsn0CKNX0693zCi368pk=,tag:5syXep5nsXhhJ3QSb39CPg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-06-21T12:48:27Z"
+    mac: ENC[AES256_GCM,data:LPENPgvLBKtvjhDOx5ZTi4TFVddIb85EQp9q3FVH/T8ZbTsXR/j1YLH0vb2DmXnLScwb1Oq/ApJBxFsAXJGKt78H99C4GSsL9ISrRrltNSPtFw58X+aIXOPL5DSuFZiwvWSwxD6ZIoZnEgZIQ//bQ35UF2rYc9b4cxvOwKrWsM4=,iv:OtG66BTwERwaMsl9SEaY4b2KikbqBng9E3dscjEd/sU=,tag:x1YDRCg3w1QC/DlhHG9yPQ==,type:str]
+    pgp:
+        - created_at: "2022-06-21T12:48:27Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6AQ/9FA8LjuL1ZbO69kAXqxvLfNDG4vmQQT6RcdNo4UqmIp1+
+            7sfahETQKcMdihpUmYFUVxNh+nxXLXPh61lFJLWZEefYmeHmvlPXxQGMRmlwGyxl
+            U1QMqd2524aLAoKFSR+1qTGI+fbJgAQY4+Ypy5Aw+LhadrIkrElP1bfQgDxiGg/r
+            fQAVLGbeFjIF1EX9xTbmpzZH/7i2RhfTFHdeZEacbub6uL4Zf42VIr0zBv0hfyJh
+            2ekV1zGR0zgtXzHW9xkuRrgOicbEf1pAHl4eYxEkU2u9L/BszOWm6Nm9Z8euprAL
+            j66Q4N3Xst841exptJfVD/XrcpOOYETV8NTd/usE29adu4tFxBzSt3nPkdwnsfAQ
+            dF19U5lwu5Ob46o6xBiV1sYRHVb7/mkrMezeYYAYpBfdjdGj55lquMfeRJATVOUK
+            +pcJtOrEL3pZHmWfHJ8XT+geLnxukNH2L5S8uoHvw9z5cvlmjcP9QvAdXfbJuBlS
+            jKl3M+Yl3Mdu8I34JgdNZge46Fd3lkDINA2VcNKg0g89buU5xo1tG0p4pN8SSsbp
+            iSX7C6NgaawOE6ceMnCD9b4mEVs97sfWPdQw9zRNAEUa4ZfNNta0JdcUi4HKC4yu
+            L7OuSN8iOT0bqyfM608lkiNwNPwXODW+xyqzlWXojxWdhKQlYDvX7tp9amsTmLrU
+            aAEJAhCZTcAhhe6zTnH+LLoOxuT6ns7nmWijO8pEB7LENcFLNwXxmWNLGXapSQYH
+            ora/4hUUCECrMvvCexW+gp1oyF7I2BJsnwVNNS/HCMRERbWmNWXfGF1M2R8Knz3T
+            BaF+C99KlcBp
+            =91BE
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
