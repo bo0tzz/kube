@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki
+  namespace: proxy
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: wiki
+  namespace: proxy
+subsets:
+  - addresses:
+      - ip: 192.168.1.187
+    ports:
+      - port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiki
+  namespace: proxy
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/target: bo0tzz.me
+spec:
+  tls:
+  - hosts: 
+    - wiki.bo0tzz.me
+    secretName: wiki-web-tls
+  rules:
+  - host: wiki.bo0tzz.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiki
+            port:
+              number: 80
