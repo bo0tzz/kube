@@ -17,6 +17,8 @@ spec:
   values:
     publicURL: "https://jitsi.bo0tzz.me"
     web:
+      extraEnvs:
+        - ENABLE_XMPP_WEBSOCKET: "false"
       ingress:
         enabled: true
         annotations:
@@ -30,6 +32,9 @@ spec:
         - secretName: jitsi-web-tls
           hosts:
             - jitsi.bo0tzz.me
+    jicofo:
+      extraEnvs:
+        - ENABLE_XMPP_WEBSOCKET: "false"
     jvb:
       UDPPort: 30300
       publicIP: 83.86.109.63
@@ -41,3 +46,4 @@ spec:
     prosody:
       persistence:
         storageClassName: zfs-iscsi
+      
