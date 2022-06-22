@@ -29,6 +29,10 @@ spec:
         loadBalancerIP: 192.168.4.100
       image:
         digest: null
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -54,3 +58,7 @@ spec:
       ingressClass: nginx-internal
       image:
         digest: null
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
