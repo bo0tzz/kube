@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
       - name: nginx-files
-        image: nginx:1.22.0
+        image: nginx:1.23.0
         ports:
         - containerPort: 80
         volumeMounts:
