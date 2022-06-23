@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: tiddlywiki
+  name: tiddlywiki
+  namespace: applications
+spec:
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 8080
+  selector:
+    app: tiddlywiki

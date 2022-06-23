@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiddlywiki
+  namespace: applications
+  labels:
+    app: tiddlywiki
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: tiddlywiki
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tiddlywiki
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: "OnRootMismatch"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: tiddlywiki-data
+      containers:
+        - name: tiddlywiki
+          image: nicolaw/tiddlywiki:5.2.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TIDDLYWIKI_PLUGIN_PATH
+              value: /var/lib/tiddlywiki/plugins
+          envFrom:
+            - secretRef:
+              name: tiddlywiki-credentials
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/tiddlywiki
