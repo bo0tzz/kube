@@ -12,3 +12,29 @@ spec:
       targetPort: 8080
   selector:
     app: tiddlywiki
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tiddlywiki
+  namespace: applications
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/target: bo0tzz.me
+spec:
+  tls:
+  - hosts: 
+    - wiki.bo0tzz.me
+    secretName: wiki-web-tls
+  rules:
+  - host: wiki.bo0tzz.me
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tiddlywiki
+            port:
+              name: http
