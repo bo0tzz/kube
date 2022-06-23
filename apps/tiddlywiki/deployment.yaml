@@ -37,7 +37,7 @@ spec:
               value: /var/lib/tiddlywiki/plugins
           envFrom:
             - secretRef:
-              name: tiddlywiki-credentials
+                name: tiddlywiki-credentials
           volumeMounts:
             - name: data
               mountPath: /var/lib/tiddlywiki
