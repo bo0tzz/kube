@@ -39,9 +39,6 @@ spec:
         enabled: true
         storageClass: zfs-iscsi
     env:
-      # WARN: VERY TEMPORARY!
-      DISABLE_ADMIN_TOKEN: true 
-      SIGNUPS_ALLOWED: false
       DATABASE_URL:
         valueFrom:
           secretKeyRef:
