@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: imagebot
+  namespace: applications
+  labels:
+    app: imagebot
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: imagebot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: imagebot
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: "OnRootMismatch"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: imagebot-data
+      containers:
+        - name: imagebot
+          image: ghcr.io/bo0tzz/image_bot:main
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: imagebot-token
+          env:
+            - name: KEY_DB_PATH
+              value: "/data/keys.db"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: imagebot-data
+  namespace: applications
+spec:
+  storageClassName: zfs-iscsi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: imagebot-token
+    namespace: applications
+type: Opaque
+stringData:
+    BOT_TOKEN: ENC[AES256_GCM,data:Io1rn8587Hhv3ew/2U65PYbSdr2+KN6qr+z11DwydwQtC2gqs62i5FYJuDG7,iv:Pkn/kwylNt8Rc9zgAQwqLo5ZoH3jQHJ3nyCZrMkzTOw=,tag:sWAe+J6Z4jmvg1aKmC3Djg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-06-23T13:53:26Z"
+    mac: ENC[AES256_GCM,data:oMAQG9TEYZOjFzNnGUsCzjnBfOmkNkk7IUYwTR9OJ/I1gVzzKz4hbWwIpxTUpAtOOqUsIMYVAvaQog2xNOnHPOi0HISPO0zAS1BCZChRHgtYKzb1BzTfMoE/wV1cJfj9uStlXii6DOaYu8rUed5vs9tZRCVqGjrkrl8OmWeiR80=,iv:uQQ6pscriTC56E3l8oy+QwUcy+ABn+p7nXsKeG4EdFA=,tag:gagQp405pDEn8a+Al/pyWA==,type:str]
+    pgp:
+        - created_at: "2022-06-23T13:53:25Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6AQ//T94GDBITaEYJGg6RNeLBnx+4D263h5JUpR48ZsN4AgLn
+            zkZOOEpGOosvIHDHgdohkOFl0d5AIRPZpoyTQv0KSYMYMjsDennry+hPb08lIfe8
+            jLX7TR6VaHt+TdW6qhbLeC4BolTMnBAa+cw9KA/Ka2OJeu1sn2Xl00C/mAPpgD98
+            yK5BnsMPc8qcMOtIGCklHvf5k4w0pBFA1NexHhYKU9wuwhGsSlewJiC4g7dXs7df
+            nE6JscyHpZK9iGrjOyVlwXvTaE7o37SJYDSjUZJRLRNYXWtYTC8VEnCaD1Px+QCf
+            vCIC93G2d/mDNc7Oj9BG4/5IeTxto5U+iBhWXvGKZFoN6ri36QsX9zuEm5Nddv9V
+            Uaf3QRgh0JKId1dd3TntKEK6pFjUDWJ2bLv98u59XzNrL1YcSjno01KDQBYZ7roj
+            3agv1qojnToiMOSYrGSG939prDoyMBFeWwTkgJpbZE1Vw/RNRNADVXxDZRYuj9of
+            ZSzvWXH9aqEDIkSOsMFdFEUuIdeGLSlJ3QUVlaOfyReuCMMpeRyDJ/2hPZZtdFmk
+            yC2hSR8bjo1sKQPi0j1MhTpstjY50hMWfNZOoHvgP4O2D/KXKwAk5tm7s9EYLwFa
+            zGijFXgAwS+4bmJIQ8ZX1qjgeKA6s9s1u5mI0YNIq1TqTrdO7amB5Yeg9xIZrv/U
+            aAEJAhDDWbPqfUuSy0mYgL/UnBEBsRlro6QBrfsiyhGciCJTcRjOqCnsJlC/rfdt
+            5S7I4PNgSDcpKG+BMLJcBGecRBho9SdXWq2dAotBlnJwse5VqaG3rtuboWkvMcDc
+            fh/DHy4nL/bt
+            =byp9
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
