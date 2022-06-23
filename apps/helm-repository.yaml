@@ -15,3 +15,12 @@ metadata:
 spec:
   interval: 1h
   url: https://jitsi-contrib.github.io/jitsi-helm/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: minecraft
+  namespace: applications
+spec:
+  interval: 1h
+  url: https://itzg.github.io/minecraft-server-charts/
