@@ -1,0 +1,49 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: vaultwarden-db
+  namespace: applications
+spec:
+  database: vaultwarden
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: vaultwarden-user
+  namespace: applications
+spec:
+  role: vaultwarden
+  database: vaultwarden-db
+  secretName: database
+  privileges: OWNER
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vaultwarden
+  namespace: applications
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: vaultwarden
+      version: '4.2.3'
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: applications
+      interval: 1h
+  values:
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+    env:
+      # WARN: VERY TEMPORARY!
+      DISABLE_ADMIN_TOKEN: true 
+      SIGNUPS_ALLOWED: false
+      DATABASE_URL:
+        valueFrom:
+          secretKeyRef:
+            name: database-vaultwarden-user
+            value: POSTGRES_URL
