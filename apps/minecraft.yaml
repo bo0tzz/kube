@@ -22,8 +22,8 @@ spec:
     minecraftServer:
       eula: "TRUE"
       version: "1.19"
-      whitelist: IComboluca,FranseSlak,kelvy_mincraft,bo0tzz,HarigeHond,Zware_van_Nelle,nigelgamer1234,snuifduif12
-      ops: IComboluca,bo0tzz,HarigeHond,Zware_van_Nelle,nigelgamer1234,snuifduif12
+      whitelist: Dylan_rengers,bo0tzz
+      ops: Dylan_rengers,bo0tzz
       maxWorldSize: 29999984
       spawnProtection: 0
       pvp: true
