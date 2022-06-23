@@ -6,7 +6,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: new-new-cluster
+    branch: main
   url: https://github.com/bo0tzz/kube.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
