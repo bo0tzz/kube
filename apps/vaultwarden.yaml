@@ -46,4 +46,4 @@ spec:
         valueFrom:
           secretKeyRef:
             name: database-vaultwarden-user
-            value: POSTGRES_URL
+            key: POSTGRES_URL
