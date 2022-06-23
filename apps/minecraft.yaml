@@ -37,26 +37,3 @@ spec:
         enabled: true
         storageClass: zfs-iscsi
         Size: 5G
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: minecraft-admin
-  namespace: applications
-spec:
-  interval: 1h
-  chart:
-    spec:
-      chart: rcon-web-admin
-      version: '1.0.0'
-      sourceRef:
-        kind: HelmRepository
-        name: minecraft
-        namespace: applications
-      interval: 1h
-  values:
-    rconWeb:
-      isAdmin: true
-      password: insecure
-      rconHost: minecraft-minecraft-rcon
-      rconPasswordExistingSecret: minecraft-minecraft
