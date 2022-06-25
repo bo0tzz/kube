@@ -31,5 +31,3 @@ spec:
     cloudflare:
       proxied: false
       secretName: cloudflare-api-token
-    excludeDomains:
-      - bo0tzz.me
