@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: fairwinds
+  namespace: goldilocks
+spec:
+  interval: 1h
+  url: https://charts.fairwinds.com/stable
