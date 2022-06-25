@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linx
+  namespace: applications
+  labels:
+    app: linx
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: linx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: linx
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: "OnRootMismatch"
+      volumes:
+        - name: files
+          persistentVolumeClaim:
+            claimName: linx-files
+      containers:
+        - name: linx
+          image: ghcr.io/bo0tzz/linx-server@sha256:f0b79b15ee46b4e2a4557e06f5bb61f49f672701a297b1cc211a0691b8f76715
+          args: ["-config", "/data/linx-server.conf"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: files
+              mountPath: /data
