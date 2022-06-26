@@ -10,6 +10,9 @@ spec:
     storageClass: local-path
     size: 10Gi
 
+  monitoring:
+    enablePodMonitor: true
+
   backup:
     retentionPolicy: "30d"
     barmanObjectStore:
