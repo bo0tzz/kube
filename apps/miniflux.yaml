@@ -37,7 +37,6 @@ spec:
     postgresql:
       enabled: false
     env:
-      POLLING_FREQUENCY: 10
       BASE_URL: https://feed.bo0tzz.me
       RUN_MIGRATIONS: 1
       CREATE_ADMIN: 1
