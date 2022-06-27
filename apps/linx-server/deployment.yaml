@@ -20,6 +20,8 @@ spec:
       securityContext:
         runAsUser: 99
         runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: "OnRootMismatch"
       volumes:
         - name: files
           persistentVolumeClaim:
