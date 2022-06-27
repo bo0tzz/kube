@@ -11,7 +11,7 @@ spec:
   selector:
     matchLabels:
       app: linx
-  replicas: 1
+  replicas: 0
   template:
     metadata:
       labels:
