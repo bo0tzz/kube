@@ -18,10 +18,8 @@ spec:
         app: linx
     spec:
       securityContext:
-        runAsUser: 65534
-        runAsGroup: 65534
-        fsGroup: 65534
-        fsGroupChangePolicy: "OnRootMismatch"
+        runAsUser: 99
+        runAsGroup: 100
       volumes:
         - name: files
           persistentVolumeClaim:
