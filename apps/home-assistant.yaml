@@ -37,6 +37,10 @@ spec:
     envFrom:
       - secretRef:
           name: database-home-assistant-user
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
     persistence:
       config:
         enabled: true
