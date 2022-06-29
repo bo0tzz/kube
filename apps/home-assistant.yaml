@@ -1,0 +1,58 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: home-assistant-db
+  namespace: applications
+spec:
+  database: home-assistant
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: home-assistant-user
+  namespace: applications
+spec:
+  role: home-assistant
+  database: home-assistant-db
+  secretName: database
+  privileges: OWNER
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: applications
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: home-assistant
+      version: '13.2.0'
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: applications
+      interval: 1h
+  values:
+    envFrom:
+      - secretRef:
+          name: database-home-assistant-user
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: hass.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - hass.bo0tzz.me
+            secretName: home-assistant-web-tls
