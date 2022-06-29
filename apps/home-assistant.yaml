@@ -1,22 +1,3 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: Postgres
-metadata:
-  name: home-assistant-db
-  namespace: applications
-spec:
-  database: home-assistant
----
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: home-assistant-user
-  namespace: applications
-spec:
-  role: home-assistant
-  database: home-assistant-db
-  secretName: database
-  privileges: OWNER
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -34,9 +15,6 @@ spec:
         namespace: applications
       interval: 1h
   values:
-    envFrom:
-      - secretRef:
-          name: database-home-assistant-user
     dnsConfig:
       options:
         - name: ndots
