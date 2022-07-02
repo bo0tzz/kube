@@ -12,7 +12,7 @@ spec:
           image: "ghcr.io/bo0tzz/rsync:main"
           imagePullPolicy: Always
           args: 
-            - "-rzhaP"
+            - "-rvzhaP"
             - "--no-owner"
             - "--no-group"
             - "--exclude='/camera/'"
