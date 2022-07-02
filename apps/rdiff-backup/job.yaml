@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rsync
+  namespace: applications
+spec:
+  template:
+    spec:
+      containers:
+        - name: rsync
+          image: "ghcr.io/bo0tzz/rsync:main"
+          imagePullPolicy: Always
+          args: 
+            - "-rzhaP"
+            - "--no-owner"
+            - "--no-group"
+            - "--exclude='/camera/'"
+            - "--exclude='/domains/'"
+            - "--exclude='/isos/'"
+            - "--exclude='/games/'"
+            - "--exclude='/music/'"
+            - "--exclude='/downloads/'"
+            - "root@10.253.0.1:/mnt/user/"
+            - "/target"
+          env:
+            - name: WAIT_FOR_VPN
+              value: "true"
+          volumeMounts:
+          - name: ssh-credentials
+            mountPath: /root/.ssh
+          - name: backup-target
+            mountPath: /target
+          - name: shared
+            mountPath: /shared
+        - name: wireguard
+          image: ghcr.io/k8s-at-home/wireguard:v1.0.20210914
+          securityContext:
+            capabilities:
+              add:
+              - NET_ADMIN
+              - SYS_MODULE
+          volumeMounts:
+          - mountPath: /etc/wireguard/wg0.conf
+            name: wireguard-config
+            subPath: wg0.conf
+          - name: shared
+            mountPath: /shared
+      volumes:
+        - name: rsync-wireguard-config
+          secret:
+            items:
+            - key: wg0.conf
+              path: wg0.conf
+            secretName: wireguard-config
+        - name: rsync-ssh-credentials
+          secret:
+            secretName: ssh-credentials
+            defaultMode: 0600
+        - name: rsync-backup-target
+          persistentVolumeClaim:
+            claimName: backup-target
+        - name: shared
+          emptyDir: {}

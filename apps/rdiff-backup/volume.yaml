@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rsync-backup-target
+  namespace: applications
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.1
+    path: "/rpool/backup/zijleinde"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rsync-backup-target
+  namespace: applications
+spec:
+  storageClassName: manual
+  volumeName: rsync-backup-target
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2T
