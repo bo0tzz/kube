@@ -46,18 +46,18 @@ spec:
           - name: shared
             mountPath: /shared
       volumes:
-        - name: rsync-wireguard-config
+        - name: wireguard-config
           secret:
             items:
             - key: wg0.conf
               path: wg0.conf
-            secretName: wireguard-config
-        - name: rsync-ssh-credentials
+            secretName: rsync-wireguard-config
+        - name: ssh-credentials
           secret:
-            secretName: ssh-credentials
+            secretName: rsync-ssh-credentials
             defaultMode: 0600
-        - name: rsync-backup-target
+        - name: backup-target
           persistentVolumeClaim:
-            claimName: backup-target
+            claimName: rsync-backup-target
         - name: shared
           emptyDir: {}
