@@ -6,6 +6,7 @@ metadata:
 spec:
   template:
     spec:
+      restartPolicy: OnFailure
       containers:
         - name: rsync
           image: "ghcr.io/bo0tzz/rsync:main"
