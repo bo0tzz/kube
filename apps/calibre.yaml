@@ -17,11 +17,6 @@ spec:
   values:
     image:
       tag: "0.6.18"
-    podSecurityContext:
-      runAsUser: 501
-      runAsGroup: 50
-      fsGroup: 50
-      fsGroupChangePolicy: "OnRootMismatch"
     env:
       PUID: "501"
       PGID: "50"
