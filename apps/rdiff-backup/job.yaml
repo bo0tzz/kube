@@ -21,7 +21,7 @@ spec:
             - "--exclude='/games/'"
             - "--exclude='/music/'"
             - "--exclude='/downloads/'"
-            - "--exclude='docker.img'"
+            - "--exclude='/system/docker/docker.img'"
             - "root@10.253.0.1:/mnt/user/"
             - "/target"
           env:
