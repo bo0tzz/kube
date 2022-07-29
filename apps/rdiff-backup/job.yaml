@@ -4,6 +4,7 @@ metadata:
   name: rsync
   namespace: applications
 spec:
+  suspend: true
   template:
     spec:
       restartPolicy: OnFailure
