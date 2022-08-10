@@ -28,7 +28,7 @@ spec:
             claimName: linx-files
       containers:
         - name: linx
-          image: ghcr.io/bo0tzz/linx-server@sha256:6b886af7852a8c815222392c455e47b655dd0c067d99fc1302e241e849151e39
+          image: ghcr.io/bo0tzz/linx-server@sha256:d753b7fab1ee233ba6a552528dcce741a0089a7efaf44d00374af5ca3ee140c9
           args: ["-config", "/data/linx-server.conf"]
           ports:
             - containerPort: 8080
