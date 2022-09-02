@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: youtube-dl
+  name: yt-emby-sync
   namespace: media
   labels:
-    app: youtube-dl
+    app: yt-emby-sync
 spec:
   selector:
       matchLabels:
-        app: youtube-dl
+        app: yt-emby-sync
   replicas: 1 
   template:
     metadata:
       labels:
-        app: youtube-dl
+        app: yt-emby-sync
     spec:
       securityContext:
         runAsUser: 568
@@ -25,7 +25,7 @@ spec:
           persistentVolumeClaim:
             claimName: media-library
       containers:
-        - name: youtube-dl
+        - name: yt-emby-sync
           image: ghcr.io/bo0tzz/yt_emby_sync:main
           imagePullPolicy: Always
           volumeMounts:
