@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: youtube-dl
+  namespace: media
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: youtubedl-material
+      version: 4.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: media
+      interval: 1h
+  values:
+    image:
+      repository: ghcr.io/bo0tzz/youtubedl-material
+      tag: "latest"
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+    env:
+      UID: 568
+      GID: 568
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+      media:
+        enabled: true
+        existingClaim: media-library
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: ytdl.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - ytdl.bo0tzz.me
+            secretName: ytdl-web-tls
