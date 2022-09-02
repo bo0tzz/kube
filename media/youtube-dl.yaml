@@ -22,9 +22,6 @@ spec:
       options:
         - name: ndots
           value: "1"
-    env:
-      UID: 568
-      GID: 568
     persistence:
       config:
         enabled: true
