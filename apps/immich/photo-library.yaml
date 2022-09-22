@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: media-library
-  namespace: media
+  name: photo-library
+  namespace: immich
 spec:
   storageClassName: manual
   capacity:
@@ -11,18 +11,16 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.2.1
-    path: "/rpool/media"
+    path: "/rpool/media/photos/library"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: media-library
-  namespace: media
-  annotations:
-    k8up.io/backup: false
+  name: photo-library
+  namespace: immich
 spec:
   storageClassName: manual
-  volumeName: media-library
+  volumeName: photo-library
   accessModes:
     - ReadWriteMany
   resources:
