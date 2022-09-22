@@ -1,0 +1,102 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: immich-charts
+  namespace: immich
+spec:
+  interval: 5m0s
+  url: https://github.com/PixelJonas/immich-charts.git
+  ref:
+    branch: feature/immich-chart
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./charts/apps/immich
+      sourceRef:
+        kind: GitRepository
+        name: immich-charts
+        namespace: immich
+      interval: 1m
+  values:
+    postgres:
+      enabled: false
+
+    redis:
+      enabled: true
+
+    common_env:
+      DB_HOSTNAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-immich-user
+            key: HOST
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-immich-user
+            key: LOGIN
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: database-immich-user
+            key: PASSWORD
+      DB_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-immich-user
+            key: DATABASE_NAME
+      JWT_SECRET:
+        valueFrom:
+          secretKeyRef:
+            name: immich-config
+            key: JWT_SECRET
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: photo-library
+    
+    server:
+      image:
+        repository: altran1502/immich-server
+        tag: v1.29.4_44-dev
+    microservice:
+      image:
+        repository: altran1502/immich-server
+        tag: v1.29.4_44-dev
+    machine_learning:
+      image:
+        repository: altran1502/immich-machine-learning
+        tag: v1.29.4_44-dev
+    web:
+      image:
+        repository: altran1502/immich-web
+        tag: v1.29.4_44-dev
+    proxy:
+      image:
+        repository: altran1502/immich-proxy
+        tag: v1.29.4_44-dev
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+        hosts:
+          - host: photos.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - photos.bo0tzz.me
+            secretName: immich-web-tls

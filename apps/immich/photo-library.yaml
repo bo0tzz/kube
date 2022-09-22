@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media-library
+  namespace: media
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1T
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.1
+    path: "/rpool/media"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: media-library
+  namespace: media
+  annotations:
+    k8up.io/backup: false
+spec:
+  storageClassName: manual
+  volumeName: media-library
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1T
