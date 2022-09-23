@@ -34,3 +34,7 @@ spec:
           - hosts:
               - ombi.bo0tzz.me
             secretName: ombi-web-tls
+    resources:
+      requests:
+        cpu: 20m
+        memory: 400M

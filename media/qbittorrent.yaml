@@ -49,3 +49,7 @@ spec:
           - hosts:
               - qbittorrent.bo0tzz.me
             secretName: qbittorrent-web-tls
+    resources:
+      requests:
+        cpu: 20m
+        memory: 150M

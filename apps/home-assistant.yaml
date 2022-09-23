@@ -38,3 +38,7 @@ spec:
           - hosts:
               - hass.bo0tzz.me
             secretName: home-assistant-web-tls
+    resources:
+      requests:
+        cpu: 20m
+        memory: 250M

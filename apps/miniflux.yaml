@@ -68,6 +68,10 @@ spec:
           - hosts:
               - feed.bo0tzz.me
             secretName: miniflux-web-tls
+    resources:
+      requests:
+        cpu: 200m
+        memory: 150M
 ---
 apiVersion: v1
 data:

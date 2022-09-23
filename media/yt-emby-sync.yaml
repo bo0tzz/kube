@@ -40,3 +40,7 @@ spec:
               value: "true"
             - name: DOWNLOAD_CRON_SCHEDULE
               value: "*/10 * * * *"
+          resources:
+            requests:
+              cpu: 20m
+              memory: 250M

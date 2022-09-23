@@ -45,3 +45,9 @@ spec:
           - hosts:
               - emby.bo0tzz.me
             secretName: emby-web-tls
+    resources:
+      requests:
+        cpu: 1
+        memory: 1G
+      limits:
+        memory: 1.5G

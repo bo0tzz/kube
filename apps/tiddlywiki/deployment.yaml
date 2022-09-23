@@ -41,3 +41,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/tiddlywiki
+          resources:
+            requests:
+              cpu: 20m
+              memory: 128M
