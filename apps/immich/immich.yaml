@@ -59,7 +59,7 @@ spec:
             key: JWT_SECRET
 
     persistence:
-      config:
+      library:
         enabled: true
         existingClaim: photo-library
     
