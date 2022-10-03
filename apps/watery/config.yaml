@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: watery-config
+    namespace: applications
+type: Opaque
+stringData:
+    PORT: ENC[AES256_GCM,data:OttOvA==,iv:m6KqDrnLBQYaLzToDjLQ0tSIXugxlxpPHvE+WKDm+ZU=,tag:ScdFKWEcO2lLdpy/FydyXw==,type:str]
+    PHX_HOST: ENC[AES256_GCM,data:ce4BAoD2aKY2WHgBFAfuUA==,iv:F29lQPsgGQauxuD/Ooqx+jXS6I1vM6Lb3kaUfMUxQMg=,tag:oh76xmQrQy9Xx8hzsf41bw==,type:str]
+    SECRET_KEY_BASE: ENC[AES256_GCM,data:GuZwIN16jsELhYUFrthLWlD4KpCviga8IqhZLU1+gT3HYbn9HDCxgEOIkmAbpy8GrI6Xyk7GRjOxJbnrnsgkcQ==,iv:bbPv9EFLgW0+L6UzrYJq/IvhGupKTOYsLWKJiDRDsco=,tag:ZEPZ/8rS+J4gRBZHVf0cPw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-10-03T19:37:21Z"
+    mac: ENC[AES256_GCM,data:mfXOR7Oo14EJCP9l5+PF7+pVzvcikMqyIp6ekQXSQyJdJ8qakeXLC9YGF1SNhJardUNDfE6jvHi1EViQMsj9zub3PrJr68ubia9JE1/XV+bUGiK0UeNOdxgN+ACs8+X9aZFAPf4VaTe142iAYc3ULv5In8AOPbxGtvcnuPtC7LY=,iv:Pnp2UdIYhY8PihnWoJXmZiVQnbOtOL0Bk2e188/kiS0=,tag:WKPZbzb2brLoBwsxBIxVPQ==,type:str]
+    pgp:
+        - created_at: "2022-06-21T12:48:27Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6AQ/9FA8LjuL1ZbO69kAXqxvLfNDG4vmQQT6RcdNo4UqmIp1+
+            7sfahETQKcMdihpUmYFUVxNh+nxXLXPh61lFJLWZEefYmeHmvlPXxQGMRmlwGyxl
+            U1QMqd2524aLAoKFSR+1qTGI+fbJgAQY4+Ypy5Aw+LhadrIkrElP1bfQgDxiGg/r
+            fQAVLGbeFjIF1EX9xTbmpzZH/7i2RhfTFHdeZEacbub6uL4Zf42VIr0zBv0hfyJh
+            2ekV1zGR0zgtXzHW9xkuRrgOicbEf1pAHl4eYxEkU2u9L/BszOWm6Nm9Z8euprAL
+            j66Q4N3Xst841exptJfVD/XrcpOOYETV8NTd/usE29adu4tFxBzSt3nPkdwnsfAQ
+            dF19U5lwu5Ob46o6xBiV1sYRHVb7/mkrMezeYYAYpBfdjdGj55lquMfeRJATVOUK
+            +pcJtOrEL3pZHmWfHJ8XT+geLnxukNH2L5S8uoHvw9z5cvlmjcP9QvAdXfbJuBlS
+            jKl3M+Yl3Mdu8I34JgdNZge46Fd3lkDINA2VcNKg0g89buU5xo1tG0p4pN8SSsbp
+            iSX7C6NgaawOE6ceMnCD9b4mEVs97sfWPdQw9zRNAEUa4ZfNNta0JdcUi4HKC4yu
+            L7OuSN8iOT0bqyfM608lkiNwNPwXODW+xyqzlWXojxWdhKQlYDvX7tp9amsTmLrU
+            aAEJAhCZTcAhhe6zTnH+LLoOxuT6ns7nmWijO8pEB7LENcFLNwXxmWNLGXapSQYH
+            ora/4hUUCECrMvvCexW+gp1oyF7I2BJsnwVNNS/HCMRERbWmNWXfGF1M2R8Knz3T
+            BaF+C99KlcBp
+            =91BE
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

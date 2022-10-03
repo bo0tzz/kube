@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watery
+  namespace: applications
+  labels:
+    app: watery
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: watery
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: watery
+    spec:
+      containers:
+        - name: watery
+          image: ghcr.io/bo0tzz/watery:main
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: database-watery-user
+                  key: POSTGRES_URL
+          envFrom:
+            - secretRef:
+                name: watery-config
+          resources:
+            requests:
+              cpu: 20m
+              memory: 200M
