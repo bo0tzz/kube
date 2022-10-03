@@ -91,7 +91,7 @@ spec:
           kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: letsencrypt-prod
           external-dns.alpha.kubernetes.io/target: bo0tzz.me
-          nginx.ingress.kubernetes.io/proxy-body-size: 0
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
           - host: photos.bo0tzz.me
             paths:
