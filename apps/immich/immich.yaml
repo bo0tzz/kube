@@ -63,6 +63,9 @@ spec:
       library:
         enabled: true
         existingClaim: photo-library
+
+      geocoding-dump:
+        enabled: false
     
     server:
       image:
