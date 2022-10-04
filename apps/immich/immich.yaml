@@ -4,10 +4,10 @@ metadata:
   name: immich-charts
   namespace: immich
 spec:
-  interval: 5m0s
-  url: https://github.com/PixelJonas/immich-charts.git
+  interval: 1h
+  url: https://github.com/immich-app/immich-charts.git
   ref:
-    branch: feature/immich-chart
+    branch: main
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
