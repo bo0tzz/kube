@@ -57,6 +57,7 @@ spec:
           secretKeyRef:
             name: immich-config
             key: JWT_SECRET
+      LOG_LEVEL: verbose
 
     persistence:
       library:
