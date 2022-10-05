@@ -72,7 +72,6 @@ spec:
         repository: altran1502/immich-server
         tag: v1.30.0_46-dev
     microservice:
-      enabled: false
       image:
         repository: altran1502/immich-server
         tag: v1.30.0_46-dev
