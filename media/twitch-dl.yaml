@@ -17,7 +17,7 @@ spec:
             - "--download-sections"
             - "*6000-6060"
             - "--exec"
-            - "set -x && ffmpeg -f lavfi -i 'movie=%(filepath)q[out0+subcc]' %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt"
+            - 'set -x && ffmpeg -f lavfi -i "movie=%(filepath)q[out0+subcc]" %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt'
             - "https://www.twitch.tv/videos/1611392068"
           volumeMounts:
             - name: library
