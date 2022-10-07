@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: twitch-download
+  namespace: media
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: yt-dlp
+          image: "ghcr.io/bo0tzz/yt-dlp:latest"
+          imagePullPolicy: Always
+          args: 
+            - "-P"
+            - "/library/twitch/test"
+            - "--download-sections"
+            - "*6000-6060"
+            - "--exec"
+            - "set -x && ffmpeg -f lavfi -i 'movie=%(filepath)q[out0+subcc]' %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt"
+            - "https://www.twitch.tv/videos/1611392068"
+          - name: library
+            mountPath: /library
+      volumes:
+        - name: library
+          persistentVolumeClaim:
+            claimName: media-library
