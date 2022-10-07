@@ -19,8 +19,9 @@ spec:
             - "--exec"
             - "set -x && ffmpeg -f lavfi -i 'movie=%(filepath)q[out0+subcc]' %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt"
             - "https://www.twitch.tv/videos/1611392068"
-          - name: library
-            mountPath: /library
+          volumeMounts:
+            - name: library
+              mountPath: /library
       volumes:
         - name: library
           persistentVolumeClaim:
