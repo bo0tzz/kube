@@ -71,7 +71,7 @@ spec:
     server:
       image:
         repository: altran1502/immich-server
-        tag: &immich-tag v1.31.0_49-dev
+        tag: &immich-tag v1.31.1_49-dev
     microservice:
       image:
         repository: altran1502/immich-server
