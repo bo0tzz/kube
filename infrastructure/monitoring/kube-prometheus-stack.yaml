@@ -34,13 +34,15 @@ spec:
       prometheusSpec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
-        volumeClaimTemplate:
-          spec:
-            storageClassName: zfs-iscsi
-            accessModes: ["ReadWriteOnce"]
-            resources:
-              requests:
-                storage: 50Gi
+        retention: 31d
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: zfs-iscsi
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
         additionalScrapeConfigs:
           - job_name: 'apcups'
             static_configs:
