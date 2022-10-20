@@ -14,6 +14,8 @@ spec:
         name: prometheus-community
         namespace: monitoring
       interval: 1h
+  upgrade:
+    crds: CreateReplace
   values:
     grafana:
       ingress:
