@@ -6,7 +6,6 @@ metadata:
 spec:
   template:
     spec:
-      ttlSecondsAfterFinished: 432000
       restartPolicy: OnFailure
       containers:
         - name: yt-dlp
