@@ -6,6 +6,7 @@ metadata:
 spec:
   template:
     spec:
+      ttlSecondsAfterFinished: 432000
       restartPolicy: OnFailure
       containers:
         - name: yt-dlp
@@ -18,8 +19,8 @@ spec:
             - "--download-sections"
             - "*890-"
             - "--exec"
-            - 'set -x && ffmpeg -f lavfi -i "movie=%(filepath)q[out0+subcc]" %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt && ffmpeg -itsoffset -1 -i %(filepath)q.srt %(filepath)q.srt'
-            - "https://www.twitch.tv/videos/1623606509"
+            - 'set -x && ffmpeg -f lavfi -i "movie=%(filepath)q[out0+subcc]" %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt && ffmpeg -itsoffset -1 -i %(filepath)q.srt %(filepath)q.offset.srt'
+            - "https://www.twitch.tv/videos/1629945469"
           volumeMounts:
             - name: library
               mountPath: /library
