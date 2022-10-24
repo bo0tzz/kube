@@ -16,8 +16,8 @@ spec:
       interval: 1h
   values:
     image:
-      repository: ghcr.io/onedr0p/ombi
-      tag: 4.22.5@sha256:4313ae102e4a62cb589b1fd8819d185c74d8e4da95ac0139430865812a98fc0e
+      repository: ghcr.io/linuxserver/ombi
+      tag: 4.22.5
     service:
       main:
         ports:
