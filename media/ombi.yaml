@@ -7,14 +7,22 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: ombi
-      version: '11.5.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: ghcr.io/onedr0p/ombi
+      tag: 4.22.5@sha256:4313ae102e4a62cb589b1fd8819d185c74d8e4da95ac0139430865812a98fc0e
+    service:
+      main:
+        ports:
+          http:
+            port: 3579
     persistence:
       config:
         enabled: true
