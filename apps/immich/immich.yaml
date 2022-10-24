@@ -58,7 +58,7 @@ spec:
             name: immich-config
             key: JWT_SECRET
       LOG_LEVEL: verbose
-      DISABLE_REVERSE_GEOCODING: 'false'
+      DISABLE_REVERSE_GEOCODING: 'true'
 
     persistence:
       library:
@@ -75,8 +75,8 @@ spec:
         tag: &immich-tag v1.32.0_50-dev
     microservice:
       image:
-        repository: quay.io/jjanz/immich-server
-        tag: ubuntu
+        repository: altran1502/immich-server
+        tag: *immich-tag 
     machine_learning:
       image:
         repository: altran1502/immich-machine-learning
