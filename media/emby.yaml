@@ -7,16 +7,22 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: emby
-      version: '3.4.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: media
       interval: 1h
   values:
     image:
-      tag: v4.7.4.0
+      repository: ghcr.io/onedr0p/emby
+      tag: 4.7.8.0@sha256:e9561902c1153ed07dc1b12f1e3178e120adfe8cf3d887260494f02651a4400e
+    service:
+      main:
+        ports:
+          http:
+            port: 8096
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
