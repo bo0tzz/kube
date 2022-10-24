@@ -7,14 +7,22 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: radarr
-      version: '16.3.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.3.0.6671@sha256:edb7ee1c4c50119263c76d9073dcebbe4876506bb22dd583e8ef50241eb597d9
+    service:
+      main:
+        ports:
+          http:
+            port: 7878
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
