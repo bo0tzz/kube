@@ -23,6 +23,10 @@ spec:
         ports:
           http:
             port: 3579
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
     persistence:
       config:
         enabled: true
