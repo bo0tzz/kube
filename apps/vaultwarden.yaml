@@ -26,14 +26,25 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: vaultwarden
-      version: '5.3.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: applications
       interval: 1h
   values:
+    image:
+      repository: vaultwarden/server
+      tag: 1.26.0-alpine
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+          websocket:
+            enabled: true
+            port: 3012
     persistence:
       config:
         enabled: true
