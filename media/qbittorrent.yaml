@@ -29,6 +29,13 @@ spec:
             port: 8080
       bittorrent:
         enabled: true
+        type: ClusterIP
+        ports:
+          bittorrent:
+            enabled: true
+            port: 6881
+            protocol: TCP
+            targetPort: 6881
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
