@@ -7,14 +7,22 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: sonarr
-      version: '16.3.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.141@sha256:8f78f4e7dfbc30b911844b9da40db1e8492eaf802a0d2f0f44a93df17ffa1ace
+    service:
+      main:
+        ports:
+          http:
+            port: 8989
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
