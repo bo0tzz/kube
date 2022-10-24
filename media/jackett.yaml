@@ -7,14 +7,22 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: jackett
-      version: '11.7.2'
+      chart: app-template
+      version: 0.2.2
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: media
       interval: 1h
   values:
+    image:
+      repository: ghcr.io/onedr0p/jackett
+      tag: 0.20.2158@sha256:3b5714dc5717f0b7740fb11dd00cb5189d5cb8c0258441133c9c618332b06eb9
+    service:
+      main:
+        ports:
+          http:
+            port: 9117
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
