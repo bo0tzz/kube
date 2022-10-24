@@ -18,16 +18,15 @@ spec:
     image:
       repository: ghcr.io/onedr0p/qbittorrent
       tag: 4.4.5@sha256:f78bda4a40b8c8734fba09e65b4553a8be89e88f746db614fe04a83ece1b817e
-    service:
-      main:
-        ports:
-          http:
-            port: 8080
     dnsConfig:
       options:
         - name: ndots
           value: "1"
     service:
+      main:
+        ports:
+          http:
+            port: 8080
       bittorrent:
         enabled: true
     podSecurityContext:
