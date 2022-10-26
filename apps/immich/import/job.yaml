@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: immich-import
+  namespace: immich
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: immich-cli
+          image: "ghcr.io/immich-app/immich-cli:latest"
+          imagePullPolicy: Always
+          args: 
+            - "upload"
+            - "-y"
+            - "-d"
+            - "/import"
+            - "-t"
+            - "4"
+          envFrom:
+            - secretRef:
+                name: immich-import
+          volumeMounts:
+            - name: import
+              mountPath: /import
+      volumes:
+        - name: import
+          persistentVolumeClaim:
+            claimName: immich-import
