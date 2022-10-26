@@ -7,6 +7,10 @@ spec:
   template:
     spec:
       restartPolicy: OnFailure
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
       containers:
         - name: immich-cli
           image: "ghcr.io/immich-app/immich-cli:latest"
@@ -21,6 +25,7 @@ spec:
           envFrom:
             - secretRef:
                 name: immich-import
+            
           volumeMounts:
             - name: import
               mountPath: /import
