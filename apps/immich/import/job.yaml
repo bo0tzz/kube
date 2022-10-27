@@ -13,7 +13,7 @@ spec:
             value: "1"
       containers:
         - name: immich-cli
-          image: "ghcr.io/immich-app/immich-cli:latest"
+          image: "ghcr.io/bo0tzz/immich-cli:main"
           imagePullPolicy: Always
           args: 
             - "upload"
@@ -21,7 +21,7 @@ spec:
             - "-d"
             - "/import"
             - "-t"
-            - "4"
+            - "6"
           envFrom:
             - secretRef:
                 name: immich-import
