@@ -19,7 +19,7 @@ spec:
             - "*890-"
             - "--exec"
             - 'set -x && ffmpeg -f lavfi -i "movie=%(filepath)q[out0+subcc]" %(filepath)q.srt -y && sed -i.sed s/\\\\h//g %(filepath)q.srt && ffmpeg -itsoffset -1 -i %(filepath)q.srt %(filepath)q.offset.srt'
-            - "https://www.twitch.tv/videos/1629945469"
+            - "https://www.twitch.tv/videos/1641033650"
           volumeMounts:
             - name: library
               mountPath: /library
