@@ -72,7 +72,7 @@ spec:
       image:
         repository: altran1502/immich-server
         # renovate: datasource=github-releases repos=immich-app/immich
-        tag: &immich-tag v1.33.1_52-dev
+        tag: &immich-tag v1.34.0_53-dev
     microservice:
       image:
         repository: altran1502/immich-server
