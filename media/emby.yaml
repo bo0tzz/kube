@@ -32,7 +32,7 @@ spec:
       config:
         enabled: true
         storageClass: zfs-iscsi
-        size: 10Gi
+        size: 20Gi
       media:
         enabled: true
         existingClaim: media-library
