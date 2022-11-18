@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: handbrake
+  namespace: media
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: app-template
+      version: 1.0.1
+      interval: 1h
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: media
+  # See https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
+  values:
+    image:
+      repository: docker.io/jlesage/handbrake
+      tag: v1.25.1@sha256:4f433d8dcf43a2ab4cf750430cad504af3f717e1c55b749dbf7c8bd97a090df5
+
+    env:
+      TZ: "Europe/Berlin"
+    
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+        size: 5Gi
+      media:
+        enabled: true
+        existingClaim: media-library
+
+    # -- Configures service settings for the chart.
+    # @default -- See values.yaml
+    service:
+      main:
+        ports:
+          http:
+            port: 5800
+          vnc:
+            enabled: false
+            port: 5900
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: handbrake.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - handbrake.bo0tzz.me
+            secretName: handbrake-web-tls
