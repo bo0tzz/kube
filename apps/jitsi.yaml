@@ -17,6 +17,7 @@ spec:
   values:
     publicURL: "https://jitsi.bo0tzz.me"
     web:
+      resolverIP: 10.43.0.10
       extraEnvs:
         ENABLE_XMPP_WEBSOCKET: "false"
       ingress:
