@@ -65,6 +65,7 @@ spec:
         enabled: true
         storageClass: zfs-iscsi
         size: 10Gi
+        accessMode: ReadWriteOnce
       cache:
         enabled: true
         type: emptyDir
