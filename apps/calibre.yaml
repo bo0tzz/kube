@@ -1,0 +1,78 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre-web
+  namespace: media
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: applications
+      interval: 1h
+  interval: 1h
+  values:
+    image:
+      repository: ghcr.io/bjw-s/calibre-web
+      tag: 0.6.19@sha256:6d9a59b67127dcf41d022d729bdfd1b74f807d9b61b49445bb8cbecc328efbf7
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
+
+    enableServiceLinks: false
+
+    env:
+      CACHE_DIR: /cache
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8083
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: calibre.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - calibre.bo0tzz.me
+            secretName: calibre-web-tls
+
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+      books:
+        enabled: true
+        storageClass: zfs-iscsi
+        size: 10Gi
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /cache
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 249M
+      limits:
+        memory: 299M
