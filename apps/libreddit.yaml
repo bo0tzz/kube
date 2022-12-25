@@ -21,7 +21,11 @@ spec:
     image:
       repository: ghcr.io/auricom/libreddit
       tag: 0.25.1@sha256:d32368a128d35e817ee1469dd5eefc1f5355b6d430bf49892b3c7005f72924b8
-
+      
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
     service:
       main:
         ports:
