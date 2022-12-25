@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiddlywiki-boet
+  namespace: applications
+  labels:
+    app: tiddlywiki-boet
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: tiddlywiki-boet
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tiddlywiki-boet
+    spec:
+      securityContext:
+        runAsUser: 65534
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: "OnRootMismatch"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: tiddlywiki-boet-data
+      containers:
+        - name: tiddlywiki-boet
+          image: nicolaw/tiddlywiki:5.2.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TIDDLYWIKI_PLUGIN_PATH
+              value: /var/lib/tiddlywiki/plugins
+          envFrom:
+            - secretRef:
+                name: tiddlywiki-boet-credentials
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/tiddlywiki
+          resources:
+            requests:
+              cpu: 20m
+              memory: 128M
