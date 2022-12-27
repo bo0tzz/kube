@@ -20,16 +20,15 @@
   },
   "regexManagers": [
     {
+      "description": "Process custom dependencies",
       "fileMatch": [
-        "\\.yaml$"
+        "\\.ya?ml$"
       ],
       "matchStrings": [
-        // generic matcher
-        // see https://regex101.com/r/fzaLfV/1
-        "datasource=(?<datasource>docker) image=(?<depName>\\S+)\n.*?\"?(?<currentValue>[^-\\s]*?)\"?\n",
-        "datasource=(?<datasource>github-releases) repos=(?<depName>\\S+)\n.*?\"?(?<currentValue>[^\\s]*?)\"?\n",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
       ],
-      "versioningTemplate": "docker"
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ],
   "packageRules": [
