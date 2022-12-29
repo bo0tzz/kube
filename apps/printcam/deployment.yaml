@@ -24,7 +24,7 @@ spec:
               mountPath: /shared
       containers:
         - name: ffmpeg
-          image: jrottenberg/ffmpeg:4.1
+          image: ghcr.io/bo0tzz/ffmpeg-fonts:main
           imagePullPolicy: Always
           args:
             - "-i"
