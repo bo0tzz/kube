@@ -45,9 +45,10 @@ spec:
               mountPath: /shared
       volumes:
         - name: nginx-config
-          configMap: printcam-config
-          items:
-            - key: nginx.conf
-              path: nginx.conf
+          configMap: 
+            name: printcam-config
+            items:
+              - key: nginx.conf
+                path: nginx.conf
         - name: shared
           emptyDir: {}
