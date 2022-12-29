@@ -22,8 +22,10 @@ spec:
           image: jrottenberg/ffmpeg:4.1
           imagePullPolicy: Always
           args:
-            - "-i 'http://octopi/webcam/?action=stream'"
-            - "-vf 'drawtext=textfile=/shared/overlay.txt:fontcolor=white:fontsize=40:box=1:boxcolor=black@0.5:x=w-tw:y=0'"
+            - "-i"
+            - "http://octopi/webcam/?action=stream"
+            - "-vf"
+            - "drawtext=textfile=/shared/overlay.txt:fontcolor=white:fontsize=40:box=1:boxcolor=black@0.5:x=w-tw:y=0"
             - "-f hls"
             - "-preset superfast"
             - "-c:v libx264"
