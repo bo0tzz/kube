@@ -15,6 +15,13 @@ spec:
       labels:
         app: printcam
     spec:
+      initContainers:
+        - name: init
+          image: ubuntu
+          command: ['sh', '-c', 'echo "Initializing..." > /shared/overlay.txt']
+          volumeMounts:
+            - name: shared
+              mountPath: /shared
       containers:
         - name: ffmpeg
           image: jrottenberg/ffmpeg:4.1
