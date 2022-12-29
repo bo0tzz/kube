@@ -6,8 +6,6 @@ metadata:
   labels:
     app: printcam
 spec:
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app: printcam
@@ -26,11 +24,16 @@ spec:
             - "http://octopi/webcam/?action=stream"
             - "-vf"
             - "drawtext=textfile=/shared/overlay.txt:fontcolor=white:fontsize=40:box=1:boxcolor=black@0.5:x=w-tw:y=0"
-            - "-f hls"
-            - "-preset superfast"
-            - "-c:v libx264"
-            - "-b:v 5000k"
-            - "-hls_flags delete_segments"
+            - "-f"
+            - "hls"
+            - "-preset"
+            - "superfast"
+            - "-c:v"
+            - "libx264"
+            - "-b:v"
+            - "5000k"
+            - "-hls_flags"
+            - "delete_segments"
             - "/shared/hls/stream.m3u8"
           volumeMounts:
             - name: shared
