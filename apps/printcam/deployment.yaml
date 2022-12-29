@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: init
           image: ubuntu
-          command: ['sh', '-c', 'echo "Initializing..." > /shared/overlay.txt']
+          command: ['sh', '-c', 'echo "Initializing..." > /shared/overlay.txt && mkdir /shared/hls/']
           volumeMounts:
             - name: shared
               mountPath: /shared
