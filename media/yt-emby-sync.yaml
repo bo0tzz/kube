@@ -28,6 +28,8 @@ spec:
         - name: yt-emby-sync
           image: ghcr.io/bo0tzz/yt_emby_sync:main
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
           volumeMounts:
             - name: media
               mountPath: /media
