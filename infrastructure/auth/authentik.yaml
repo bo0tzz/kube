@@ -14,6 +14,7 @@ spec:
         name: authentik
         namespace: auth
 
+  values:
     ingress:
       enabled: true
       annotations:
