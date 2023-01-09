@@ -33,7 +33,7 @@ spec:
     envValueFrom:
       AUTHENTIK_SECRET_KEY:
         secretKeyRef:
-          name: authentik-secrets
+          name: authentik-secret
           key: AUTHENTIK_SECRET_KEY
       AUTHENTIK_POSTGRESQL__HOST:
         secretKeyRef:
