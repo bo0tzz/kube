@@ -31,3 +31,4 @@ spec:
     cloudflare:
       proxied: false
       secretName: cloudflare-api-token
+    annotationFilter: external-dns.alpha.kubernetes.io/exclude notin (true)
