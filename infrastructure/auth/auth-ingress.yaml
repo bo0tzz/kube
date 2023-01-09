@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: authentik-outpost
+    namespace: auth
+spec:
+    rules:
+        - host: bo0tzz.me
+          http:
+              paths: /outpost.goauthentik.io
+              pathType: Prefix
+              backend:
+                  service:
+                      name: authentik
+                      port:
+                          number: 80
