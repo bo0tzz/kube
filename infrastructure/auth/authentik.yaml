@@ -53,7 +53,7 @@ spec:
           key: PASSWORD
 
     authentik:
-      log_level: debug
+      log_level: trace
       email:
         port: 465
         use_ssl: true
