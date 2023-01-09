@@ -59,6 +59,8 @@ spec:
       enabled: false
     redis:
       enabled: true
+      global:
+        storageClass: zfs-iscsi
 
     prometheus:
       rules:
