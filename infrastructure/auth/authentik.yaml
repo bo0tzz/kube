@@ -54,6 +54,9 @@ spec:
 
     authentik:
       log_level: debug
+      email:
+        port: 465
+        use_ssl: true
 
     postgresql:
       enabled: false
