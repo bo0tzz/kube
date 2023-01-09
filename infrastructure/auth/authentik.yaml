@@ -30,11 +30,11 @@ spec:
             - *host
           secretName: authentik-web-tls
 
-    envValueFrom:
-      AUTHENTIK_SECRET_KEY:
-        secretKeyRef:
+    envFrom:
+      - secretRef:
           name: authentik-secret
-          key: AUTHENTIK_SECRET_KEY
+
+    envValueFrom:
       AUTHENTIK_POSTGRESQL__HOST:
         secretKeyRef:
           name: authentik-postgres-authentik
