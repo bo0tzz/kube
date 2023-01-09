@@ -23,7 +23,7 @@ spec:
                 name: authentik
                 port:
                   name: http
-    - host: *.bo0tzz.me
+    - host: "*.bo0tzz.me"
       http:
         paths:
           - path: /outpost.goauthentik.io
