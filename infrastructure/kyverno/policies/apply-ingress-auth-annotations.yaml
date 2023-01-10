@@ -14,7 +14,7 @@ spec:
   mutateExistingOnPolicyUpdate: true
   generateExistingOnPolicyUpdate: true
   rules:
-    - name: auth
+    - name: auth-internal
       match:
         any:
           - resources:
@@ -27,6 +27,23 @@ spec:
           metadata:
             annotations:
               +(nginx.ingress.kubernetes.io/auth-url): http://ak-outpost-internal-authentik-embedded-outpost-internal-ingress.auth.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+              +(nginx.ingress.kubernetes.io/auth-signin): /outpost.goauthentik.io/start?rd=$escaped_request_uri
+              +(nginx.ingress.kubernetes.io/auth-response-headers): Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+              +(nginx.ingress.kubernetes.io/auth-snippet): proxy_set_header X-Forwarded-Host $http_host;
+
+    - name: auth-external
+      match:
+        any:
+          - resources:
+              kinds: ["Ingress"]
+              annotations:
+                auth.kube.bo0tzz.me/enabled: "true"
+                kubernetes.io/ingress.class: nginx
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(nginx.ingress.kubernetes.io/auth-url): http://ak-outpost-authentik-embedded-outpost.auth.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
               +(nginx.ingress.kubernetes.io/auth-signin): /outpost.goauthentik.io/start?rd=$escaped_request_uri
               +(nginx.ingress.kubernetes.io/auth-response-headers): Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
               +(nginx.ingress.kubernetes.io/auth-snippet): proxy_set_header X-Forwarded-Host $http_host;
