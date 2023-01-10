@@ -8,7 +8,7 @@ metadata:
     policies.kyverno.io/subject: Ingress
     policies.kyverno.io/description: >-
       This policy creates auth annotations on ingresses. When
-      the `kube.bo0tzz.me/auth` annotation is `true` it
+      the `auth.kube.bo0tzz.me/enabled` annotation is `true` it
       applies the nginx auth annotations for use with Authentik.
 spec:
   mutateExistingOnPolicyUpdate: true
@@ -20,7 +20,7 @@ spec:
           - resources:
               kinds: ["Ingress"]
               annotations:
-                kube.bo0tzz.me/auth: "true"
+                auth.kube.bo0tzz.me/enabled: "true"
                 kubernetes.io/ingress.class: nginx-internal
       mutate:
         patchStrategicMerge:
