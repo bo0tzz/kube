@@ -1,0 +1,32 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: apply-ingress-auth-annotations
+  annotations:
+    policies.kyverno.io/title: Update ingress annotations
+    policies.kyverno.io/subject: Ingress
+    policies.kyverno.io/description: >-
+      This policy creates auth annotations on ingresses. When
+      the `kube.bo0tzz.me/auth` annotation is `true` it
+      applies the nginx auth annotations for use with Authentik.
+spec:
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: auth
+      match:
+        any:
+          - resources:
+              kinds: ["Ingress"]
+              annotations:
+                kube.bo0tzz.me/auth: "true"
+                kubernetes.io/ingress.class: nginx-internal
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(nginx.ingress.kubernetes.io/auth-url): http://ak-outpost-internal-authentik-embedded-outpost-internal-ingress.auth.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+              +(nginx.ingress.kubernetes.io/auth-signin): /outpost.goauthentik.io/start?rd=$escaped_request_uri
+              +(nginx.ingress.kubernetes.io/auth-response-headers): Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+              +(nginx.ingress.kubernetes.io/auth-snippet): proxy_set_header X-Forwarded-Host $http_host;
