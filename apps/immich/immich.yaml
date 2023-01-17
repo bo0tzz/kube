@@ -58,7 +58,7 @@ spec:
             name: immich-config
             key: JWT_SECRET
       LOG_LEVEL: verbose
-      DISABLE_REVERSE_GEOCODING: 'true'
+      DISABLE_REVERSE_GEOCODING: 'false'
 
     persistence:
       library:
