@@ -20,7 +20,7 @@ spec:
 
     image:
       repository: ghcr.io/auricom/libreddit
-      tag: 0.27.0@sha256:652ecf5e6723d1a42c43697c415b9bdf9881b12286ce19ea51345ccf01d6c280
+      tag: 0.28.0@sha256:d09a3a64f4332f034863b35358c0eecda17b5dcc846cc6809abe3d37b132b1b2
       
     dnsConfig:
       options:
