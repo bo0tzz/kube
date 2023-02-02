@@ -15,7 +15,7 @@ metadata:
   name: immich
   namespace: immich
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
       chart: ./charts/apps/immich
@@ -23,7 +23,7 @@ spec:
         kind: GitRepository
         name: immich-charts
         namespace: immich
-      interval: 1h
+      interval: 1m
   values:
     postgres:
       enabled: false
