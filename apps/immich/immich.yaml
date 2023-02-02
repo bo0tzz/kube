@@ -74,6 +74,7 @@ spec:
         # renovate: datasource=github-releases depName=immich-app/immich
         tag: &immich-tag v1.44.0
     microservice:
+      replicas: 3
       image:
         repository: altran1502/immich-server
         tag: *immich-tag 
