@@ -71,25 +71,24 @@ spec:
     server:
       image:
         repository: altran1502/immich-server
-        # renovate: datasource=github-releases depName=immich-app/immich
-        tag: &immich-tag v1.44.0
+        tag: v1.44.0
     microservice:
       replicas: 3
       image:
         repository: altran1502/immich-server
-        tag: *immich-tag 
+        tag: v1.44.0
     machine_learning:
       image:
         repository: altran1502/immich-machine-learning
-        tag: *immich-tag 
+        tag: v1.44.0
     web:
       image:
         repository: altran1502/immich-web
-        tag: *immich-tag 
+        tag: v1.44.0
     proxy:
       image:
         repository: altran1502/immich-proxy
-        tag: *immich-tag 
+        tag: v1.44.0
 
     ingress:
       main:
