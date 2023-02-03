@@ -3,6 +3,8 @@ kind: Job
 metadata:
   name: twitch-download
   namespace: media
+  annotations:
+    kustomize.toolkit.fluxcd.io/force: enabled
 spec:
   template:
     spec:
