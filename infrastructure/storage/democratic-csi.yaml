@@ -43,4 +43,4 @@ spec:
 
     volumeSnapshotClasses:
       - name: zfs-iscsi
-        deletionPolicy: Retain
+        deletionPolicy: Delete
