@@ -1,0 +1,20 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: tiddly-angel-backup
+  namespace: applications
+spec:
+  sourcePVC: tiddlywiki-data
+  trigger:
+    schedule: 0 23 * * *
+  restic:
+    pruneIntervalDays: 14
+    repository: tiddly-angel-restic-secret
+    retain:
+      daily: 2
+      weekly: 1
+      monthly: 1
+    copyMethod: Clone
+    volumeSnapshotClassName: zfs-iscsi
+    cacheStorageClassName: zfs-iscsi
+    cacheAccessModes: ["ReadWriteOnce"]
