@@ -1,0 +1,19 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: imagebot-backup
+  namespace: applications
+spec:
+  sourcePVC: imagebot-data
+  trigger:
+    manual: manual-trigger-1
+restic:
+  pruneIntervalDays: 14
+  repository: imagebot-restic-secret
+  retain:
+    daily: 4
+    weekly: 3
+    monthly: 2
+    yearly: 1
+  copyMethod: Clone
+  volumeSnapshotClassName: zfs-iscsi
