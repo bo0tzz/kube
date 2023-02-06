@@ -16,4 +16,4 @@ spec:
       monthly: 1
     copyMethod: Direct
     cacheStorageClassName: zfs-iscsi
-    cacheAccessModes: ReadWriteOnce
+    cacheAccessModes: ["ReadWriteOnce"]
