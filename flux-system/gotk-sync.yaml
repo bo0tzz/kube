@@ -20,9 +20,12 @@ spec:
   prune: true
   decryption:
     provider: sops
-    secretRef: 
+    secretRef:
       name: sops-gpg
   sourceRef:
     kind: GitRepository
     name: flux-system
-
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: cluster-secrets
