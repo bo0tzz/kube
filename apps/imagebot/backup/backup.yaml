@@ -6,14 +6,14 @@ metadata:
 spec:
   sourcePVC: imagebot-data
   trigger:
-    manual: manual-trigger-1
+    schedule: 0 23 * * *
   restic:
     pruneIntervalDays: 14
     repository: imagebot-restic-secret
     retain:
-      daily: 4
-      weekly: 3
-      monthly: 2
-      yearly: 1
+      daily: 2
+      weekly: 1
+      monthly: 1
     copyMethod: Clone
     volumeSnapshotClassName: zfs-iscsi
+    cacheStorageClassName: zfs-iscsi
