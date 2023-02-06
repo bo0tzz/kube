@@ -17,3 +17,4 @@ spec:
     copyMethod: Clone
     volumeSnapshotClassName: zfs-iscsi
     cacheStorageClassName: zfs-iscsi
+    cacheAccessModes: ["ReadWriteOnce"]
