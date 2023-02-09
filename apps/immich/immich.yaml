@@ -71,24 +71,24 @@ spec:
     server:
       image:
         repository: altran1502/immich-server
-        tag: v1.45.0
+        tag: &immich-tag v1.46.0
     microservice:
       replicas: 3
       image:
         repository: altran1502/immich-server
-        tag: v1.45.0
+        tag: *immich-tag
     machine_learning:
       image:
         repository: altran1502/immich-machine-learning
-        tag: v1.45.0
+        tag: *immich-tag
     web:
       image:
         repository: altran1502/immich-web
-        tag: v1.45.0
+        tag: *immich-tag
     proxy:
       image:
         repository: altran1502/immich-proxy
-        tag: v1.45.0
+        tag: *immich-tag
 
     ingress:
       main:
