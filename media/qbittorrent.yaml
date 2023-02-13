@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.5.1@sha256:d03e6a95df46cd7cf1e24a692bbd8d724b645835b154e1ffedf2f2e9574ba3fb
+      tag: 4.4.5@sha256:e656c9e0c0e9be6d001a071682a2c6a501897ac4226f1230ba312a01e401c416
     dnsConfig:
       options:
         - name: ndots
