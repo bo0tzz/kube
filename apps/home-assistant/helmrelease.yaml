@@ -4,21 +4,26 @@ metadata:
   name: home-assistant
   namespace: applications
 spec:
-  interval: 1h
+  interval: 15m
   chart:
     spec:
-      chart: home-assistant
-      version: "13.4.2"
+      chart: app-template
+      version: 1.3.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: bjw-s-charts
         namespace: applications
-      interval: 1h
   values:
-    dnsConfig:
-      options:
-        - name: ndots
-          value: "1"
+    image:
+      repository: ghcr.io/onedr0p/home-assistant
+      tag: 2023.2.5@sha256:873c77b26752f3cad72374321427de3306b2452240d68aa816b1bda8ded05779
+    env:
+      TZ: Europe/Amsterdam
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
     persistence:
       config:
         enabled: true
@@ -38,6 +43,13 @@ spec:
           - hosts:
               - hass.bo0tzz.me
             secretName: home-assistant-web-tls
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
     resources:
       requests:
         cpu: 20m
