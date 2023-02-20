@@ -15,8 +15,8 @@ spec:
         namespace: applications
   values:
     image:
-      repository: ghcr.io/onedr0p/home-assistant
-      tag: 2023.2.5@sha256:873c77b26752f3cad72374321427de3306b2452240d68aa816b1bda8ded05779
+      repository: ghcr.io/home-assistant/home-assistant
+      tag: 2023.2.5
     env:
       TZ: Europe/Amsterdam
     service:
