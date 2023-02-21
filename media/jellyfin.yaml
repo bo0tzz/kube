@@ -21,7 +21,7 @@ spec:
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
     image:
-      repository: docker.io/jellyfin/jellyfin
+      repository: ghcr.io/confusedpolarbear/jellyfin-intro-skipper
       tag: 10.8.9
     env:
       TZ: "Europe/Amsterdam"
