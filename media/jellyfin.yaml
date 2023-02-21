@@ -50,6 +50,7 @@ spec:
       config:
         enabled: true
         storageClass: zfs-iscsi
+        size: 20Gi
       transcode:
         enabled: true
         type: emptyDir
