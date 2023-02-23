@@ -58,7 +58,7 @@ spec:
             name: immich-config
             key: JWT_SECRET
       LOG_LEVEL: verbose
-      DISABLE_REVERSE_GEOCODING: 'false'
+      DISABLE_REVERSE_GEOCODING: "false"
 
     persistence:
       library:
@@ -67,11 +67,11 @@ spec:
 
       geocoding-dump:
         enabled: false
-    
+
     server:
       image:
         repository: altran1502/immich-server
-        tag: &immich-tag v1.47.3
+        tag: &immich-tag v1.49.0
     microservice:
       replicas: 3
       image:
@@ -81,6 +81,9 @@ spec:
       image:
         repository: altran1502/immich-machine-learning
         tag: *immich-tag
+        command: "python"
+        args:
+          - "src/main.py"
     web:
       image:
         repository: altran1502/immich-web
