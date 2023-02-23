@@ -81,9 +81,9 @@ spec:
       image:
         repository: altran1502/immich-machine-learning
         tag: *immich-tag
-        command: "python"
-        args:
-          - "src/main.py"
+      command: "python"
+      args:
+        - "src/main.py"
     web:
       image:
         repository: altran1502/immich-web
