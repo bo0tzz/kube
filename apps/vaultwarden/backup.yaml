@@ -14,7 +14,7 @@ spec:
       daily: 2
       weekly: 1
       monthly: 1
-    copyMethod: Direct
+    copyMethod: Clone
     volumeSnapshotClassName: zfs-iscsi
     cacheStorageClassName: zfs-iscsi
     cacheAccessModes: ["ReadWriteOnce"]
