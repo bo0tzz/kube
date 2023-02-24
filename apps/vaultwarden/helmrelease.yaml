@@ -30,8 +30,7 @@ spec:
       main:
         enabled: true
         endpoints:
-          - job_name: hass
-            path: /api/prometheus
+          - path: /api/prometheus
             bearerTokenSecret:
               name: hass-monitor-secret
               key: BEARER_TOKEN
