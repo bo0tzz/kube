@@ -10,4 +10,3 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: zfs-iscsi
-  volumeName: pvc-6f53e30d-e764-4662-8007-977bacf16179
