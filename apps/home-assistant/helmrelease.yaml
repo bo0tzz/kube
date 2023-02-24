@@ -24,6 +24,14 @@ spec:
         ports:
           http:
             port: 8123
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - path: /api/prometheus
+            bearerTokenSecret:
+              name: hass-monitor-secret
+              key: BEARER_TOKEN
     persistence:
       config:
         enabled: true
