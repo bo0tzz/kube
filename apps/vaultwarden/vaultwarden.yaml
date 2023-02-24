@@ -1,22 +1,3 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: Postgres
-metadata:
-  name: vaultwarden-db
-  namespace: applications
-spec:
-  database: vaultwarden
----
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: vaultwarden-user
-  namespace: applications
-spec:
-  role: vaultwarden
-  database: vaultwarden-db
-  secretName: database
-  privileges: OWNER
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
