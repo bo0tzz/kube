@@ -15,6 +15,8 @@ spec:
         namespace: applications
       interval: 1h
   values:
+    controller:
+      replicas: 0
     image:
       repository: vaultwarden/server
       tag: 1.26.0-alpine
