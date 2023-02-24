@@ -29,7 +29,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: zfs-iscsi
+        existingClaim: vaultwarden-config
     env:
       DATABASE_URL:
         valueFrom:
