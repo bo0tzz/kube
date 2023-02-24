@@ -28,7 +28,11 @@ spec:
       main:
         enabled: true
         endpoints:
-          - path: /api/prometheus
+          - port: http
+            scheme: http
+            interval: 1m
+            scrapeTimeout: 10s
+            path: /api/prometheus
             bearerTokenSecret:
               name: hass-monitor-secret
               key: BEARER_TOKEN
