@@ -26,6 +26,15 @@ spec:
           websocket:
             enabled: true
             port: 3012
+    serviceMonitor:
+      main:
+        enabled: true
+        endpoints:
+          - job_name: hass
+            path: /api/prometheus
+            bearerTokenSecret:
+              name: hass-monitor-secret
+              key: BEARER_TOKEN
     persistence:
       config:
         enabled: true
