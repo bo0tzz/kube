@@ -34,11 +34,11 @@ spec:
 
     controller:
       driver:
-        image: docker.io/democraticcsi/democratic-csi:v1.8.1
+        image: democraticcsi/democratic-csi:v1.8.1
 
     node:
       driver:
-        image: docker.io/democraticcsi/democratic-csi:v1.8.1
+        image: democraticcsi/democratic-csi:v1.8.1
 
     storageClasses:
       - name: zfs-iscsi
