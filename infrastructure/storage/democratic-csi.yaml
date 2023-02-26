@@ -32,6 +32,14 @@ spec:
       config:
         driver: zfs-generic-iscsi
 
+    controller:
+      driver:
+        image: docker.io/democraticcsi/democratic-csi:v1.8.1
+
+    node:
+      driver:
+        image: docker.io/democraticcsi/democratic-csi:v1.8.1
+
     storageClasses:
       - name: zfs-iscsi
         defaultClass: false
