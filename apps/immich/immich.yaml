@@ -77,23 +77,10 @@ spec:
       image:
         repository: altran1502/immich-server
         tag: *immich-tag
-      resources:
-        requests:
-          cpu: 500m
-          memory: 500M
     machine_learning:
       image:
         repository: altran1502/immich-machine-learning
         tag: *immich-tag
-      resources:
-        requests:
-          cpu: 1000m
-          memory: 1000M
-        limits:
-          memory: 2000M
-      command: "python"
-      args:
-        - "src/main.py"
     web:
       image:
         repository: altran1502/immich-web
