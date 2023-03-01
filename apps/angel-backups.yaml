@@ -32,7 +32,7 @@ spec:
     - ReadWriteMany
   nfs:
     server: 192.168.2.1
-    path: "/rpool/backup/misc/angel"
+    path: "/backup/misc/angel"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
