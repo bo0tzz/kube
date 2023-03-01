@@ -57,7 +57,7 @@ spec:
   selector:
     matchLabels:
       app: angel-backups
-  replicas: 1
+  replicas: 0
   template:
     metadata:
       labels:
