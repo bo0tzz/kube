@@ -1,0 +1,126 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: angel-backups-conf
+  namespace: applications
+data:
+  nginx.conf: |
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  localhost;
+
+        root /data;
+        autoindex on;
+        
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: angel-backups
+  namespace: applications
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 50G
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.1
+    path: "/rpool/backup/misc/angel"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: angel-backups
+  namespace: applications
+spec:
+  storageClassName: manual
+  volumeName: angel-backups
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50G
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angel-backups
+  namespace: applications
+spec:
+  selector:
+    matchLabels:
+      app: angel-backups
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: angel-backups
+    spec:
+      containers:
+        - name: angel-backups
+          image: nginx:1.23.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              name: angel-backups-conf
+              readOnly: true
+            - mountPath: /data
+              name: angel-backups-files
+              readOnly: true
+      volumes:
+        - name: angel-backups-conf
+          configMap:
+            name: angel-backups-conf
+        - name: angel-backups-files
+          persistentVolumeClaim:
+            claimName: angel-backups
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: angel-backups-web
+  name: angel-backups
+  namespace: applications
+spec:
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 80
+  selector:
+    app: angel-backups
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: angel-backups-web
+  namespace: applications
+  annotations:
+    auth.kube.bo0tzz.me/enabled: "true"
+    kubernetes.io/ingress.class: nginx-internal
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/target: bo0tzz.me
+spec:
+  tls:
+    - hosts:
+        - angel-backups.bo0tzz.me
+      secretName: angel-backups-web-tls
+  rules:
+    - host: angel-backups.bo0tzz.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: angel-backups-web
+                port:
+                  name: http
