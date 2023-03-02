@@ -58,7 +58,6 @@ spec:
               readOnly: true
             - mountPath: /data
               name: angel-backups-files
-              readOnly: true
       volumes:
         - name: angel-backups-conf
           configMap:
