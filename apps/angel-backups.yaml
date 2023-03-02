@@ -20,28 +20,12 @@ data:
     }
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: angel-backups
-  namespace: applications
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 50G
-  accessModes:
-    - ReadWriteMany
-  nfs:
-    server: 192.168.2.1
-    path: "/rpool/backup/misc/angel"
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: angel-backups
   namespace: applications
 spec:
-  storageClassName: manual
-  volumeName: angel-backups
+  storageClassName: zfs-iscsi
   accessModes:
     - ReadWriteMany
   resources:
