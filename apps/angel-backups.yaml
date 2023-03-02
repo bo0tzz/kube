@@ -104,6 +104,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: angel-backups-web
+                name: angel-backups
                 port:
                   name: http
