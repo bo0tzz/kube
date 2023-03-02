@@ -27,7 +27,7 @@ metadata:
 spec:
   storageClassName: zfs-iscsi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 50G
