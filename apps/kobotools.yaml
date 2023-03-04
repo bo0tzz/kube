@@ -21,6 +21,7 @@ spec:
     image:
       repository: ghcr.io/bo0tzz/kobo-tools
       tag: main
+      pullPolicy: Always
     service:
       main:
         ports:
