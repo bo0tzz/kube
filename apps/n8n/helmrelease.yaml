@@ -67,6 +67,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: n8n-web-tls
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
