@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: n8n-db
+  namespace: applications
+spec:
+  database: n8n
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: n8n-user
+  namespace: applications
+spec:
+  role: n8n
+  database: n8n-db
+  secretName: database
+  privileges: OWNER
