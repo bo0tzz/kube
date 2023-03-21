@@ -24,9 +24,30 @@ spec:
       N8N_USER_FOLDER: /config
       N8N_PORT: &port 80
       N8N_METRICS: true
+      DB_TYPE: postgresdb
       N8N_LOG_LEVEL: debug
       DB_LOGGING_ENABLED: true
       DB_LOGGING_OPTIONS: all
+      DB_POSTGRESDB_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: database-n8n-user
+            key: HOST
+      DB_POSTGRESDB_USER:
+        valueFrom:
+          secretKeyRef:
+            name: database-n8n-user
+            key: LOGIN
+      DB_POSTGRESDB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: database-n8n-user
+            key: PASSWORD
+      DB_POSTGRESDB_DATABASE:
+        valueFrom:
+          secretKeyRef:
+            name: database-n8n-user
+            key: DATABASE_NAME
     envFrom:
       - secretRef:
           name: n8n-secret
