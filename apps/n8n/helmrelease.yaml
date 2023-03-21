@@ -23,6 +23,7 @@ spec:
       WEBHOOK_URL: https://n8n.bo0tzz.me
       N8N_PORT: &port 80
       N8N_METRICS: true
+      NODE_FUNCTION_ALLOW_BUILTIN: "*"
       DB_TYPE: postgresdb
       DB_POSTGRESDB_HOST:
         valueFrom:
