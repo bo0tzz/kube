@@ -20,7 +20,6 @@ spec:
     env:
       GENERIC_TIMEZONE: Europe/Amsterdam
       WEBHOOK_URL: https://n8n.bo0tzz.me
-      N8N_USER_FOLDER: /config
       N8N_PORT: &port 80
       N8N_METRICS: true
       DB_TYPE: postgresdb
@@ -76,6 +75,7 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: zfs-iscsi
+        mountPath: /home/node/.n8n
     resources:
       requests:
         cpu: 10m
