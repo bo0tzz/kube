@@ -73,9 +73,9 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
+    persistence:
+      config:
+        enabled: true
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: zfs-iscsi
