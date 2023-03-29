@@ -20,6 +20,8 @@ spec:
     envFrom:
       - secretRef:
           name: immich-config
+    env:
+      TYPESENSE_DATA_DIR: /config
     service:
       main:
         ports:
