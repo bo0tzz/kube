@@ -79,12 +79,10 @@ spec:
         repository: ghcr.io/immich-app/immich-server
         tag: &immich-tag v1.52.1
     microservice:
-      replicas: 3
       image:
         repository: ghcr.io/immich-app/immich-server
         tag: *immich-tag
     machine_learning:
-      replicas: 3
       image:
         repository: ghcr.io/immich-app/immich-machine-learning
         tag: *immich-tag
