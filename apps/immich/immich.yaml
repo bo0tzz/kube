@@ -76,25 +76,25 @@ spec:
 
     server:
       image:
-        repository: altran1502/immich-server
+        repository: ghcr.io/immich-app/immich-server
         tag: &immich-tag v1.52.1
     microservice:
       replicas: 3
       image:
-        repository: altran1502/immich-server
+        repository: ghcr.io/immich-app/immich-server
         tag: *immich-tag
     machine_learning:
       replicas: 3
       image:
-        repository: altran1502/immich-machine-learning
+        repository: ghcr.io/immich-app/immich-machine-learning
         tag: *immich-tag
     web:
       image:
-        repository: altran1502/immich-web
+        repository: ghcr.io/immich-app/immich-web
         tag: *immich-tag
     proxy:
       image:
-        repository: altran1502/immich-proxy
+        repository: ghcr.io/immich-app/immich-proxy
         tag: *immich-tag
 
     ingress:
