@@ -57,8 +57,14 @@ spec:
           secretKeyRef:
             name: immich-config
             key: JWT_SECRET
+      TYPESENSE_API_KEY:
+        valueFrom:
+          secretKeyRef:
+            name: immich-config
+            key: TYPESENSE_API_KEY
       LOG_LEVEL: verbose
       DISABLE_REVERSE_GEOCODING: "false"
+      TYPESENSE_HOST: typesense
 
     persistence:
       library:
@@ -71,7 +77,7 @@ spec:
     server:
       image:
         repository: altran1502/immich-server
-        tag: &immich-tag v1.50.1
+        tag: &immich-tag v1.52.1
     microservice:
       replicas: 3
       image:
