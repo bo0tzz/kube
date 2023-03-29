@@ -18,8 +18,8 @@ spec:
       repository: docker.io/typesense/typesense
       tag: 0.24.0
     envFrom:
-      secretRef:
-        name: immich-config
+      - secretRef:
+          name: immich-config
     service:
       main:
         ports:
