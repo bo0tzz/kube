@@ -7,7 +7,7 @@ spec:
   interval: 1h
   url: https://github.com/immich-app/immich-charts.git
   ref:
-    branch: main
+    branch: refactor
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -31,7 +31,19 @@ spec:
     redis:
       enabled: true
 
-    common_env:
+    typesense:
+      enabled: true
+      persistence:
+        tsdata:
+          enabled: true
+          storageClass: zfs-iscsi
+
+    immich:
+      persistence:
+        library:
+          existingClaim: photo-library
+
+    env:
       DB_HOSTNAME:
         valueFrom:
           secretKeyRef:
@@ -52,63 +64,23 @@ spec:
           secretKeyRef:
             name: database-immich-user
             key: DATABASE_NAME
-      JWT_SECRET:
-        valueFrom:
-          secretKeyRef:
-            name: immich-config
-            key: JWT_SECRET
-      TYPESENSE_API_KEY:
-        valueFrom:
-          secretKeyRef:
-            name: immich-config
-            key: TYPESENSE_API_KEY
       LOG_LEVEL: verbose
-      DISABLE_REVERSE_GEOCODING: "false"
-      TYPESENSE_HOST: typesense
 
-    persistence:
-      library:
-        enabled: true
-        existingClaim: photo-library
-
-      geocoding-dump:
-        enabled: false
-
-    server:
-      image:
-        repository: ghcr.io/immich-app/immich-server
-        tag: &immich-tag v1.52.1
-    microservice:
-      image:
-        repository: ghcr.io/immich-app/immich-server
-        tag: *immich-tag
-    machine_learning:
-      image:
-        repository: ghcr.io/immich-app/immich-machine-learning
-        tag: *immich-tag
-    web:
-      image:
-        repository: ghcr.io/immich-app/immich-web
-        tag: *immich-tag
     proxy:
-      image:
-        repository: ghcr.io/immich-app/immich-proxy
-        tag: *immich-tag
-
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: nginx
-          cert-manager.io/cluster-issuer: letsencrypt-prod
-          external-dns.alpha.kubernetes.io/target: bo0tzz.me
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          - host: photos.bo0tzz.me
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - photos.bo0tzz.me
-            secretName: immich-web-tls
+      ingress:
+        main:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+            external-dns.alpha.kubernetes.io/target: bo0tzz.me
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hosts:
+            - host: photos.bo0tzz.me
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - photos.bo0tzz.me
+              secretName: immich-web-tls
