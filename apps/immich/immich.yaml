@@ -66,6 +66,10 @@ spec:
             key: DATABASE_NAME
       LOG_LEVEL: verbose
 
+    microservices:
+      controller:
+        replicas: 2
+
     proxy:
       ingress:
         main:
