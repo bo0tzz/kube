@@ -37,6 +37,10 @@ spec:
         tsdata:
           enabled: true
           storageClass: zfs-iscsi
+      resources:
+        requests:
+          cpu: 15m
+          memory: 145M
 
     immich:
       persistence:
@@ -66,11 +70,37 @@ spec:
             key: DATABASE_NAME
       LOG_LEVEL: verbose
 
+    server:
+      resources:
+        requests:
+          cpu: 15m
+          memory: 512M
+
     microservices:
       controller:
         replicas: 2
+      resources:
+        requests:
+          cpu: 1500m
+          memory: 2048M
+
+    machine-learning:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 4096M
+
+    web:
+      resources:
+        requests:
+          cpu: 15m
+          memory: 105M
 
     proxy:
+      resources:
+        requests:
+          cpu: 15m
+          memory: 105M
       ingress:
         main:
           enabled: true
