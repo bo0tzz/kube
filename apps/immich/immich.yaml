@@ -59,6 +59,9 @@ spec:
             name: database-immich-user
             key: DATABASE_NAME
       LOG_LEVEL: verbose
+    
+    image:
+      tag: v1.54.0
 
     server:
       resources:
