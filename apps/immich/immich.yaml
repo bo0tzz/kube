@@ -61,6 +61,7 @@ spec:
       LOG_LEVEL: verbose
     
     image:
+      # renovate: datasource=github-releases depName=immich-app/immich
       tag: v1.54.0
 
     server:
