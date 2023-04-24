@@ -1,8 +1,11 @@
 {
-  "commitMessageTopic": "{{depName}}",
-  "commitMessageExtra": "to {{newVersion}}",
-  "commitMessageSuffix": "",
-  "configMigration": true,
+  "extends": [
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],  
+  "suppressNotifications": ["prIgnoreNotification"],
   "helm-values": {
     "fileMatch": [
       "\\.yaml$"
