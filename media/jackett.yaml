@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/jackett
-      tag: 0.20.2158@sha256:3b5714dc5717f0b7740fb11dd00cb5189d5cb8c0258441133c9c618332b06eb9
+      tag: 0.20.2297@sha256:6a75229d923613a8e017107600a02e7380edeb1f0955ff69522e69e62bba58a4
     service:
       main:
         ports:
