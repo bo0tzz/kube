@@ -43,10 +43,6 @@
         "docker"
       ],
       "commitMessageExtra": "to {{newVersion}}"
-    },
-    {
-      "matchUpdateTypes": ["patch"],
-      "enabled": false
     }
   ]
 }
