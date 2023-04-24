@@ -2,6 +2,7 @@
   "commitMessageTopic": "{{depName}}",
   "commitMessageExtra": "to {{newVersion}}",
   "commitMessageSuffix": "",
+  "configMigration": true,
   "helm-values": {
     "fileMatch": [
       "\\.yaml$"
