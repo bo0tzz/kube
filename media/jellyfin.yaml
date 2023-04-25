@@ -22,7 +22,7 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
     image:
       repository: ghcr.io/confusedpolarbear/jellyfin-intro-skipper
-      tag: 10.8.9
+      tag: 10.8.10
     env:
       TZ: "Europe/Amsterdam"
       JELLYFIN_CACHE_DIR: "/cache"
