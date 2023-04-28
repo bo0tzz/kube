@@ -49,7 +49,7 @@
       "ignoreTests": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["patch", "digest"],
-      "matchPackagePattern": [
+      "matchPackagePrefixes": [
         "ghcr.io/onedr0p/sonarr-develop",
         "ghcr.io/onedr0p/radarr-develop",
         "esphome/esphome",
@@ -64,7 +64,7 @@
       "ignoreTests": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["minor"],
-      "matchPackagePattern": [
+      "matchPackagePrefixes": [
         "ghcr.io/n8n-io/n8n"
       ]
     }
