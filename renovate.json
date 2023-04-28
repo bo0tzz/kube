@@ -43,10 +43,30 @@
       "ignoreDeprecated": true
     },
     {
-      "matchDatasources": [
-        "docker"
-      ],
-      "commitMessageExtra": "to {{newVersion}}"
+      "description": "Auto merge patch versions",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["patch", "digest"],
+      "matchPackagePattern": [
+        "ghcr.io/onedr0p/sonarr-develop",
+        "ghcr.io/onedr0p/radarr-develop",
+        "esphome/esphome",
+        "ghcr.io/n8n-io/n8n",
+        "ghcr.io/auricom/libreddit"
+      ]
+    },
+    {
+      "description": "Auto merge minor versions",
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "ignoreTests": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["minor"],
+      "matchPackagePattern": [
+        "ghcr.io/n8n-io/n8n"
+      ]
     }
   ]
 }
