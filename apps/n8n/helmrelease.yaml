@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ghcr.io/n8n-io/n8n
-      tag: 0.236.2
+      tag: 0.236.3
     command: ["n8n"]
     env:
       GENERIC_TIMEZONE: Europe/Amsterdam
