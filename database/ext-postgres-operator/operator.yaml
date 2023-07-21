@@ -17,7 +17,7 @@ spec:
       serviceAccountName: ext-postgres-operator
       containers:
         - name: ext-postgres-operator
-          image: ghcr.io/movetokube/postgres-operator:1.2.2
+          image: ghcr.io/movetokube/postgres-operator:1.2.5
           command:
           - postgres-operator
           imagePullPolicy: Always
