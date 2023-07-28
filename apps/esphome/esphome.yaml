@@ -55,6 +55,4 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: zfs-iscsi
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: esphome-config
