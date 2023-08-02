@@ -30,6 +30,7 @@ spec:
       tag: 1.5.4
     env:
       SOCIAL_DEFAULT_ACCESS: 1
+      SOCIAL_DEFAULT_GROUP: user
       DB_ENGINE: django.db.backends.postgresql
       POSTGRES_HOST:
         valueFrom:
