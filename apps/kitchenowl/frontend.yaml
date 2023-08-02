@@ -30,7 +30,7 @@ spec:
     controller:
       replicas: 1
     env:
-      BACK_URL: kitchenowl-backend
+      BACK_URL: kitchenowl-backend:5000
     envFrom:
       - secretRef:
           name: kitchenowl-secret
