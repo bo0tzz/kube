@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: k8s-at-home     
+  name: k8s-at-home
   namespace: applications
 spec:
   interval: 1h
@@ -33,3 +33,11 @@ metadata:
 spec:
   interval: 1h
   url: https://bjw-s.github.io/helm-charts/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: gabe565
+  namespace: applications
+  interval: 1h
+  url: https://charts.gabe565.com
