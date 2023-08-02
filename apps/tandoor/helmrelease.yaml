@@ -29,6 +29,7 @@ spec:
       repository: ghcr.io/tandoorrecipes/recipes
       tag: 1.5.4
     env:
+      DB_ENGINE: django.db.backends.postgresql
       POSTGRES_HOST:
         valueFrom:
           secretKeyRef:
