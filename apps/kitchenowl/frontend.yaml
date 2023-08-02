@@ -44,7 +44,7 @@ spec:
       main:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: nginx-internal
+          kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
           - host: groceries.bo0tzz.me
