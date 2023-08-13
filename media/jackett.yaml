@@ -16,9 +16,8 @@ spec:
       interval: 1h
   values:
     image:
-      # pain
-      repository: ghcr.io/linuxserver/jackett
-      tag: "0.21.637"
+      repository: ghcr.io/onedr0p/jackett
+      tag: 0.20.2297@sha256:6a75229d923613a8e017107600a02e7380edeb1f0955ff69522e69e62bba58a4
     service:
       main:
         ports:
