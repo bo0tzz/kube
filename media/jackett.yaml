@@ -18,7 +18,7 @@ spec:
     image:
       # pain
       repository: ghcr.io/linuxserver/jackett
-      tag: "0.21.655"
+      tag: "0.21.662"
     env:
       PUID: "568"
       PGID: "568"
