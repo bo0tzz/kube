@@ -52,6 +52,7 @@
       "matchPackagePrefixes": [
         "ghcr.io/onedr0p/sonarr-develop",
         "ghcr.io/onedr0p/radarr-develop",
+        "ghcr.io/linuxserver/jackett",
         "esphome/esphome",
         "ghcr.io/n8n-io/n8n",
         "ghcr.io/auricom/libreddit"
