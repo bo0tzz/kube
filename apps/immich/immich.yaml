@@ -59,7 +59,7 @@ spec:
             name: database-immich-user
             key: DATABASE_NAME
       LOG_LEVEL: verbose
-    
+
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       tag: "v1.74.0"
@@ -83,6 +83,11 @@ spec:
         requests:
           cpu: 500m
           memory: 4096M
+      persistence:
+        cache:
+          type: pvc
+          accessMode: ReadWriteOnce
+          storageClass: zfs-iscsi
 
     web:
       resources:
