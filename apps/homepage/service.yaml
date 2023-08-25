@@ -21,7 +21,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    external-dns.alpha.kubernetes.io/target: 83.86.109.63
+    external-dns.alpha.kubernetes.io/target: zijlein.de
 spec:
   tls:
     - hosts:
