@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: media
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    image:
+      repository: ghcr.io/onedr0p/prowlarr-nightly
+      tag: 1.8.5.3896@sha256:bced59c11ee3b9d07b005e10227aa2db5d4033fce939af9a2ef68bc184ade1bf
+    service:
+      main:
+        ports:
+          http:
+            port: 9696
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+        - host: prowlarr.bo0tzz.me
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+          - hosts:
+              - prowlarr.bo0tzz.me
+            secretName: prowlarr-web-tls
+    persistence:
+      config:
+        enabled: true
+        storageClass: zfs-iscsi
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 500Mi
