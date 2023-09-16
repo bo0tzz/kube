@@ -14,6 +14,9 @@ spec:
         name: immich-charts
         namespace: immich
       interval: 1m
+  upgrade:
+    remediation:
+      retries: 3
   values:
     postgres:
       enabled: false
