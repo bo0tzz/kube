@@ -33,7 +33,7 @@ spec:
       CREATE_ADMIN: 1
       ADMIN_USERNAME: boet
       OAUTH2_PROVIDER: oidc
-      OAUTH2_REDIRECT_URL: https://miniflux.bo0tzz.me/oauth2/oidc/callback
+      OAUTH2_REDIRECT_URL: https://feed.bo0tzz.me/oauth2/oidc/callback
       OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.bo0tzz.me/application/o/miniflux/
       DATABASE_URL:
         valueFrom:
