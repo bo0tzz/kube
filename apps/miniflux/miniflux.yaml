@@ -35,6 +35,7 @@ spec:
       OAUTH2_PROVIDER: oidc
       OAUTH2_REDIRECT_URL: https://feed.bo0tzz.me/oauth2/oidc/callback
       OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.bo0tzz.me/application/o/miniflux/
+      OAUTH2_USER_CREATION: 1
       DATABASE_URL:
         valueFrom:
           secretKeyRef:
