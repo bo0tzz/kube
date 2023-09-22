@@ -38,3 +38,5 @@ spec:
         kind: HelmRepository
         name: piraeus-charts
         namespace: storage
+  upgrade:
+    crds: CreateReplace
