@@ -25,6 +25,7 @@ spec:
       interval: 1h
   values:
     controller:
+      allowSnippetAnnotations: true
       service:
         loadBalancerIP: 192.168.4.100
         annotations:
@@ -54,6 +55,7 @@ spec:
       interval: 1h
   values:
     controller:
+      allowSnippetAnnotations: true
       electionID: ingress-controller-internal-leader
       service:
         loadBalancerIP: 192.168.4.101
