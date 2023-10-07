@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/emby
-      tag: 4.7.14.0@sha256:f0f5cc0020ded5c0af8f1ab4c6ac5f53a5460acf552535961580b3ff0850a900
+      tag: 4.7.14.0@sha256:7b39f43320afd146aef09edf5061de2866a4deac7187c218fac8c1b9caee7ecd
     service:
       main:
         ports:
