@@ -23,9 +23,6 @@ spec:
         ports:
           http:
             port: 80
-          websocket:
-            enabled: true
-            port: 3012
     persistence:
       config:
         enabled: true
