@@ -41,6 +41,7 @@ spec:
       tls:
         - hosts:
             - *host
+          secretName: windmill-tls
     postgresql:
       enabled: false
   valuesFrom:
