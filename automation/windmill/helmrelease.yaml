@@ -25,8 +25,6 @@ spec:
     keepHistory: false
   values:
     windmill:
-      # renovate: datasource=docker
-      tag: "1.206.0"
       baseDomain: &host workflow.bo0tzz.me
       baseProtocol: https
       appReplicas: 1
