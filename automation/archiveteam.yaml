@@ -23,7 +23,7 @@ spec:
               value: "2"
           args:
             - "--concurrent"
-            - "10"
+            - "20"
             - "--disable-web-server"
             - "bo0tzz"
           volumeMounts:
