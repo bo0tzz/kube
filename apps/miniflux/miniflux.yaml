@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/miniflux/miniflux
-      tag: nightly@sha256:c31fbfebaed1cbe4afb7e1c614b508b607cdb67149c987ee8528e8f1ab553985
+      tag: nightly@sha256:fbe14816afc6f3a012cb5b60d67717fb19085c0d568fcbe547f3f42272f060af
     service:
       main:
         ports:
