@@ -4,7 +4,8 @@
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits"
-  ],  
+  ],
+  "automerge": true,
   "suppressNotifications": ["prIgnoreNotification"],
   "helm-values": {
     "fileMatch": [
