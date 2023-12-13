@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: homepage
-          image: ghcr.io/bo0tzz/homepage:main@sha256:8968609a6abe2cf24326e0aefd95f8202ac881a5e5c34f51775a7bdb464d9a64
+          image: ghcr.io/bo0tzz/homepage:main@sha256:67453aca144ba70bdb3af511175b3731d9edc75ff9263c32eb46a1bff5465b60
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
