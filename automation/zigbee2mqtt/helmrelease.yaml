@@ -65,6 +65,7 @@ spec:
                     key: user_1_password
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: &usb /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230529110728-if00
+              ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: ezsp 
             securityContext:
               privileged: true
             resources:
