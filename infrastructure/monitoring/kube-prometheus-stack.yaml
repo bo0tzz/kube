@@ -66,4 +66,4 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "zigbee2mqtt-exporter"
+                  - "zigbee2mqtt-exporter.automation"
