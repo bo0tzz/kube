@@ -32,12 +32,12 @@ spec:
         valueFrom:
           secretKeyRef:
             name: emqx-secret
-            value: user_1_username
+            key: user_1_username
       MQTT_PASSWORD:
         valueFrom:
           secretKeyRef:
             name: emqx-secret
-            value: user_1_password
+            key: user_1_password
       PROMETHEUS_PORT: &port 80
       PROMETHEUS_PREFIX: zigbee2mqtt_
       ZIGBEE2MQTT_AVAILABILITY: "True"
