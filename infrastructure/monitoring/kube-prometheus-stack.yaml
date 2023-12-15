@@ -36,7 +36,7 @@ spec:
       prometheusSpec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
-        retention: 31d
+        retention: 1y
         storageSpec:
           volumeClaimTemplate:
             spec:
@@ -44,7 +44,7 @@ spec:
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
-                  storage: 50Gi
+                  storage: 100Gi
         additionalScrapeConfigs:
           - job_name: "apcups"
             static_configs:
