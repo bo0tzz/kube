@@ -5,8 +5,12 @@ metadata:
   namespace: database
 spec:
   instances: 3
-  imageName: ghcr.io/cloudnative-pg/postgresql:14.9
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
   enableSuperuserAccess: true
+
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
 
   storage:
     storageClass: local-path
