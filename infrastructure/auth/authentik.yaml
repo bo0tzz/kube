@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: authentik
-      version: 2023.5.1
+      version: 2023.10.6
       sourceRef:
         kind: HelmRepository
         name: authentik
@@ -30,28 +30,6 @@ spec:
             - *host
           secretName: authentik-web-tls
 
-    envFrom:
-      - secretRef:
-          name: authentik-secret
-
-    envValueFrom:
-      AUTHENTIK_POSTGRESQL__HOST:
-        secretKeyRef:
-          name: authentik-postgres-authentik
-          key: HOST
-      AUTHENTIK_POSTGRESQL__NAME:
-        secretKeyRef:
-          name: authentik-postgres-authentik
-          key: DATABASE_NAME
-      AUTHENTIK_POSTGRESQL__USER:
-        secretKeyRef:
-          name: authentik-postgres-authentik
-          key: LOGIN
-      AUTHENTIK_POSTGRESQL__PASSWORD:
-        secretKeyRef:
-          name: authentik-postgres-authentik
-          key: PASSWORD
-
     authentik:
       log_level: trace
       email:
@@ -70,3 +48,42 @@ spec:
         create: true
       serviceMonitor:
         create: true
+
+
+  valuesFrom:
+    - kind: Secret
+      name: &secret authentik-secret
+      valuesKey: AUTHENTIK_SECRET_KEY
+      targetPath: authentik.secret_key
+    - kind: Secret
+      name: *secret
+      valuesKey: AUTHENTIK_EMAIL__HOST
+      targetPath: authentik.email.host
+    - kind: Secret
+      name: *secret
+      valuesKey: AUTHENTIK_EMAIL__USERNAME
+      targetPath: authentik.email.username
+    - kind: Secret
+      name: *secret
+      valuesKey: AUTHENTIK_EMAIL__PASSWORD
+      targetPath: authentik.email.password
+    - kind: Secret
+      name: *secret
+      valuesKey: AUTHENTIK_EMAIL__FROM
+      targetPath: authentik.email.from
+    - kind: Secret
+      name: &db-secret authentik-postgres-authentik
+      valuesKey: HOST
+      targetPath: authentik.postgresql.host
+    - kind: Secret
+      name: *db-secret
+      valuesKey: LOGIN
+      targetPath: authentik.postgresql.user
+    - kind: Secret
+      name: *db-secret
+      valuesKey: PASSWORD
+      targetPath: authentik.postgresql.password
+    - kind: Secret
+      name: *db-secret
+      valuesKey: DATABASE_NAME
+      targetPath: authentik.postgresql.name
