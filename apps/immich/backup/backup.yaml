@@ -1,0 +1,20 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: immich-backup
+  namespace: immich
+spec:
+  sourcePVC: photo-library
+  trigger:
+    schedule: 0 23 * * *
+    manual: first-run
+  restic:
+    pruneIntervalDays: 14
+    repository: immich-restic-secret
+    retain:
+      daily: 2
+      weekly: 1
+      monthly: 2
+    copyMethod: Direct
+    cacheStorageClassName: zfs-iscsi
+    cacheAccessModes: ["ReadWriteOnce"]
