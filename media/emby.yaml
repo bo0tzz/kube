@@ -56,7 +56,7 @@ spec:
         annotations:
           kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: letsencrypt-prod
-          external-dns.alpha.kubernetes.io/controller: ignore
+          external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only
           auth.kube.bo0tzz.me/enabled: "true"
         hosts:
           - host: emby-external.bo0tzz.me
