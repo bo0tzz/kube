@@ -19,8 +19,8 @@ spec:
       strategy: RollingUpdate
 
     image:
-      repository: ghcr.io/auricom/libreddit
-      tag: 0.30.1@sha256:c89c2b98ab0eb08f4677d24a3a7577661ed4325c797b042023ce959195534c4f
+      repository: quay.io/redlib/redlib
+      tag: latest@sha256:5637b7b9be05ba47416ff3c9b07c6ef7e69555156516f08f06b04f960f63cb41
       
     dnsConfig:
       options:
