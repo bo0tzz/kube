@@ -54,7 +54,7 @@ spec:
 
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: "v1.93.1"
+      tag: "v1.93.2"
 
     server:
       resources:
