@@ -24,6 +24,9 @@ spec:
     redis:
       enabled: true
 
+    nodeSelector:
+      worker: "true"
+
     immich:
       persistence:
         library:
