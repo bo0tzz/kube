@@ -36,22 +36,8 @@ spec:
 
   bootstrap:
     recovery:
-      source: minio
-
-  externalClusters:
-    - name: minio
-      barmanObjectStore:
-        destinationPath: s3://app-db-backup/
-        endpointURL: http://minio:9000
-        wal:
-          compression: bzip2
-        s3Credentials:
-          accessKeyId:
-            name: minio-creds
-            key: MINIO_ROOT_USER
-          secretAccessKey:
-            name: minio-creds
-            key: MINIO_ROOT_PASSWORD
+      backup:
+        name: daily-backup-20240211000000
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
