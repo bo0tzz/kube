@@ -1,0 +1,64 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: app-db
+  namespace: database
+spec:
+  instances: 3
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
+  enableSuperuserAccess: true
+
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+
+  storage:
+    storageClass: local-path
+    size: 10Gi
+
+  monitoring:
+    enablePodMonitor: true
+
+  backup:
+    retentionPolicy: "14d"
+    barmanObjectStore:
+      destinationPath: s3://cnpg-backups
+      endpointURL: https://s3.eu-central-003.backblazeb2.com
+      wal:
+        compression: bzip2
+      s3Credentials:
+        accessKeyId:
+          name: database-backblaze
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: database-backblaze
+          key: SECRET_ACCESS_KEY
+
+  bootstrap:
+    recovery:
+      source: minio
+
+  externalClusters:
+    - name: minio
+      barmanObjectStore:
+        destinationPath: s3://app-db-backup/
+        endpointURL: http://minio:9000
+        wal:
+          compression: bzip2
+        s3Credentials:
+          accessKeyId:
+            name: minio-creds
+            key: MINIO_ROOT_USER
+          secretAccessKey:
+            name: minio-creds
+            key: MINIO_ROOT_PASSWORD
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: daily-backup
+  namespace: database
+spec:
+  schedule: "@daily"
+  cluster:
+    name: app-db
