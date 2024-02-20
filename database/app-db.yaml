@@ -5,7 +5,7 @@ metadata:
   namespace: database
 spec:
   instances: 3
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.1.11
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:14.10-v0.2.0
   enableSuperuserAccess: true
 
   postgresql:
