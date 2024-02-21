@@ -5,7 +5,7 @@ metadata:
   namespace: database
 spec:
   instances: 3
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.0
+  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.0@sha256:5fa56b8459e6d1cc8a4aeda22850eb05ac1d5cf410219eab3ceac0b1e010fba5
   enableSuperuserAccess: true
   primaryUpdateMethod: switchover
 
