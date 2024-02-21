@@ -7,6 +7,7 @@ spec:
   instances: 3
   imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:14.11-v0.2.0
   enableSuperuserAccess: true
+  primaryUpdateMethod: switchover
 
   postgresql:
     shared_preload_libraries:
