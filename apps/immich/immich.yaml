@@ -30,6 +30,7 @@ spec:
           existingClaim: photo-library
 
     env:
+      MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
       DB_HOSTNAME:
         valueFrom:
           secretKeyRef:
@@ -54,7 +55,7 @@ spec:
 
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
-      tag: "v1.97.0"
+      tag: "v1.98.0"
 
     server:
       resources:
