@@ -98,3 +98,7 @@ spec:
           type: pvc
           accessMode: ReadWriteOnce
           storageClass: zfs-iscsi
+      probes:
+        liveness:
+          spec:
+            initialDelaySeconds: 120
