@@ -100,5 +100,6 @@ spec:
           storageClass: zfs-iscsi
       probes:
         liveness:
-          spec:
-            initialDelaySeconds: 120
+          enabled: false
+        readiness:
+          enabled: false
