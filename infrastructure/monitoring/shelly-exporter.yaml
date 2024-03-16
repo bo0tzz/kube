@@ -35,6 +35,7 @@ spec:
             port: 54901
     serviceMonitor:
       main:
+        serviceName: shelly-exporter
         endpoints:
           - port: http
             scheme: http
