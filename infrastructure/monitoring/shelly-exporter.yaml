@@ -33,3 +33,13 @@ spec:
         ports:
           http:
             port: 54901
+    serviceMonitor:
+      main:
+        endpoints:
+          - port: http
+            scheme: http
+            path: /probe
+            interval: 30s
+            scrapeTimeout: 10s
+            params:
+              target: ["192.168.178.8"]
