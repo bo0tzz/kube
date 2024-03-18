@@ -44,3 +44,6 @@ spec:
             scrapeTimeout: 10s
             params:
               target: ["192.168.178.8"]
+            metricRelabelings:
+              - action: labeldrop
+                regex: (pod)
