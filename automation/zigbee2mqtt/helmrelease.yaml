@@ -64,8 +64,8 @@ spec:
                     name: emqx-secret
                     key: user_1_password
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
-              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: &usb /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230529110728-if00
-              ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: ezsp 
+              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://192.168.178.7:6638
+              ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: zstack 
             securityContext:
               privileged: true
             resources:
@@ -74,16 +74,6 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 512Mi
-        pod:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: feature.node.kubernetes.io/usb-02_1a86_55d4.present
-                        operator: In
-                        values:
-                          - "true"
     service:
       main:
         ports:
@@ -112,10 +102,3 @@ spec:
         accessMode: ReadWriteOnce
         storageClass: zfs-iscsi
         size: 1Gi
-      usb:
-        enabled: true
-        type: hostPath
-        hostPath: *usb
-        hostPathType: CharDevice
-        globalMounts:
-          - path: *usb
