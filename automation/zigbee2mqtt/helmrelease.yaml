@@ -99,6 +99,4 @@ spec:
     persistence:
       config:
         enabled: true
-        accessMode: ReadWriteOnce
-        storageClass: zfs-iscsi
-        size: 1Gi
+        existingClaim: zigbee2mqtt-config
