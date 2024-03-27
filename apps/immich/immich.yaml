@@ -95,6 +95,7 @@ spec:
           memory: 4096M
       persistence:
         cache:
+          type: pvc
           existingClaim: immich-machine-learning-cache
       probes:
         liveness:
