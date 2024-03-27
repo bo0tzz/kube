@@ -34,11 +34,11 @@ spec:
 
     controller:
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:v1.8.4
+        image: ghcr.io/democratic-csi/democratic-csi:v1.9.0
 
     node:
       driver:
-        image: ghcr.io/democratic-csi/democratic-csi:v1.8.4
+        image: ghcr.io/democratic-csi/democratic-csi:v1.9.0
 
     csiProxy:
       image: ghcr.io/democratic-csi/csi-grpc-proxy:v0.5.6
