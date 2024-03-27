@@ -95,9 +95,7 @@ spec:
           memory: 4096M
       persistence:
         cache:
-          type: pvc
-          accessMode: ReadWriteOnce
-          storageClass: zfs-iscsi
+          existingClaim: immich-machine-learning-cache
       probes:
         liveness:
           spec:
