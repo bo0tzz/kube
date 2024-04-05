@@ -25,6 +25,8 @@ spec:
       enabled: true
 
     immich:
+      metrics:
+        enabled: true
       persistence:
         library:
           existingClaim: photo-library
