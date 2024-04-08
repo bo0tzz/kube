@@ -32,7 +32,7 @@ spec:
           main:
             image:
               repository: ghcr.io/koenkk/zigbee2mqtt
-              tag: latest-dev@sha256:1f72c242e8fbc867bacff9679c1009983720f9ca822a25e31d2615eddae1866b
+              tag: latest-dev@sha256:5f86e77fa869f89b9d298d80ca984bc354e4ba28afb00db4a7517f06c5a0882d
             env:
               TZ: "Europe/Amsterdam"
               ZIGBEE2MQTT_DATA: /config
