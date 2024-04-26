@@ -50,7 +50,9 @@ spec:
 
     ingress:
       app:
-        className: "internal-nginx"
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
           - host: &hostName actual.bo0tzz.me
             paths:
