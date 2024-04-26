@@ -63,6 +63,7 @@ spec:
         tls:
           - hosts:
               - *hostName
+            secretName: actual-tls
 
     persistence:
       data:
