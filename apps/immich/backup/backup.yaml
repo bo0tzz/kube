@@ -7,7 +7,6 @@ spec:
   sourcePVC: photo-library
   trigger:
     schedule: 0 23 * * *
-    manual: ohgod
   restic:
     pruneIntervalDays: 14
     repository: immich-restic-secret
