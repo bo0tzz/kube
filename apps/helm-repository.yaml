@@ -1,4 +1,4 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: jitsi
@@ -7,7 +7,7 @@ spec:
   interval: 1h
   url: https://jitsi-contrib.github.io/jitsi-helm/
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: minecraft
@@ -16,7 +16,7 @@ spec:
   interval: 1h
   url: https://itzg.github.io/minecraft-server-charts/
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: bjw-s-charts
@@ -25,7 +25,7 @@ spec:
   interval: 1h
   url: https://bjw-s.github.io/helm-charts/
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: gabe565
