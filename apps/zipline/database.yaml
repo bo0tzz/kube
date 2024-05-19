@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: zipline-db
+  namespace: applications
+spec:
+  database: zipline
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: zipline-user
+  namespace: applications
+spec:
+  role: zipline
+  database: zipline-db
+  secretName: database
+  privileges: OWNER
