@@ -17,15 +17,13 @@ spec:
   values:
     controllers:
       zipline:
-        strategy: RollingUpdate
+        strategy: Recreate
 
         containers:
           app:
             image:
               repository: ghcr.io/diced/zipline
-              tag: v4@sha256:091ff6a6cffccb9db7550607544fc1c41285836a9777c95fc1ecf3f9fb973b8e
-            # Workaround, v4 dockerfile sets the wrong CMD
-            args: ["node", "build/server/index.js"]
+              tag: 3.7.9
             env:
               CORE_DATABASE_URL:
                   valueFrom:
@@ -35,10 +33,10 @@ spec:
               CORE_RETURN_HTTPS: true
               DATASOURCE_TYPE: local
               DATASOURCE_LOCAL_DIRECTORY: /data
-              FEATURES_OAUTH_REGISTRATION: true
-              FILES_DEFAULT_FORMAT: random
-              FILES_MAX_FILE_SIZE: 10gb
-              URLS_ROUTE: /l
+              # FEATURES_OAUTH_REGISTRATION: true
+              UPLOADER_DEFAULT_FORMAT: random
+              UPLOADER_MAX_FILE_SIZE: 10gb
+              URLS_ROUTE: /z
             envFrom:
               - secretRef:
                   name: zipline-secret
