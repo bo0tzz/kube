@@ -24,6 +24,8 @@ spec:
             image:
               repository: ghcr.io/diced/zipline
               tag: v4@sha256:091ff6a6cffccb9db7550607544fc1c41285836a9777c95fc1ecf3f9fb973b8e
+            # Workaround, v4 dockerfile sets the wrong CMD
+            args: ["node", "build/server/index.js"]
             env:
               CORE_DATABASE_URL:
                   valueFrom:
