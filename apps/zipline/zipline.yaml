@@ -85,3 +85,4 @@ spec:
         tls:
           - hosts:
               - *hostName
+            secretName: zipline-tls
