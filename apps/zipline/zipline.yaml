@@ -59,6 +59,8 @@ spec:
 
     persistence:
       data:
+        enabled: true
+        type: persistentVolumeClaim
         existingclaim: zipline-data
 
     service:
