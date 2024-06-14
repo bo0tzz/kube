@@ -20,7 +20,7 @@ spec:
 
     image:
       repository: quay.io/redlib/redlib
-      tag: latest@sha256:fc063c96f2828cce72c3c6f30e8a5500c24c744886cbb6d96006e2d844489d29
+      tag: latest@sha256:6793bbea9a15d1ae5627ec7f65bf75b6fd3c166912011bef78c0a5962ce60d07
       
     dnsConfig:
       options:
