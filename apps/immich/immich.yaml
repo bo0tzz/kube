@@ -54,6 +54,7 @@ spec:
             name: database-immich-user
             key: DATABASE_NAME
       LOG_LEVEL: verbose
+      TZ: Europe/Amsterdam
 
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
