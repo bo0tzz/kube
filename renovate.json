@@ -54,7 +54,8 @@
       "matchPackagePrefixes": [
         "esphome/esphome",
         "ghcr.io/n8n-io/n8n",
-        "ghcr.io/auricom/libreddit"
+        "ghcr.io/auricom/libreddit",
+        "quay.io/redlib/redlib"
       ]
     },
     {
