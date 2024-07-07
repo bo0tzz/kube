@@ -1,0 +1,123 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: paperless
+  namespace: applications
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: applications
+
+  values:
+    controllers:
+      paperless:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.10.2
+            env:
+              PAPERLESS_URL: https://paperless.bo0tzz.me
+              PAPERLESS_TIME_ZONE: "Europe/Amsterdam"
+              PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+              PAPERLESS_ACCOUNT_EMAIL_VERIFICATION: none
+              PAPERLESS_SOCIAL_AUTO_SIGNUP: true
+              # Database
+              PAPERLESS_DBENGINE: postgresql
+              PAPERLESS_DBHOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-paperless-user
+                    key: HOST
+              PAPERLESS_DBNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-paperless-user
+                    key: DATABASE_NAME
+              PAPERLESS_DBUSER:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-paperless-user
+                    key: login
+              PAPERLESS_DBPASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-paperless-user
+                    key: PASSWORD
+              # Configure folders
+              PAPERLESS_CONSUMPTION_DIR: /data/incoming
+              PAPERLESS_DATA_DIR: /data/data
+              PAPERLESS_EXPORT_DIR: /data/export
+              PAPERLESS_MEDIA_ROOT: /data/media
+              # Configure OCR
+              PAPERLESS_OCR_LANGUAGES: nld
+              PAPERLESS_OCR_LANGUAGE: nld
+              # Configure redis integration
+              PAPERLESS_REDIS: redis://paperless-redis.applications.svc.cluster.local:6379
+            envFrom:
+              - secret: paperless-secret
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 25m
+                memory: 2Gi
+
+      redis:
+        containers:
+          redis:
+            image:
+              repository: docker.io/valkey/valkey
+              tag: 7.2.5
+            resources:
+              requests:
+                cpu: 5m
+                memory: 32Mi
+
+    service:
+      app:
+        controller: paperless
+        ports:
+          http:
+            port: 8000
+      redis:
+        controller: redis
+        ports:
+          http:
+            port: 6379
+
+    ingress:
+      app:
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: paperless.bo0tzz.me
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+
+    persistence:
+      data:
+        existingClaim: paperless-data
+        advancedMounts:
+          paperless:
+            app:
+              - path: /data

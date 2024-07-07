@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: paperless-db
+  namespace: applications
+spec:
+  database: paperless
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: paperless-user
+  namespace: applications
+spec:
+  role: paperless
+  database: paperless-db
+  secretName: database
+  privileges: OWNER
