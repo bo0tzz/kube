@@ -107,6 +107,7 @@ spec:
         annotations:
           kubernetes.io/ingress.class: nginx-internal
           cert-manager.io/cluster-issuer: letsencrypt-prod
+          nginx.ingress.kubernetes.io/proxy-body-size: "50m"
         hosts:
           - host: &hostname paperless.bo0tzz.me
             paths:
