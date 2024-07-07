@@ -29,6 +29,7 @@ spec:
               PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
               PAPERLESS_ACCOUNT_EMAIL_VERIFICATION: none
               PAPERLESS_SOCIAL_AUTO_SIGNUP: true
+              PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
               # Database
               PAPERLESS_DBENGINE: postgresql
               PAPERLESS_DBHOST:
