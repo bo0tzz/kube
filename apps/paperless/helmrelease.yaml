@@ -45,7 +45,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: database-paperless-user
-                    key: login
+                    key: LOGIN
               PAPERLESS_DBPASS:
                 valueFrom:
                   secretKeyRef:
