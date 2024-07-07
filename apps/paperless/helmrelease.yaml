@@ -107,12 +107,16 @@ spec:
           kubernetes.io/ingress.class: nginx-internal
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
-          - host: paperless.bo0tzz.me
+          - host: &hostname paperless.bo0tzz.me
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
+        tls:
+          - hosts:
+              - *hostname
+            secretName: paperless-tls
 
     persistence:
       data:
