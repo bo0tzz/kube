@@ -65,7 +65,7 @@ spec:
         controller: spoolman
         ports:
           http:
-            port: 7912
+            port: 8000
 
     ingress:
       app:
