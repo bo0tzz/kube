@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: spoolman-db
+  namespace: applications
+spec:
+  database: spoolman
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: spoolman-user
+  namespace: applications
+spec:
+  role: spoolman
+  database: spoolman-db
+  secretName: database
+  privileges: OWNER

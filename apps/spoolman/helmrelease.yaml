@@ -1,0 +1,85 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: spoolman
+  namespace: applications
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.2.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: applications
+
+  values:
+    controllers:
+      spoolman:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/donkie/spoolman
+              tag: 0.19.3
+            env:
+              SPOOLMAN_DB_TYPE: postgres
+              SPOOLMAN_DB_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-spoolman-user
+                    key: HOST
+              SPOOLMAN_DB_NAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-spoolman-user
+                    key: DATABASE_NAME
+              SPOOLMAN_DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-spoolman-user
+                    key: LOGIN
+              SPOOLMAN_DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-spoolman-user
+                    key: PASSWORD
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
+            resources:
+              requests:
+                cpu: 25m
+                memory: 500M
+
+    service:
+      app:
+        controller: spoolman
+        ports:
+          http:
+            port: 7912
+
+    ingress:
+      app:
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: &hostname spoolman.bo0tzz.me
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *hostname
+            secretName: spoolman-tls
