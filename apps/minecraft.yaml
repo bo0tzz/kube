@@ -23,7 +23,7 @@ spec:
         memory: 4G
     minecraftServer:
       eula: "TRUE"
-      version: "1.19"
+      version: "1.21.1"
       whitelist: Dylan_rengers,bo0tzz
       ops: Dylan_rengers,bo0tzz
       maxWorldSize: 29999984
