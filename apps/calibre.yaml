@@ -15,6 +15,9 @@ spec:
         namespace: applications
       interval: 1h
   interval: 1h
+  upgrade:
+    remediation:
+      retries: 3
   values:
     image:
       repository: ghcr.io/bjw-s/calibre-web
