@@ -8,27 +8,29 @@ spec:
   chart:
     spec:
       chart: authentik
-      version: 2023.10.7
+      version: 2024.2.0
       sourceRef:
         kind: HelmRepository
         name: authentik
         namespace: auth
 
   values:
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        external-dns.alpha.kubernetes.io/target: bo0tzz.me
-      hosts:
-        - host: &host auth.bo0tzz.me
-          paths:
-            - path: /
-      tls:
-        - hosts:
-            - *host
-          secretName: authentik-web-tls
+    server:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+        hosts: [&host auth.bo0tzz.me]
+        tls:
+          - hosts:
+              - *host
+            secretName: authentik-web-tls
 
     authentik:
       log_level: trace
@@ -45,10 +47,7 @@ spec:
 
     prometheus:
       rules:
-        create: true
-      serviceMonitor:
-        create: true
-
+        enabled: true
 
   valuesFrom:
     - kind: Secret
