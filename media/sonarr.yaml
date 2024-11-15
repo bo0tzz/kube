@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.10.2579@sha256:46829115a61cdc851dd5773a637f26f80a8f28da0043b842bb6305d8d0eada14
+      tag: 4.0.10.2656@sha256:72349111cb38020e8e253ac34381f5cc72a1bd632e6a1968afd7954e69d098f8
     service:
       main:
         ports:
