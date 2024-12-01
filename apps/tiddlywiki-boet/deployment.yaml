@@ -28,7 +28,7 @@ spec:
             claimName: tiddlywiki-boet-data
       containers:
         - name: tiddlywiki-boet
-          image: nicolaw/tiddlywiki:5.2.2
+          image: nicolaw/tiddlywiki:5.3.6
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
