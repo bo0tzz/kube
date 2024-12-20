@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: vaultwarden/server
-      tag: 1.32.6-alpine
+      tag: 1.32.7-alpine
     service:
       main:
         ports:
