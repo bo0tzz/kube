@@ -5,7 +5,7 @@ metadata:
   namespace: dns
 spec:
   interval: 1h
-  url: https://charts.bitnami.com/bitnami
+  url: https://kubernetes-sigs.github.io/external-dns/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -17,18 +17,24 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: '8.6.1'
+      version: '1.15.0'
       sourceRef:
         kind: HelmRepository
         name: external-dns
         namespace: dns
       interval: 1h
   values:
+    provider:
+      name: cloudflare
     sources: 
       - ingress
-    provider: cloudflare
     policy: sync
-    cloudflare:
-      proxied: false
-      secretName: cloudflare-api-token
-    annotationFilter: external-dns.alpha.kubernetes.io/exclude notin (true)
+    extraArgs:
+      - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-token
+            key: cloudflare_api_token
