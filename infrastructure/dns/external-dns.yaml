@@ -29,9 +29,10 @@ spec:
     sources: 
       - ingress
     policy: sync
+    interval: 60m
+    triggerLoopOnEvent: true
     extraArgs:
       - --annotation-filter=external-dns.alpha.kubernetes.io/exclude notin (true)
-
     env:
       - name: CF_API_TOKEN
         valueFrom:
