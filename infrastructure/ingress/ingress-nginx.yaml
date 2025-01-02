@@ -25,7 +25,9 @@ spec:
       interval: 1h
   values:
     controller:
-      allowSnippetAnnotations: true
+      config:
+        allow-snippet-annotations: true
+        annotations-risk-level: Critical
       service:
         loadBalancerIP: 192.168.4.100
         annotations:
@@ -55,7 +57,9 @@ spec:
       interval: 1h
   values:
     controller:
-      allowSnippetAnnotations: true
+      config:
+        allow-snippet-annotations: true
+        annotations-risk-level: Critical
       electionID: ingress-controller-internal-leader
       service:
         loadBalancerIP: 192.168.4.101
