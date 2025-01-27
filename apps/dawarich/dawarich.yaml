@@ -34,7 +34,7 @@ spec:
               repository: ghcr.io/bo0tzz/dawarich
               tag: main@sha256:c8b581b7eb335f5cd22a6a478df083bfba9440d397be917ad80148de17ea1417
             env:
-              REDIS_URL: redis://dawarich-valkey.dawarich.svc.cluster.local:6379
+              REDIS_URL: redis://localhost:6379
               APPLICATION_HOSTS: "dawarich.bo0tzz.me"
               DATABASE_HOST:
                 valueFrom:
