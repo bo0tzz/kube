@@ -56,9 +56,6 @@ spec:
                   secretKeyRef:
                     name: database-dawarich-user
                     key: DATABASE_NAME
-            envFrom:
-              - secretRef:
-                  name: dawarich-db-secret
             resources:
               requests:
                 memory: "1Gi"
