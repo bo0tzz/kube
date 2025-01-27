@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: dawarich-db
+  namespace: dawarich
+spec:
+  database: dawarich
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: dawarich-user
+  namespace: dawarich
+spec:
+  role: dawarich
+  database: dawarich-db
+  secretName: database
+  privileges: OWNER
