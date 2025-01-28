@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/bo0tzz/dawarkitty
-              tag: 0.1.2
+              tag: 0.1.4
             env:
               RUST_LOG: trace
               RUST_BACKTRACE: full
