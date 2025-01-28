@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app dawarkitty
+  name: dawarkitty
   namespace: dawarich
 spec:
   interval: 30m
@@ -32,6 +32,9 @@ spec:
           app:
             image:
               repository: ghcr.io/bo0tzz/dawarkitty
-              tag: 0.1.0
+              tag: 0.1.1
+            env:
+              RUST_LOG: trace
+              RUST_BACKTRACE: full
             envFrom:
               - secret: dawarkitty-secret
