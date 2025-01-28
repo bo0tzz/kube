@@ -1,13 +1,15 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits"
   ],
   "automerge": true,
   "rebaseWhen": "conflicted",
-  "suppressNotifications": ["prIgnoreNotification"],
+  "suppressNotifications": [
+    "prIgnoreNotification"
+  ],
   "helm-values": {
     "fileMatch": [
       "\\.yaml$"
@@ -17,15 +19,18 @@
     "fileMatch": [
       "\\.yaml$"
     ],
-    "ignorePaths": [ "**/flux-system/**" ]
+    "ignorePaths": [
+      "**/flux-system/**"
+    ]
   },
   "flux": {
     "fileMatch": [
       "\\.yaml$"
     ]
   },
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "description": "Process custom dependencies",
       "fileMatch": [
         "\\.ya?ml$"
@@ -46,27 +51,36 @@
     },
     {
       "description": "Auto merge patch versions",
-      "matchDatasources": ["docker"],
+      "matchDatasources": [
+        "docker"
+      ],
       "automerge": true,
       "ignoreTests": true,
       "automergeType": "branch",
-      "matchUpdateTypes": ["patch", "digest"],
-      "matchPackagePrefixes": [
-        "esphome/esphome",
-        "ghcr.io/n8n-io/n8n",
-        "ghcr.io/auricom/libreddit",
-        "quay.io/redlib/redlib"
+      "matchUpdateTypes": [
+        "patch",
+        "digest"
+      ],
+      "matchPackageNames": [
+        "esphome/esphome{/,}**",
+        "ghcr.io/n8n-io/n8n{/,}**",
+        "ghcr.io/auricom/libreddit{/,}**",
+        "quay.io/redlib/redlib{/,}**"
       ]
     },
     {
       "description": "Auto merge minor versions",
-      "matchDatasources": ["docker"],
+      "matchDatasources": [
+        "docker"
+      ],
       "automerge": true,
       "ignoreTests": true,
       "automergeType": "branch",
-      "matchUpdateTypes": ["minor"],
-      "matchPackagePrefixes": [
-        "ghcr.io/n8n-io/n8n"
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/n8n-io/n8n{/,}**"
       ]
     }
   ]
