@@ -35,7 +35,7 @@ spec:
               tag: main@sha256:c8b581b7eb335f5cd22a6a478df083bfba9440d397be917ad80148de17ea1417
             env:
               REDIS_URL: redis://localhost:6379
-              APPLICATION_HOSTS: "dawarich.bo0tzz.me"
+              APPLICATION_HOSTS: "dawarich.bo0tzz.me,dawarich:3000"
               DATABASE_HOST:
                 valueFrom:
                   secretKeyRef:
