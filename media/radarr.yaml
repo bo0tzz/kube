@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.17.0.9555@sha256:d29684557a373f6efd8ac98f0b7b3007264599d3d83160bdaef9366a3b4f5d5a
+      tag: 5.18.4.9674@sha256:9b9275f002f2e99b086d70b3fd131b330cde0ec9e2dabce47ac2bc91a29c1ba0
     service:
       main:
         ports:
