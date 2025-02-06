@@ -38,6 +38,8 @@ metadata:
   name: angel-backups
   namespace: applications
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: angel-backups
