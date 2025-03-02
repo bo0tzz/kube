@@ -35,12 +35,8 @@ spec:
             # Apparently necessary to avoid some conflict in /dev?
             terminationMessagePath: /tmp/term
             securityContext:
-              allowPrivilegeEscalation: false
+              privileged: true
               readOnlyRootFilesystem: true
-              capabilities:
-                drop:
-                  - ALL
-
     persistence:
       config:
         type: configMap
