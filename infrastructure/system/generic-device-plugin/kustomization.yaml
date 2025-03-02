@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ./hr.yaml
 configMapGenerator:
-  - name: generic-device-plugin-configmap
+  - name: generic-device-plugin
     namespace: system
     files:
       - ./config.yaml
