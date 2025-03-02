@@ -1,0 +1,8 @@
+---
+devices:
+  - name: rtlsdr
+    groups:
+      - count: 1
+        usb:
+          - vendor: 0bda
+            product: 2838
