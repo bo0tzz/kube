@@ -23,9 +23,9 @@ spec:
           app:
             image:
               repository: ghcr.io/squat/generic-device-plugin
-              tag: 36bfc606bba2064de6ede0ff2764cbb52edff70d@sha256:ba6f0b4cf6c858d6ad29ba4d32e4da11638abbc7d96436bf04f582a97b2b8821
+              tag:  a4eabe9fbda65b11afe5a745093730ca7d468c26@sha256:8f4b616ff1ef70126be150fab41d4bb4445c80469b6cd8a1ca5a6c3e1c7f111d 
             args:
-              - --log-level=info
+              - --log-level=debug
               - --config=/config/config.yaml
             resources:
               requests:
