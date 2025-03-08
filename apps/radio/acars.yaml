@@ -54,7 +54,7 @@ spec:
               tag: 1.3.1_linux_amd64
             env:
               TZ: Etc/UTC
-              AR_SEND_UDP_ACARS: acars-acarshub:5550
+              AR_SEND_UDP_ACARS: acars-acarshub:5550;feedthe.acarsdrama.com:5550
             resources:
               requests:
                 cpu: 10m
