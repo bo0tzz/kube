@@ -41,9 +41,9 @@ spec:
               requests:
                 cpu: 150m
                 memory: 128Mi
-                squat.ai/rtlsdr: 1
               limits:
                 memory: 256Mi
+                squat.ai/rtlsdr: 1
 
       acarsrouter:
         replicas: 1
