@@ -1,0 +1,131 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: acars
+  namespace: radio
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.7.0"
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: radio
+  values:
+
+    controllers:
+      acarsdec:
+        replicas: 1
+        containers:
+          acarsdec:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/docker-acarsdec
+              tag: latest-build-412
+            env:
+              FEED_ID: BO0TZZ-ACARS-1
+              TZ: Europe/Amsterdam
+              SOAPYSDR: driver=rtlsdr
+              FREQUENCIES: "131.550;131.725"
+              # Enabling all frequencies to determine which are actually used
+              # RTL-SDR can only scan 2MHz range
+              # See https://app.airframes.io/about
+              # FREQUENCIES: >-
+              #   130.025;130.425;130.450;130.825;130.850;131.125;131.425;
+              #   131.450;131.475;131.525;131.550;131.725;131.825;131.850
+              OUTPUT_SERVER: acars-acarsrouter
+              OUTPUT_SERVER_PORT: "5550"
+              OUTPUT_SERVER_MODE: tcp
+            resources:
+              requests:
+                cpu: 150m
+                memory: 128Mi
+                squat.ai/rtlsdr: 1
+              limits:
+                memory: 256Mi
+
+      acarsrouter:
+        replicas: 1
+        containers:
+          acarsrouter:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/acars_router
+              tag: 1.3.1_linux_amd64
+            env:
+              TZ: Etc/UTC
+              AR_SEND_UDP_ACARS: acars-acarshub:5550
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+
+      acarshub:
+        replicas: 1
+        type: statefulset
+        containers:
+          acarshub:
+            image:
+              repository: ghcr.io/sdr-enthusiasts/docker-acarshub
+              tag: v3.8.0Build1379_nohealthcheck
+            env:
+              TZ: Europe/Amsterdam
+              ENABLE_ADSB: "false"
+              ENABLE_ACARS: external
+              QUIET_MESSAGES: "false" # This logs the messages themselves
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+
+    persistence:
+      acarshub:
+        enabled: true
+        storageClass: zfs-iscsi
+        size: 2Gi
+        accessMode: ReadWriteOnce
+        advancedMounts:
+          acarshub:
+            acarshub:
+              - path: /run/acars
+
+    service:
+      acarsrouter:
+        controller: acarsrouter
+        type: ClusterIP
+        ports:
+          router:
+            port: 5550
+      acarshub:
+        controller: acarshub
+        type: ClusterIP
+        ports:
+          http:
+            port: 80
+          acarsinput:
+            port: 5550
+            protocol: UDP
+          acarsoutput:
+            port: 15550
+
+    ingress:
+      acarshub:
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: &host "acars.bo0tzz.me"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: acarshub
+                  port: 80
+        tls:
+          - hosts:
+              - *host
+            secretName: *host
