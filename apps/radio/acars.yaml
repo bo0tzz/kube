@@ -17,7 +17,7 @@ spec:
 
     controllers:
       acarsdec:
-        replicas: 1
+        replicas: 0
         containers:
           acarsdec:
             image:
@@ -45,6 +45,30 @@ spec:
                 memory: 256Mi
                 squat.ai/rtlsdr: 1
 
+      dumpvdl2:
+        replicas: 1
+        containers:
+          dumpvdl2:
+            securityContext:
+              privileged: true
+            image:
+              repository: ghcr.io/sdr-enthusiasts/docker-dumpvdl2
+              tag: latest-build-348
+            env:
+              FEED_ID: BO0TZZ-VDL2-1
+              TZ: Etc/UTC
+              SOAPYSDR: driver=rtlsdr
+              FREQUENCIES: "136.675;136.725;136.775;136.825;136.875;136.975"
+              ZMQ_MODE: server
+              ZMQ_ENDPOINT: tcp://acars-acarsrouter:45555
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 256Mi
+                squat.ai/rtlsdr: 1
+
       acarsrouter:
         replicas: 1
         containers:
@@ -55,6 +79,8 @@ spec:
             env:
               TZ: Etc/UTC
               AR_SEND_UDP_ACARS: acars-acarshub:5550;feedthe.acarsdrama.com:5550
+              AR_SEND_UDP_VDLM2: acars-acarshub:5555;feedthe.acarsdrama.com:5555
+              AR_RECV_ZMQ_VDLM2: acars-acarshub:45555
             resources:
               requests:
                 cpu: 10m
@@ -73,7 +99,8 @@ spec:
             env:
               TZ: Europe/Amsterdam
               ENABLE_ADSB: "false"
-              ENABLE_ACARS: external
+              # ENABLE_ACARS: external
+              ENABLE_VDLM: external
               QUIET_MESSAGES: "false" # This logs the messages themselves
             resources:
               requests:
