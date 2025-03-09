@@ -119,7 +119,6 @@ spec:
           acarshub:
             acarshub:
               - path: /run/acars
-
     service:
       acarsrouter:
         controller: acarsrouter
@@ -127,6 +126,12 @@ spec:
         ports:
           router:
             port: 5550
+      dumpvdl2:
+        controller: dumpvdl2
+        type: ClusterIP
+        ports:
+          vdl:
+            port: 45555
       acarshub:
         controller: acarshub
         type: ClusterIP
@@ -136,8 +141,13 @@ spec:
           acarsinput:
             port: 5550
             protocol: UDP
+          vdslinput:
+            port: 5555
+            protocol: UDP
           acarsoutput:
             port: 15550
+          vdsloutput:
+            port: 15555
 
     ingress:
       acarshub:
