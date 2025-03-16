@@ -8,13 +8,14 @@ spec:
   chart:
     spec:
       chart: minecraft
-      version: '4.24.0'
+      version: '4.25.0'
       sourceRef:
         kind: HelmRepository
         name: minecraft
         namespace: applications
       interval: 1h
   values:
+    fullnameOverride: minecraft-minecraft
     image:
       pullPolicy: Always
     resources:
