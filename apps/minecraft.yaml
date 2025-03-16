@@ -15,6 +15,7 @@ spec:
         namespace: applications
       interval: 1h
   values:
+    fullnameOverride: minecraft-minecraft
     image:
       pullPolicy: Always
     resources:
