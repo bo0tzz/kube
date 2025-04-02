@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/cimnine/shelly-openmetrics-exporter
-              tag: v0.4.0@sha256:2c4e8b3d3d0e0c3ada7a53b1aa7f9f39b10d90150e2728e4f2b9ae79b7e79f16
+              tag: v0.4.1@sha256:64b509317c5ad817618d318a4c88d639214aa6762e2dd6634b1d55b218bc3be4
             resources:
               requests:
                 cpu: 15m
