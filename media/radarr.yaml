@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-operations/radarr
-      tag: 5.22.0@sha256:2bf6a9a5f30b28f09fa5601b23d095c64739ab0667753b95493a1bcdf194057d 
+      tag: 5.22.2@sha256:9f24da505e2ba09957355a2b638660af2325e9861efb8b77583ca71fa6790789 
     service:
       main:
         ports:
