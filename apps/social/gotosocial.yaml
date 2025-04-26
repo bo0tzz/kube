@@ -34,9 +34,11 @@ spec:
               GTS_HOST: gts.bo0.tz
               GTS_ACCOUNT_DOMAIN: bo0.tz
               GTS_TRUSTED_PROXIES: 10.42.0.0/22
+              # Temp until I fix the proxies cfg:
+              GTS_ADVANCED_RATE_LIMIT_REQUESTS: 0
               GTS_STORAGE_LOCAL_BASE_PATH: /storage
               GTS_SEMAPHORE_URL: https://phanpy.bo0.tz
-#              GTS_LANDING_PAGE_USER: "me"
+              GTS_LANDING_PAGE_USER: "me"
               GTS_OIDC_ENABLED: "true"
               GTS_OIDC_IDP_NAME: "Authentik"
               GTS_DB_TYPE: postgres
