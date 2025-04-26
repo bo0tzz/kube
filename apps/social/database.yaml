@@ -1,0 +1,18 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: gotosocial-db
+  namespace: social
+spec:
+  database: gotosocial
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: gotosocial-user
+  namespace: social
+spec:
+  role: gotosocial
+  database: gotosocial-db
+  secretName: database
+  privileges: OWNER

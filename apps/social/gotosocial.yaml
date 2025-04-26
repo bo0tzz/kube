@@ -1,0 +1,93 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gotosocial
+  namespace: social
+spec:
+  timeout: 5m
+  interval: 2m0s
+  chart:
+    spec:
+      chart: app-template
+      version: "3.7.3"
+      sourceRef:
+        name: bjw-s
+        kind: HelmRepository
+        namespace: social
+  values:
+    controllers:
+      gts:
+        replicas: 1
+        type: deployment
+        containers:
+          gts:
+            image:
+              repository: docker.io/superseriousbusiness/gotosocial
+              tag: "0.19.0"
+            envFrom:
+              - secret: gts-oidc
+            env:
+              TZ: Europe/Amsterdam
+              GTS_HOST: gts.bo0.tz
+              GTS_ACCOUNT_DOMAIN: bo0.tz
+              GTS_TRUSTED_PROXIES: 10.42.0.0/22
+              GTS_STORAGE_LOCAL_BASE_PATH: /storage
+              GTS_SEMAPHORE_URL: https://phanpy.bo0.tz
+#              GTS_LANDING_PAGE_USER: "me"
+              GTS_OIDC_ENABLED: "true"
+              GTS_OIDC_IDP_NAME: "Authentik"
+              GTS_DB_TYPE: postgres
+              GTS_DB_POSTGRES_CONNECTION_STRING:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-gotosocial-user
+                    key: POSTGRES_URL
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1024Mi
+
+    persistence:
+      storage:
+        existingClaim: gotosocial-data
+
+    service:
+      main:
+        controller: gts
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+        hosts:
+          - host: gts.bo0.tz
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+        tls:
+          - hosts:
+              - gts.bo0.tz
+            secretName: gts-web-tls
+      wellknown:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: bo0.tz
+            paths:
+              - path: /.well-known/
+                pathType: Prefix
+                service:
+                  identifier: main
+        tls:
+          - hosts:
+              - bo0.tz
+            secretName: gts-wk-web-tls

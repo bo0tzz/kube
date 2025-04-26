@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: phanpy
+  namespace: social
+spec:
+  timeout: 5m
+  interval: 2m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.7.3"
+      sourceRef:
+        name: bjw-s
+        kind: HelmRepository
+        namespace: social
+  values:
+    controllers:
+      main:
+        replicas: 1
+        type: deployment
+
+        containers:
+          main:
+            image:
+              repository: "ghcr.io/jjgadgets/phanpy"
+              tag: 2025.01.26.24f03f5
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+            env:
+              PHANPY_WEBSITE: "phanpy.bo0.tz"
+              PHANPY_DEFAULT_INSTANCE: "gts.bo0.tz"
+    service:
+      main:
+        controller: main
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+        hosts:
+          - host: phanpy.bo0.tz
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+        tls:
+          - hosts:
+              - phanpy.bo0.tz
+            secretName: phanpy-web-tls
