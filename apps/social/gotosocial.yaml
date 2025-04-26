@@ -84,7 +84,7 @@ spec:
           - host: bo0.tz
             paths:
               - path: /.well-known/
-                pathType: Prefix
+                pathType: ImplementationSpecific
                 service:
                   identifier: main
         tls:
