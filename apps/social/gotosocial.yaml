@@ -19,6 +19,9 @@ spec:
       gts:
         replicas: 1
         type: deployment
+        pod:
+          securityContext:
+            fsGroup: 568
         containers:
           gts:
             image:
