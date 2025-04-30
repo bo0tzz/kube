@@ -32,7 +32,7 @@ spec:
           app: &bapp
             image:
               repository: ghcr.io/bo0tzz/dawarich
-              tag: main@sha256:c8b581b7eb335f5cd22a6a478df083bfba9440d397be917ad80148de17ea1417
+              tag: main@sha256:2a1884eec71649367364f1458685874d0bdd1ed0786b4fe5f6d3ef39923013e3
             env:
               REDIS_URL: redis://localhost:6379
               APPLICATION_HOSTS: "dawarich.bo0tzz.me,dawarich:3000"
