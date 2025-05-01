@@ -23,7 +23,7 @@ metadata:
   namespace: applications
 spec:
   interval: 1h
-  url: https://bjw-s.github.io/helm-charts/
+  url: https://bjw-s-labs.github.io/helm-charts/
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
