@@ -68,6 +68,11 @@ spec:
           kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: letsencrypt-prod
           external-dns.alpha.kubernetes.io/target: bo0tzz.me
+          nginx.ingress.kubernetes.io/cors-allow-origin: "https://phanpy.bo0.tz"
+          nginx.ingress.kubernetes.io/cors-allow-methods: "POST, GET, OPTIONS"
+          nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type, Authorization, Cache-Control"
+          nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+          nginx.ingress.kubernetes.io/enable-cors: "true"
         hosts:
           - host: gts.bo0.tz
             paths:
