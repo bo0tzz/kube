@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: emby/embyserver
-      tag: 4.9.0.43
+      tag: 4.9.0.52
     env:
       UID: 568
       GID: 568
