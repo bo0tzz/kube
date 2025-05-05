@@ -73,6 +73,7 @@ spec:
           nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type, Authorization, Cache-Control"
           nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
           nginx.ingress.kubernetes.io/enable-cors: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "10m"
         hosts:
           - host: gts.bo0.tz
             paths:
