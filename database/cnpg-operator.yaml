@@ -28,3 +28,5 @@ spec:
         name: cnpg
         namespace: cnpg-system
       interval: 1h
+  upgrade:
+    crds: CreateReplace
