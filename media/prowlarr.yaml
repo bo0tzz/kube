@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-operations/prowlarr
-      tag: 1.36.2.5059@sha256:8b998084a1696afb0bdc2e4c2a9750ac4e0f26528fc3db6fa77d7339811f305f
+      tag: 1.37.0.5076@sha256:aab0bfd4e96bdca19cca280a2bbf8ac60b9251dcae13459856b724a2dd3ae020
     service:
       main:
         ports:
