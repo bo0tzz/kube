@@ -24,6 +24,7 @@ spec:
     retentionPolicy: "14d"
     barmanObjectStore:
       destinationPath: s3://cnpg-backups
+      serverName: app-db-2
       endpointURL: https://s3.eu-central-003.backblazeb2.com
       wal:
         compression: bzip2
@@ -38,7 +39,7 @@ spec:
   bootstrap:
     recovery:
       backup:
-        name: daily-backup-20240211000000
+        name: daily-backup-20250608000000
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
