@@ -17,7 +17,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
-      version: 'v1.17.2'
+      version: 'v1.18.1'
       sourceRef:
         kind: HelmRepository
         name: cert-manager
@@ -25,3 +25,8 @@ spec:
       interval: 1h
   values:
     installCRDs: true
+    config:
+      featureGates:
+        # Disable the use of Exact PathType in Ingress resources, to work around a bug in ingress-nginx
+        # https://github.com/kubernetes/ingress-nginx/issues/11176
+        ACMEHTTP01IngressPathTypeExact: false
