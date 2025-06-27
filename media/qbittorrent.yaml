@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/home-operations/qbittorrent
-      tag: 5.1.0@sha256:fe26058628e9eb57b542204b76443b7304ed8820151d51b5c285e1828ca175a0 
+      tag: 5.1.1@sha256:539688bd5de1d3d7e9b5b91e306635ce2ae3d9aa423cd5fea4d47eebd5c46356 
     dnsConfig:
       options:
         - name: ndots
