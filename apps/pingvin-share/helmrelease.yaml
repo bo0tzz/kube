@@ -54,6 +54,7 @@ spec:
               DATA_DIRECTORY: /data
               CONFIG_FILE: /config/config.yaml
               DATABASE_URL: file:/data/pingvin-share.db?connection_limit=1
+              PV_LOG_LEVEL: verbose
 
     service:
       app:
