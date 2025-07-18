@@ -17,8 +17,8 @@ data:
     oauth:
       oidc-enabled: true
       oidc-discoveryUri: "https://auth.bo0tzz.me/application/o/pingvin/.well-known/openid-configuration"
-      oidc-clientId: "\${PINGVIN_OIDC_CLIENT_ID}"
-      oidc-clientSecret: "\${PINGVIN_OIDC_CLIENT_SECRET}"
+      oidc-clientId: ${quote}${PINGVIN_OIDC_CLIENT_ID}${quote}
+      oidc-clientSecret: ${quote}${PINGVIN_OIDC_CLIENT_SECRET}${quote}
       disablePassword: true
     
     initUser:
