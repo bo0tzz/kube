@@ -8,18 +8,18 @@ data:
   config.yaml: |
     general:
       appUrl: "https://share.zijlein.de"
-      secureCookies: true
+      secureCookies: "true"
     
     share:
-      allowRegistration: false
+      allowRegistration: "false"
       maxExpiration: "30 days"
     
     oauth:
-      oidc-enabled: true
+      oidc-enabled: "true"
       oidc-discoveryUri: "https://auth.bo0tzz.me/application/o/pingvin/.well-known/openid-configuration"
       oidc-clientId: "$${PINGVIN_OIDC_CLIENT_ID}"
       oidc-clientSecret: "$${PINGVIN_OIDC_CLIENT_SECRET}"
-      disablePassword: true
+      disablePassword: "true"
     
     initUser:
       enabled: false
