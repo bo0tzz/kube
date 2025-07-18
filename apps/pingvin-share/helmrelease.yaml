@@ -17,6 +17,12 @@ spec:
   values:
     controllers:
       pingvin-share:
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
         initContainers:
           configure:
             image:
@@ -48,11 +54,6 @@ spec:
               DATA_DIRECTORY: /data
               CONFIG_FILE: /config/config.yaml
               DATABASE_URL: file:/data/pingvin-share.db?connection_limit=1
-            securityContext:
-              runAsUser: 1000
-              runAsGroup: 1000
-              fsGroup: 1000
-              fsGroupChangePolicy: OnRootMismatch
 
     service:
       app:
