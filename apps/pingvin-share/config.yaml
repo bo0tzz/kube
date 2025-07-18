@@ -20,3 +20,6 @@ data:
       oidc-clientId: "${PINGVIN_OIDC_CLIENT_ID}"
       oidc-clientSecret: "${PINGVIN_OIDC_CLIENT_SECRET}"
       disablePassword: "true"
+    
+    initUser:
+      enabled: "false"
