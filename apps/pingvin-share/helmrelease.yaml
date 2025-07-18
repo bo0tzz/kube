@@ -48,6 +48,11 @@ spec:
               DATA_DIRECTORY: /data
               CONFIG_FILE: /config/config.yaml
               DATABASE_URL: file:/data/pingvin-share.db?connection_limit=1
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+              fsGroup: 1000
+              fsGroupChangePolicy: OnRootMismatch
 
     service:
       app:
@@ -83,8 +88,6 @@ spec:
         advancedMounts:
           pingvin-share:
             app:
-              - path: /data
-            configure:
               - path: /data
       config:
         type: emptyDir
