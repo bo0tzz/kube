@@ -47,6 +47,7 @@ spec:
     serviceMonitor:
       main:
         enabled: true
+        serviceName: dawarkitty
         endpoints:
           - port: http
             interval: 5m
