@@ -27,14 +27,30 @@ spec:
     keepHistory: false
   values:
     controllers:
-      dawarich:
+      dawarkitty:
         containers:
           app:
             image:
               repository: ghcr.io/bo0tzz/dawarkitty
-              tag: 0.1.5
+              tag: 0.2.0
             env:
               RUST_LOG: trace
               RUST_BACKTRACE: full
             envFrom:
               - secret: dawarkitty-secret
+    service:
+      app:
+        controller: dawarkitty
+        ports:
+          http:
+            port: 9090
+    serviceMonitor:
+      main:
+        enabled: true
+        serviceName: dawarkitty
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 5m
+            scrapeTimeout: 20s
