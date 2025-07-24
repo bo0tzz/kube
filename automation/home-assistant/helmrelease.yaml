@@ -27,6 +27,10 @@ spec:
   values:
     controllers:
       main:
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           main:
             image:
@@ -57,4 +61,3 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config
-
