@@ -57,6 +57,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: hass-tls
     persistence:
       config:
         enabled: true
