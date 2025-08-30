@@ -17,11 +17,6 @@ spec:
       labels:
         app: imagebot
     spec:
-      securityContext:
-        runAsUser: 65534
-        runAsGroup: 65534
-        fsGroup: 65534
-        fsGroupChangePolicy: "OnRootMismatch"
       volumes:
         - name: data
           persistentVolumeClaim:
