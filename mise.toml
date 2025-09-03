@@ -4,7 +4,7 @@ helm = "3.18.6"
 jq = "1.7.1"
 kubectl = "1.23.6"
 "pipx:flux-local" = "4.3.1"
-uv = "0.8.14"
+uv = "0.8.15"
 yamlfmt = "0.17.2"
 
 [tasks."kube:fmt"]
