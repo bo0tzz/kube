@@ -84,6 +84,8 @@ spec:
               secretName: immich-web-tls
 
     machine-learning:
+      controller:
+        strategy: Recreate
       resources:
         requests:
           cpu: 500m
