@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: immich
-      version: 0.9.3
+      version: 0.10.0
       sourceRef:
         kind: HelmRepository
         name: immich-charts
@@ -18,10 +18,7 @@ spec:
     remediation:
       retries: 3
   values:
-    postgres:
-      enabled: false
-
-    redis:
+    valkey:
       enabled: true
 
     immich:
@@ -31,40 +28,48 @@ spec:
         library:
           existingClaim: photo-library
 
-    env:
-      MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
-      DB_HOSTNAME:
-        valueFrom:
-          secretKeyRef:
-            name: database-immich-user
-            key: HOST
-      DB_USERNAME:
-        valueFrom:
-          secretKeyRef:
-            name: database-immich-user
-            key: LOGIN
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: database-immich-user
-            key: PASSWORD
-      DB_DATABASE_NAME:
-        valueFrom:
-          secretKeyRef:
-            name: database-immich-user
-            key: DATABASE_NAME
-      LOG_LEVEL: verbose
-      TZ: Europe/Amsterdam
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
+              DB_HOSTNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-immich-user
+                    key: HOST
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-immich-user
+                    key: LOGIN
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-immich-user
+                    key: PASSWORD
+              DB_DATABASE_NAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-immich-user
+                    key: DATABASE_NAME
+              LOG_LEVEL: verbose
+              TZ: Europe/Amsterdam
 
-    image:
-      # renovate: datasource=github-releases depName=immich-app/immich
-      tag: "v2.0.1"
+            image:
+              # renovate: datasource=github-releases depName=immich-app/immich
+              tag: "v2.0.0"
 
     server:
-      resources:
-        requests:
-          cpu: 1500m
-          memory: 2048M
+      controllers:
+        main:
+          containers:
+            main:
+              resources:
+                requests:
+                  cpu: 1500m
+                  memory: 2048M
       ingress:
         main:
           enabled: true
@@ -84,13 +89,16 @@ spec:
               secretName: immich-web-tls
 
     machine-learning:
-      controller:
-        strategy: Recreate
-      resources:
-        requests:
-          cpu: 500m
-          memory: 4096M
+      controllers:
+        main:
+          strategy: Recreate
+          containers:
+            main:
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 4096M
       persistence:
         cache:
-          type: pvc
+          type: persistentVolumeClaim
           existingClaim: immich-machine-learning-cache
