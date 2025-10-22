@@ -5,7 +5,7 @@ jq = "1.8.1"
 kubectl = "1.23.6"
 "pipx:flux-local" = "4.3.1"
 uv = "0.9.5"
-yamlfmt = "0.19.0"
+yamlfmt = "0.20.0"
 
 [tasks."kube:fmt"]
 run = "yamlfmt ."
