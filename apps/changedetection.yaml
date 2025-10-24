@@ -20,7 +20,7 @@ spec:
           *app :
             image:
               repository: ghcr.io/dgtlmoon/changedetection.io
-              tag: "0.50.28"
+              tag: "0.50.30"
             env:
               PORT: &port 5000
               PLAYWRIGHT_DRIVER_URL: ws://localhost:3000
