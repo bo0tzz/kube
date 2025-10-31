@@ -41,7 +41,7 @@ spec:
         image: ghcr.io/democratic-csi/democratic-csi:v1.9.3
 
     csiProxy:
-      image: ghcr.io/democratic-csi/csi-grpc-proxy:v0.5.6
+      image: ghcr.io/democratic-csi/csi-grpc-proxy:v0.5.7
 
     storageClasses:
       - name: zfs-iscsi
