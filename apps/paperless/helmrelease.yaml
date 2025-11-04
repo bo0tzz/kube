@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
-              tag: 2.19.3
+              tag: 2.19.4
             env:
               PAPERLESS_URL: https://paperless.bo0tzz.me
               PAPERLESS_TIME_ZONE: "Europe/Amsterdam"
