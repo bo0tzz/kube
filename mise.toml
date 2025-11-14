@@ -3,7 +3,7 @@ flux2 = "0.41.2"
 helm = "3.19.1"
 jq = "1.8.1"
 kubectl = "1.23.6"
-"pipx:flux-local" = "4.3.1"
+"pipx:flux-local" = "8.0.0"
 uv = "0.9.6"
 yamlfmt = "0.20.0"
 
