@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/kpetremann/mqtt-exporter
-      tag: 1.8.1
+      tag: 1.9.0
     env:
       MQTT_ADDRESS: emqx
       MQTT_TOPIC: "zigbee2mqtt/#"
