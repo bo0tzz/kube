@@ -25,6 +25,7 @@ spec:
       repository: ghcr.io/kpetremann/mqtt-exporter
       tag: 1.9.0
     env:
+      MAX_METRICS: 0
       MQTT_ADDRESS: emqx
       MQTT_TOPIC: "zigbee2mqtt/#"
       MQTT_V5_PROTOCOL: "True"
