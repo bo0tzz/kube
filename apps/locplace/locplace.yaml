@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: locplace
-          image: ghcr.io/locplace/server:0.0.1
+          image: ghcr.io/locplace/server:main
           imagePullPolicy: Always
           env:
             - name: DATABASE_URL
