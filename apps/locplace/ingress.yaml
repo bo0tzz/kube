@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: locplace
+  namespace: locplace
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/exclude: true
+spec:
+  tls:
+    - hosts:
+        - loc.place
+      secretName: loc-place-tls
+  rules:
+    - host: loc.place
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: locplace
+                port:
+                  name: http

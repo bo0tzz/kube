@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: locplace-admin-key
+    namespace: locplace
+stringData:
+    key: ENC[AES256_GCM,data:K2iktlW4daa/uKJZ4OXEHPxZ6aRaxm3N1v++r0slA2MK/fTgVqtm/p1yuSyjRDOVroNF46XvtLHzLogKjzc=,iv:kcadhGGJQwgb19gxTpAbBXi5NziZSJS8NbqkPx6E3Dg=,tag:VyWhOO568KBgILKb1s9L9Q==,type:str]
+sops:
+    lastmodified: "2025-11-30T20:16:14Z"
+    mac: ENC[AES256_GCM,data:41SImBqY1Dg7dQRuX4sTinJEHuqS6CCPq1r9S4pqrtLLspksJxcOa7wyL8EIBeAjzay1Kni5AQE5f6rYsMf6B8NOpFS9m8DotpwVQl9agBRFDtW+K5ZDGDe0dGszMNkR0YpEm/ZHMqHMUoZi0FY6g+yd/7fXX9+BVhry0x8Xo0Q=,iv:4e3r2+MX9yyt+2vU2lLxFuVCPjc7P1WGkyOmPqS48Nk=,tag:4cmGRmSofuHXHWYZ/PfOew==,type:str]
+    pgp:
+        - created_at: "2025-11-30T20:16:14Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMA2YE/I5Bjk+6ARAAqrqrBjh15uhvgER3MZxsNj3MOgxC8wFE/OraIO8kAvzm
+            8ATHbGoG2DfkvfP1b7xGcp/Q+NvgIt/0Zda8jt9NcTz+eDnMpvc00q/6zVh2v9vW
+            WrfSpB8kRAtBdeRD150+anYUIRIVHHjoqRB5teGUjOMT+syFLVKagO2hpG5xR8B9
+            461pFxPNvDV51i69FqDIqfSBkPNno0+CcFm6ulvqHV1xm6Ji2ESrs0HXAXP1Dg2b
+            VR2eX3FtTEz0FgiUWLqF2e5Z2sCQk0OkrqJ+kadbDNDPvril1gTQXgnls0RTA5i8
+            Jnsmz9Wh2v/mtRbdAWPU4WEbEcX25lAO79ZmS2tXZLKDabq70h6W/36vehrZNAUE
+            EvefI/F3ZfX/tm3rlKFtRNJkH/tb/L1aSC66tBZ1m7BYdbLAdy4V5tXaExJf1o9X
+            7fq8efDCLrdPPf37Lx8J3zmrfvXjI6GXFmxMdwt2IeY52sT2wfLydnPEf98wjh0m
+            DM77wsrsrBYubXPQNnufHCL4ZJrvvwAguIPICaKXeJLzj8+2OS8JO9Ukm/lC9RIJ
+            LqMkpAYHH54Znv/ubDLjJMjR5Y0ScXV+C8WdyyTgKmc34oB40q09NMMMhY5BQorI
+            KYWb4riRW4IUCcnPbZvI1TFM7GarvnApN7K6I2Q+yHlIJ0aBdxnHERXHYHTBk/fS
+            XgE+tJGd0lkT7OSoG6qEE7umPQcS8inhhg4m0MP1f/yFAi4Z7HlHNgKDvepbU4+I
+            Q/IGRQEs+s6WQziEHMz8XEeWy3x3dBScbl9T0/GPlTQsydcvkRLYuG8OiF61KVE=
+            =2XPP
+            -----END PGP MESSAGE-----
+          fp: DB3395B20E82DA5501D7B353AF52965D73D119F7
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0

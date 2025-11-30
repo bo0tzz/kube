@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locplace
+  namespace: locplace
+  labels:
+    app: locplace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: locplace
+  template:
+    metadata:
+      name: locplace
+      labels:
+        app: locplace
+    spec:
+      containers:
+        - name: locplace
+          image: ghcr.io/locplace/server:0.0.1
+          imagePullPolicy: Always
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: locplace-db-app
+                  key: uri
+            - name: ADMIN_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: locplace-admin-key
+                  key: key
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 9090
+              name: metrics
+      restartPolicy: Always
+      
