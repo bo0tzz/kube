@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: locplace
   namespace: locplace
+  labels:
+    app: locplace
 spec:
   selector:
     app: locplace
@@ -11,5 +13,8 @@ spec:
       protocol: TCP
       port: 80
       targetPort: "http"
+    - name: "metrics"
+      protocol: TCP
+      port: 9090
+      targetPort: "metrics"
   type: ClusterIP
-  
