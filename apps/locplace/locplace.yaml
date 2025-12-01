@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: MAX_PENDING_BATCHES
-              value: 50
+              value: "50"
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
