@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: locplace-dashboard
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod-http
+    external-dns.alpha.kubernetes.io/exclude: true
+spec:
+  tls:
+    - hosts:
+        - dashboard.loc.place
+      secretName: loc-place-dashboard-tls
+  rules:
+    - host: dashboard.loc.place
+      http:
+        paths:
+          # Public dashboard pages
+          - path: /public-dashboards
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 80
+          # API for dashboard data queries
+          - path: /api/public/dashboards
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 80
+          # Static assets (JS/CSS/fonts)
+          - path: /public
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 80
