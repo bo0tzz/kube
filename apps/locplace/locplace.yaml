@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: locplace
-          image: ghcr.io/locplace/server:0.2.2
+          image: ghcr.io/locplace/server:0.3.1
           imagePullPolicy: Always
           env:
             - name: MAX_PENDING_BATCHES
