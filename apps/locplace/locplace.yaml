@@ -24,10 +24,7 @@ spec:
             - name: MAX_PENDING_BATCHES
               value: "1000"
             - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: locplace-db-app
-                  key: uri
+              value: "postgresql://app:nMBKpeBsq8m6cciK22OvAYb13IlYMiZWya6Babntxwel1pOVqBPIBmRoPGu9cPx0@192.168.1.16:5432/app"
             - name: ADMIN_API_KEY
               valueFrom:
                 secretKeyRef:
