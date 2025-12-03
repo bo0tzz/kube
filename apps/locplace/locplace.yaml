@@ -23,6 +23,8 @@ spec:
           env:
             - name: MAX_PENDING_BATCHES
               value: "1000"
+            - name: DB_MAX_CONNS
+              value: "50"
             - name: DATABASE_URL
               value: "postgresql://app:nMBKpeBsq8m6cciK22OvAYb13IlYMiZWya6Babntxwel1pOVqBPIBmRoPGu9cPx0@192.168.1.16:5432/app"
             - name: ADMIN_API_KEY
