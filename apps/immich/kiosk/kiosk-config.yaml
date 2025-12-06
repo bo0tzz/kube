@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kiosk-config
+  namespace: immich
+data:
+  config.yaml: |
+    immich_url: "https://photos.bo0tzz.me"
+
+    people:
+      - "5cdfbeec-52d0-440f-8b22-b943ca2f1ba3"
+      - "06a627e3-a885-48a5-9a8f-2da29a457d45"
+      - "2cf9f0dd-137f-406c-8192-9faddcac4c19"
+      - "c46aa738-b479-4544-b480-40cd56c789a2"
+      - "88fa7461-32b3-451a-9314-7fb34bf048da"
+      - "2dcbaf7b-18ba-466f-8faa-7beef1177ee0"
+      - "a9a93c78-8bf5-4993-891c-396eaed776da"
+      - "6f912631-4a8e-4050-a2fe-6e8c210f1b69"
+      - "e27d8dc4-27b9-43a6-9d2c-9b2b4f4db751"
+      - "0165c6fc-5944-4d7f-b849-a02e70402589"
+      - "f148e7cb-b922-4c61-be94-819c87b5d152"
+      - "5dab1f7f-7d5e-4b94-a8f0-18293122140c"
+      - "5fb852bb-3f98-432e-9751-078d111ee096"
+      - "a5364fde-ee56-4d8e-92af-dce742421923"
+      - "29333e03-e2f8-48e8-9044-91e3e4404615"
+      - "ec926262-6dd0-4def-a063-9506475adb5b"
+      - "c2f8ff51-26d8-45bd-92f6-00fa909e9202"
+
+    disable_screensaver: true
+    
+    kiosk:
+      behind_proxy: true

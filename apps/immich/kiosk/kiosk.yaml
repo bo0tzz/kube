@@ -1,0 +1,64 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich-kiosk
+  namespace: immich
+spec:
+  timeout: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: "3.7.3"
+      sourceRef:
+        name: bjw-s
+        kind: HelmRepository
+        namespace: immich
+  values:
+    controllers:
+      kiosk:
+        replicas: 1
+        type: deployment
+        containers:
+          gts:
+            image:
+              repository: ghcr.io/damongolding/immich-kiosk
+              tag: "0.28.3"
+            envFrom:
+              - secret: kiosk-secret
+            env:
+              TZ: Europe/Amsterdam
+              LANG: nl_NL
+
+    persistence:
+      config:
+        type: configMap
+        name: kiosk-config
+        globalMounts:
+          - path: /config/config.yaml
+            subPath: config.yaml
+            readOnly: true
+
+    service:
+      main:
+        controller: kiosk
+        ports:
+          http:
+            port: 3000
+
+    ingress:
+      main:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+          external-dns.alpha.kubernetes.io/target: bo0tzz.me
+        hosts:
+          - host: immich-kiosk.bo0tzz.me
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: main
+        tls:
+          - hosts:
+              - immich-kiosk.bo0tzz.me
+            secretName: kiosk-web-tls

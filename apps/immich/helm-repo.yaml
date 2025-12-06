@@ -6,3 +6,12 @@ metadata:
 spec:
   interval: 1h
   url: https://immich-app.github.io/immich-charts
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: bjw-s
+  namespace: immich
+spec:
+  interval: 1h
+  url: https://bjw-s-labs.github.io/helm-charts/
