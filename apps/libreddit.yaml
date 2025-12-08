@@ -19,8 +19,8 @@ spec:
       strategy: RollingUpdate
 
     image:
-      repository: quay.io/redlib/redlib
-      tag: latest@sha256:25dbb5466ebd22e58277d4aa54897899b044f02f7219ca3054784aecc0be34e1
+      repository: ghcr.io/cycneuramus/containers
+      tag: redlib@sha256:4b607fd58f2c170d9bbf073bfedbe570c5b6f29c7e72b3a2285e86d5c7f98af9
       
     dnsConfig:
       options:
