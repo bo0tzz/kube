@@ -1,6 +1,6 @@
 [tools]
 flux2 = "0.41.2"
-helm = "4.0.1"
+helm = "4.0.2"
 jq = "1.8.1"
 kubectl = "1.23.6"
 "pipx:flux-local" = "4.3.1"
