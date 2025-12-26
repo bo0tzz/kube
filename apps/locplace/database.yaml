@@ -1,0 +1,37 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: locplace-db
+  namespace: locplace
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+
+  storage:
+    storageClass: local-path
+    size: 4Gi
+
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - app
+        source:
+          externalCluster: locplace
+
+  externalClusters:
+    - name: locplace
+      connectionParameters:
+        host: 192.168.1.16
+        user: app
+        dbname: app
+      password:
+        name: locplace-bootstrap-pw
+        key: password
+
+
+  monitoring:
+    enablePodMonitor: true
+
+  # TODO: Backups
