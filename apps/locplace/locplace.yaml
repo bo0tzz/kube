@@ -26,7 +26,10 @@ spec:
             - name: DB_MAX_CONNS
               value: "50"
             - name: DATABASE_URL
-              value: "postgresql://app:nMBKpeBsq8m6cciK22OvAYb13IlYMiZWya6Babntxwel1pOVqBPIBmRoPGu9cPx0@192.168.1.16:5432/app"
+              valueFrom:
+                secretKeyRef:
+                  name: locplace-db-app
+                  key: uri
             - name: ADMIN_API_KEY
               valueFrom:
                 secretKeyRef:
