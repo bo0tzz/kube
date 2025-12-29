@@ -50,7 +50,7 @@ spec:
           - job_name: "apcups"
             static_configs:
               - targets:
-                  - 10.0.0.5
+                  - 10.0.0.3
             metrics_path: /snmp
             params:
               module: [apcups]
