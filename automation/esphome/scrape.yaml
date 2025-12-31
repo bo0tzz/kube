@@ -2,7 +2,9 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
   name: esphome-air-quality
-  namespace: automation
+  namespace: monitoring
+  labels:
+    release: prometheus
 spec:
   staticConfigs:
     - targets:
