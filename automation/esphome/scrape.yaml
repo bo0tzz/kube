@@ -4,7 +4,7 @@ metadata:
   name: esphome-air-quality
   namespace: monitoring
   labels:
-    release: prometheus
+    release: kube-prometheus-stack
 spec:
   staticConfigs:
     - targets:
