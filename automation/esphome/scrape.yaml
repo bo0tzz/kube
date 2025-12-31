@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: esphome-air-quality
+  namespace: automation
+spec:
+  staticConfigs:
+    - targets:
+        - 10.0.5.22
+      labels:
+        job: esphome
+        location: living_room
+        device: air_quality_sensor
+  metricsPath: /metrics
+  scrapeInterval: 30s
