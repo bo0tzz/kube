@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/miniflux/miniflux
-      tag: 2.2.15
+      tag: 2.2.16
     service:
       main:
         ports:
