@@ -17,7 +17,7 @@ spec:
       serviceAccountName: ext-postgres-operator
       containers:
         - name: ext-postgres-operator
-          image: ghcr.io/movetokube/postgres-operator:2.3.0
+          image: ghcr.io/movetokube/postgres-operator:2.4.0
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
