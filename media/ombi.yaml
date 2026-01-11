@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/linuxserver/ombi
-      tag: 4.54.0-development
+      tag: 4.54.1-development
     service:
       main:
         ports:
