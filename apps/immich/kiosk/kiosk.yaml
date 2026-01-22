@@ -22,7 +22,7 @@ spec:
           gts:
             image:
               repository: ghcr.io/damongolding/immich-kiosk
-              tag: "0.30.2"
+              tag: "0.31.0"
             envFrom:
               - secret: kiosk-secret
             env:
