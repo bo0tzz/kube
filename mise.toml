@@ -2,7 +2,7 @@
 flux2 = "0.41.2"
 helm = "4.1.1"
 jq = "1.8.1"
-kubectl = "1.23.6"
+kubectl = "1.35.1"
 "pipx:flux-local" = "4.3.1"
 uv = "0.10.1"
 yamlfmt = "0.21.0"
