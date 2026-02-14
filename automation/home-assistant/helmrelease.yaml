@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/home-operations/home-assistant
-              tag: 2026.2.1
+              tag: 2026.2.2
     service:
       main:
         ports:
