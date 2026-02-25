@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: ghcr.io/kpetremann/mqtt-exporter
-      tag: 1.11.1
+      tag: 1.11.2
     env:
       MAX_METRICS: 0
       MQTT_ADDRESS: emqx
