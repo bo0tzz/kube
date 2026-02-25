@@ -26,7 +26,7 @@ spec:
           gts:
             image:
               repository: docker.io/superseriousbusiness/gotosocial
-              tag: "0.20.3"
+              tag: "0.21.0"
             envFrom:
               - secret: gts-oidc
             env:
