@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: imagebot
+  namespace: applications
+spec:
+  ports:
+    - name: metrics
+      port: 4000
+      targetPort: 4000
+  selector:
+    app: imagebot
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: imagebot
+  namespace: applications
+spec:
+  endpoints:
+    - interval: 1m
+      path: /metrics
+      port: metrics
+  jobLabel: imagebot
+  namespaceSelector:
+    matchNames:
+      - applications
+  selector:
+    matchLabels:
+      app: imagebot
