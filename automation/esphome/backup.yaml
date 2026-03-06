@@ -18,4 +18,4 @@ spec:
     volumeSnapshotClassName: zfs-iscsi
     cacheStorageClassName: zfs-iscsi
     cacheAccessModes: ["ReadWriteOnce"]
-
+    cacheCapacity: 5Gi
