@@ -32,6 +32,11 @@ spec:
               - *host
             secretName: authentik-web-tls
 
+    worker:
+      resources:
+        limits:
+          memory: 3Gi
+    
     authentik:
       log_level: trace
       email:
