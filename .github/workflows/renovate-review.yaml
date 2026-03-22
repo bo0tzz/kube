@@ -45,6 +45,15 @@ jobs:
             - Helm chart versions in HelmRelease CRDs
             - Custom dependencies managed via regex in YAML files
 
+            ## Pre-check: skip redundant re-reviews
+
+            Before doing any research, check whether claude[bot] has already reviewed this PR
+            (`gh pr reviews` or `gh api`). If a prior review exists, compare the package version(s)
+            in the current diff against the versions mentioned in that review. If they are identical
+            (i.e. Renovate just rebased without changing versions), stop immediately without posting
+            a new review. Only proceed with a full review if the versions changed or new packages
+            were added since the last review.
+
             ## Workflow
 
             ### 1. Analyze
