@@ -52,7 +52,7 @@ jobs:
             in the current diff against the versions mentioned in that review. If they are identical
             (i.e. Renovate just rebased without changing versions), stop immediately without posting
             a new review. Only proceed with a full review if the versions changed or new packages
-            were added since the last review.
+            were added since the last review. Do not rehash changes that were already mentioned in the previous review.
 
             ## Workflow
 
