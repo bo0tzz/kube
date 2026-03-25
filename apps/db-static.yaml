@@ -201,7 +201,7 @@ spec:
     spec:
       containers:
       - name: db-static
-        image: nginx:1.29.6
+        image: nginx:1.29.7
         ports:
         - containerPort: 80
         volumeMounts:
