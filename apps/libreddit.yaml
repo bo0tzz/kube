@@ -19,8 +19,8 @@ spec:
       strategy: RollingUpdate
 
     image:
-      repository: quay.io/redlib/redlib
-      tag: latest@sha256:dffb6c5a22f889d47d8e28e33411db0fb6c5694599f72cf740c912c12f5fc1c6
+      repository: ghcr.io/silvenga/redlib
+      tag: latest@sha256:5b7b92744ca153c75bef1f5b6b5ffb6985a230c91019d722a88ec758b15f502d
       
     dnsConfig:
       options:
