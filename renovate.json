@@ -86,7 +86,7 @@
     {
       "description": "Run ancient shit",
       "matchPackageNames": ["/kubectl/"],
-      "enabled": "false"
+      "enabled": false
     }
   ]
 }
