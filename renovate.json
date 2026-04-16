@@ -6,6 +6,7 @@
     ":semanticCommits"
   ],
   "automerge": true,
+  "ignoreDeps": ["kubectl"],
   "rebaseWhen": "conflicted",
   "suppressNotifications": [
     "prIgnoreNotification"
@@ -82,11 +83,6 @@
       "matchPackageNames": [
         "ghcr.io/n8n-io/n8n{/,}**"
       ]
-    },
-    {
-      "description": "Run ancient shit",
-      "matchPackageNames": ["/kubectl/"],
-      "enabled": false
     }
   ]
 }
