@@ -1,0 +1,60 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: birdnet-go
+  namespace: applications
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: applications
+
+  values:
+    controllers:
+      birdnet-go:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/tphakala/birdnet-go
+              tag: nightly-20260418@sha256:6f5a93b725e43f9d8f5a77fb062868eac03795be99ab8ec967c7661f2f6d217c
+            env:
+              TZ: Europe/Amsterdam
+
+    service:
+      app:
+        controller: birdnet-go
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      app:
+        annotations:
+          kubernetes.io/ingress.class: nginx-internal
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+          - host: &hostname birds.zijlein.de
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+        tls:
+          - hosts:
+              - *hostname
+            secretName: birdnet-go-tls
+
+    persistence:
+      data:
+        existingClaim: birdnet-go-data
+        globalMounts:
+          - path: /config
+            subPath: config
+          - path: /data
+            subPath: data
