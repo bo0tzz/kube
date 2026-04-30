@@ -83,6 +83,13 @@
       "matchPackageNames": [
         "ghcr.io/n8n-io/n8n{/,}**"
       ]
+    },
+    {
+      "matchPackageNames": [
+        "ghcr.io/tphakala/birdnet-go"
+      ],
+      "versionCompatibility": "^(?<compatibility>nightly-)(?<version>\\d{8})$",
+      "versioning": "loose"
     }
   ]
 }
