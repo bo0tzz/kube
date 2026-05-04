@@ -28,6 +28,9 @@ spec:
       config:
         allow-snippet-annotations: true
         annotations-risk-level: Critical
+      extraArgs:
+        enable-ssl-passthrough: true
+        default-backend-service: ingress/clusterfuck-default-backend
       service:
         loadBalancerIP: 192.168.4.100
         annotations:
