@@ -33,7 +33,7 @@ spec:
         containers:
           main:
             env:
-              MACHINE_LEARNING_PRELOAD__CLIP: "ViT-H-14-378-quickgelu__dfn5b"
+              MACHINE_LEARNING_PRELOAD__CLIP__TEXTUAL: "ViT-H-14-378-quickgelu__dfn5b"
               DB_HOSTNAME:
                 valueFrom:
                   secretKeyRef:
