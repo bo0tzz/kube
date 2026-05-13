@@ -15,6 +15,7 @@ spec:
         namespace: media
       interval: 1h
   values:
+    replicas: 0
     image:
       repository: ghcr.io/linuxserver/ombi
       tag: 4.59.3-development
