@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: ghcr.io/tphakala/birdnet-go
-              tag: nightly-20260511@sha256:3b617d1176f13934ff6b918239974dadc3600b3fec8d50e764431789810a87d9
+              tag: nightly-20260514@sha256:39a1578d7d4917ca350b166c5009dfacf278752e38310f23d6f7ee861c3c5976
             env:
               TZ: Europe/Amsterdam
 
