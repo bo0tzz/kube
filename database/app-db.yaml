@@ -13,6 +13,18 @@ spec:
     shared_preload_libraries:
       - "vchord.so"
 
+  managed:
+    services:
+      additional:
+        - selectorType: ro
+          serviceTemplate:
+            metadata:
+              name: app-db-ro-lan
+              annotations:
+                metallb.universe.tf/loadBalancerIPs: 192.168.4.105
+            spec:
+              type: LoadBalancer
+
   storage:
     storageClass: local-path
     size: 20Gi
