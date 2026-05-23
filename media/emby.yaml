@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: emby/embyserver
-      tag: 4.10.0.11
+      tag: 4.10.0.12
     automountServiceAccountToken: false
     env:
       UID: 568
